@@ -21,6 +21,17 @@ import { Stepper } from './components/AdvancedInteraction/Stepper';
 import { Tour } from './components/AdvancedInteraction/Tour';
 import { HotkeySupport } from './components/AdvancedInteraction/HotkeySupport';
 
+// Data & Visualization
+import { StatsCards } from './components/DataVisualization/StatsCards';
+import { ActivityTimeline } from './components/DataVisualization/ActivityTimeline';
+import { ProgressCircle } from './components/DataVisualization/ProgressCircle';
+import { DonutChart } from './components/DataVisualization/DonutChart';
+import { BarChart } from './components/DataVisualization/BarChart';
+import { LineChart } from './components/DataVisualization/LineChart';
+import { Heatmap } from './components/DataVisualization/Heatmap';
+import { CalendarView } from './components/DataVisualization/CalendarView';
+import { KanbanBoard } from './components/DataVisualization/KanbanBoard';
+
 const CodeBlock = ({ code }: { code: string, onClose: () => void }) => {
     const [copied, setCopied] = useState(false);
 
@@ -167,7 +178,7 @@ const CategoryOverview = ({ title, items, onSelect }: { title: string, items: st
         <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-100 pb-12">
                 <div className="max-w-2xl">
-                    <h1 className="text-2xl font-black text-slate-900 tracking-tight mb-4 font-heading">{title}</h1>
+                    <h1 className="text-xl font-black text-slate-900 tracking-tight mb-4 font-heading">{title}</h1>
                     <p className="text-slate-500 text-sm leading-relaxed font-medium">
                         Explore our collection of high-quality components designed for the {title} module.
                         Each element is crafted with modularity and accessibility in mind.
@@ -413,6 +424,24 @@ const EkontyDesignSystem = () => {
                         <Tour />
                     ) : activeTab === "Hotkey Support" ? (
                         <HotkeySupport />
+                    ) : activeTab === "Stats Cards" ? (
+                        <StatsCards />
+                    ) : activeTab === "Activity Timeline" ? (
+                        <ActivityTimeline />
+                    ) : activeTab === "Progress Circle" ? (
+                        <ProgressCircle />
+                    ) : activeTab === "Donut Chart" ? (
+                        <DonutChart />
+                    ) : activeTab === "Bar Chart" ? (
+                        <BarChart />
+                    ) : activeTab === "Line Chart" ? (
+                        <LineChart />
+                    ) : activeTab === "Heatmap" ? (
+                        <Heatmap />
+                    ) : activeTab === "Calendar View" ? (
+                        <CalendarView />
+                    ) : activeTab === "Kanban Board" ? (
+                        <KanbanBoard />
                     ) : activeTab ? (
                         <div className="flex flex-col items-center justify-center h-[60vh] text-center space-y-4 animate-in fade-in zoom-in-95 duration-300">
                             <div className="p-4 rounded-full bg-emerald-50 border border-emerald-100">
