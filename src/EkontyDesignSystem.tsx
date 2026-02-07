@@ -64,7 +64,7 @@ import { TagLabelSystem } from './components/BusinessFeatures/TagLabelSystem';
 import { RatingStars } from './components/BusinessFeatures/RatingStars';
 import { BookmarkButton } from './components/BusinessFeatures/BookmarkButton';
 import { ShareButton } from './components/BusinessFeatures/ShareButton';
-import { CopyToClipboard } from "./components/BusinessFeatures/CopyToClipboard";
+import { CopyToClipboard } from './components/BusinessFeatures/CopyToClipboard';
 import { QRCodeGenerator } from './components/BusinessFeatures/QRCodeGenerator';
 import { InvoiceView } from './components/BusinessFeatures/InvoiceView';
 
