@@ -73,7 +73,6 @@ import { Tooltips } from './components/UXPolish/Tooltips';
 import { Popovers } from './components/UXPolish/Popovers';
 import { HoverCards } from './components/UXPolish/HoverCards';
 import { FloatingActionButton } from './components/UXPolish/FloatingActionButton';
-import { ScrollToTop } from "./components/UXPolish/ScrollToTop";
 import { BackButton } from './components/UXPolish/BackButton';
 import { SmoothScroll } from './components/UXPolish/SmoothScroll';
 import { ParallaxSection } from './components/UXPolish/ParallaxSection';
@@ -595,8 +594,6 @@ const EkontyDesignSystem = () => {
                         <HoverCards />
                     ) : activeTab === "Floating Action Button" ? (
                         <FloatingActionButton />
-                    ) : activeTab === "Scroll to Top" ? (
-                        <ScrollToTop />
                     ) : activeTab === "Back Button" ? (
                         <BackButton />
                     ) : activeTab === "Smooth Scroll" ? (
