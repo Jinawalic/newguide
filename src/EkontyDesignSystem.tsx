@@ -64,7 +64,7 @@ import { TagLabelSystem } from './components/BusinessFeatures/TagLabelSystem';
 import { RatingStars } from './components/BusinessFeatures/RatingStars';
 import { BookmarkButton } from './components/BusinessFeatures/BookmarkButton';
 import { ShareButton } from './components/BusinessFeatures/ShareButton';
-import { CopyToClipboard } from './components/BusinessFeatures/CopyToClipboard';
+// import { CopyToClipboard } from './components/BusinessFeatures/CopyToClipboard';
 import { QRCodeGenerator } from './components/BusinessFeatures/QRCodeGenerator';
 import { InvoiceView } from './components/BusinessFeatures/InvoiceView';
 
@@ -326,8 +326,9 @@ const EkontyDesignSystem = () => {
         },
         {
             title: "Business Features",
-            items: ["Status Badge", "Tag / Label System", "Rating Stars", "Bookmark Button", "Share Button", "Copy to Clipboard", "Invoice View"]
+            items: ["Status Badge", "Tag / Label System", "Rating Stars", "Bookmark Button", "Share Button", "Invoice View"]
         },
+        // "Copy to Clipboard", 
         {
             title: "UX Polish",
             items: ["Tooltips", "Popovers", "Hover Cards", "Floating Action Button", "Back Button", "Smooth Scroll", "Parallax Section"]
@@ -580,84 +581,86 @@ const EkontyDesignSystem = () => {
                         <BookmarkButton />
                     ) : activeTab === "Share Button" ? (
                         <ShareButton />
-                    ) : activeTab === "Copy to Clipboard" ? (
-                        <CopyToClipboard />
-                    ) : activeTab === "QR Code Generator" ? (
-                        <QRCodeGenerator />
-                    ) : activeTab === "Invoice View" ? (
-                        <InvoiceView />
-                    ) : activeTab === "Tooltips" ? (
-                        <Tooltips />
-                    ) : activeTab === "Popovers" ? (
-                        <Popovers />
-                    ) : activeTab === "Hover Cards" ? (
-                        <HoverCards />
-                    ) : activeTab === "Floating Action Button" ? (
-                        <FloatingActionButton />
-                    ) : activeTab === "Back Button" ? (
-                        <BackButton />
-                    ) : activeTab === "Smooth Scroll" ? (
-                        <SmoothScroll />
-                    ) : activeTab === "Parallax Section" ? (
-                        <ParallaxSection />
-                    ) : activeTab === "OTP Input" ? (
-                        <OTPInput />
-                    ) : activeTab === "Password Strength" ? (
-                        <PasswordStrength />
-                    ) : activeTab === "Session Timeout" ? (
-                        <SessionTimeout />
-                    ) : activeTab === "Device Login History" ? (
-                        <DeviceLoginHistory />
-                    ) : activeTab === "2FA Setup" ? (
-                        <TwoFASetup />
-                    ) : activeTab === "Theme Switcher" ? (
-                        <ThemeSwitcher />
-                    ) : activeTab === "Language Switcher" ? (
-                        <LanguageSwitcher />
-                    ) : activeTab === "Export CSV/PDF" ? (
-                        <ExportCSV_PDF />
-                    ) : activeTab === "Import Data" ? (
-                        <ImportData />
-                    ) : activeTab === "Bulk Actions" ? (
-                        <BulkActions />
-                    ) : activeTab === "Column Visibility" ? (
-                        <ColumnVisibility />
-                    ) : activeTab === "Table Sorting" ? (
-                        <TableSorting />
-                    ) : activeTab === "Table Actions" ? (
-                        <TableActions />
-                    ) : activeTab ? (
-                        <div className="flex flex-col items-center justify-center h-[60vh] text-center space-y-4 animate-in fade-in zoom-in-95 duration-300">
-                            <div className="p-4 rounded-full bg-emerald-50 border border-emerald-100">
-                                <span className="text-4xl">🚀</span>
+                    )
+                        // ) : activeTab === "Copy to Clipboard" ? (
+                        //     <CopyToClipboard />
+                        // ) 
+                        : activeTab === "QR Code Generator" ? (
+                            <QRCodeGenerator />
+                        ) : activeTab === "Invoice View" ? (
+                            <InvoiceView />
+                        ) : activeTab === "Tooltips" ? (
+                            <Tooltips />
+                        ) : activeTab === "Popovers" ? (
+                            <Popovers />
+                        ) : activeTab === "Hover Cards" ? (
+                            <HoverCards />
+                        ) : activeTab === "Floating Action Button" ? (
+                            <FloatingActionButton />
+                        ) : activeTab === "Back Button" ? (
+                            <BackButton />
+                        ) : activeTab === "Smooth Scroll" ? (
+                            <SmoothScroll />
+                        ) : activeTab === "Parallax Section" ? (
+                            <ParallaxSection />
+                        ) : activeTab === "OTP Input" ? (
+                            <OTPInput />
+                        ) : activeTab === "Password Strength" ? (
+                            <PasswordStrength />
+                        ) : activeTab === "Session Timeout" ? (
+                            <SessionTimeout />
+                        ) : activeTab === "Device Login History" ? (
+                            <DeviceLoginHistory />
+                        ) : activeTab === "2FA Setup" ? (
+                            <TwoFASetup />
+                        ) : activeTab === "Theme Switcher" ? (
+                            <ThemeSwitcher />
+                        ) : activeTab === "Language Switcher" ? (
+                            <LanguageSwitcher />
+                        ) : activeTab === "Export CSV/PDF" ? (
+                            <ExportCSV_PDF />
+                        ) : activeTab === "Import Data" ? (
+                            <ImportData />
+                        ) : activeTab === "Bulk Actions" ? (
+                            <BulkActions />
+                        ) : activeTab === "Column Visibility" ? (
+                            <ColumnVisibility />
+                        ) : activeTab === "Table Sorting" ? (
+                            <TableSorting />
+                        ) : activeTab === "Table Actions" ? (
+                            <TableActions />
+                        ) : activeTab ? (
+                            <div className="flex flex-col items-center justify-center h-[60vh] text-center space-y-4 animate-in fade-in zoom-in-95 duration-300">
+                                <div className="p-4 rounded-full bg-emerald-50 border border-emerald-100">
+                                    <span className="text-4xl">🚀</span>
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-slate-900 font-heading">{activeTab}</h3>
+                                    <p className="text-slate-500 max-w-md mx-auto mt-2">
+                                        Documentation and code examples for the {activeTab} component are coming soon.
+                                    </p>
+                                </div>
+                                <Button variant="outline" size="sm" onClick={() => setActiveTab(null)}>Back to Overview</Button>
                             </div>
-                            <div>
-                                <h3 className="text-xl font-bold text-slate-900 font-heading">{activeTab}</h3>
-                                <p className="text-slate-500 max-w-md mx-auto mt-2">
-                                    Documentation and code examples for the {activeTab} component are coming soon.
-                                </p>
+                        ) : activeCategory ? (
+                            <CategoryOverview
+                                title={activeCategory}
+                                items={menuGroups.find(g => g.title === activeCategory)?.items || []}
+                                onSelect={setActiveTab}
+                            />
+                        ) : (
+                            <div className="flex flex-col items-center justify-center h-[60vh] text-center space-y-4">
+                                <div className="p-4 rounded-full bg-slate-50 border border-slate-100">
+                                    <span className="text-4xl">✨</span>
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-slate-900 font-heading">Select a Category</h3>
+                                    <p className="text-slate-500 max-w-md mx-auto mt-2">
+                                        Choose a module from the sidebar to explore its components.
+                                    </p>
+                                </div>
                             </div>
-                            <Button variant="outline" size="sm" onClick={() => setActiveTab(null)}>Back to Overview</Button>
-                        </div>
-                    ) : activeCategory ? (
-                        <CategoryOverview
-                            title={activeCategory}
-                            items={menuGroups.find(g => g.title === activeCategory)?.items || []}
-                            onSelect={setActiveTab}
-                        />
-                    ) : (
-                        <div className="flex flex-col items-center justify-center h-[60vh] text-center space-y-4">
-                            <div className="p-4 rounded-full bg-slate-50 border border-slate-100">
-                                <span className="text-4xl">✨</span>
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-bold text-slate-900 font-heading">Select a Category</h3>
-                                <p className="text-slate-500 max-w-md mx-auto mt-2">
-                                    Choose a module from the sidebar to explore its components.
-                                </p>
-                            </div>
-                        </div>
-                    )}
+                        )}
                 </div>
             </main>
 

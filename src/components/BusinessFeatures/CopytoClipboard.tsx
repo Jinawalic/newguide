@@ -101,7 +101,7 @@ const CopyPreview = () => {
     );
 };
 
-const CopyToClipboard = () => {
+export const CopyToClipboard = () => {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
@@ -186,6 +186,3 @@ const CopyToClipboard = () => {
         </div>
     );
 };
-
-export { CopyToClipboard };
-export default CopyToClipboard;
