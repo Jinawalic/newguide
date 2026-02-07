@@ -243,7 +243,7 @@ const CategoryOverview = ({ title, items, onSelect }: { title: string, items: st
                 <div className="max-w-2xl">
                     <h1 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight mb-4 font-heading">{title}</h1>
                     <p className="text-slate-500 dark:text-zinc-400 text-sm leading-relaxed font-medium">
-                        Explore our collection of high-quality components designed for the {title} module.
+                        Explore our collection of high-quality component designed for the {title} module.
                         Each element is crafted with modularity and accessibility in mind.
                     </p>
                 </div>
