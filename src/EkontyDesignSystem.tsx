@@ -64,7 +64,7 @@ import { TagLabelSystem } from './components/BusinessFeatures/TagLabelSystem';
 import { RatingStars } from './components/BusinessFeatures/RatingStars';
 import { BookmarkButton } from './components/BusinessFeatures/BookmarkButton';
 import { ShareButton } from './components/BusinessFeatures/ShareButton';
-import { CopyToClipboard } from './components/BusinessFeatures/CopyToClipboard';
+import { CopyToClipboard } from "./components/BusinessFeatures/CopyToClipboard";
 import { QRCodeGenerator } from './components/BusinessFeatures/QRCodeGenerator';
 import { InvoiceView } from './components/BusinessFeatures/InvoiceView';
 
@@ -73,7 +73,7 @@ import { Tooltips } from './components/UXPolish/Tooltips';
 import { Popovers } from './components/UXPolish/Popovers';
 import { HoverCards } from './components/UXPolish/HoverCards';
 import { FloatingActionButton } from './components/UXPolish/FloatingActionButton';
-import { ScrollToTop } from './components/UXPolish/ScrollToTop';
+import { ScrollToTop } from "./components/UXPolish/ScrollToTop";
 import { BackButton } from './components/UXPolish/BackButton';
 import { SmoothScroll } from './components/UXPolish/SmoothScroll';
 import { ParallaxSection } from './components/UXPolish/ParallaxSection';
