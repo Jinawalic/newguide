@@ -156,10 +156,10 @@ export const HotkeySupport = () => {
         <div className="max-w-[1000px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                    <h2 className="text-xl font-black text-slate-900 tracking-tight font-heading">Hotkey Support</h2>
+                    <h2 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight font-heading">Hotkey Support</h2>
                     <span className="bg-slate-900 text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Efficiency</span>
                 </div>
-                <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+                <p className="text-slate-500 dark:text-zinc-400 font-medium leading-relaxed max-w-2xl">
                     Implement keyboard shortcuts to empower power users.
                     Reduces reliance on mouse movement and enables lightning-fast workflow execution.
                 </p>

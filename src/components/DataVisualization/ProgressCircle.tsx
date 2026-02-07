@@ -101,10 +101,10 @@ export const ProgressCircle = () => {
         <div className="max-w-[1000px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                    <h2 className="text-3xl font-black text-slate-900 tracking-tight font-heading">Progress Circle</h2>
+                    <h2 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight font-heading">Progress Circle</h2>
                     <span className="bg-emerald-100 text-emerald-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Visualization</span>
                 </div>
-                <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+                <p className="text-slate-500 dark:text-zinc-400 font-medium leading-relaxed max-w-2xl">
                     Circular indicators for representing percentage-based progress or status.
                     Highly customizable sizing, stroke width, and animation speeds.
                 </p>

@@ -74,7 +74,7 @@ const HeatmapPreview = () => {
     };
 
     return (
-        <div className="w-full max-w-sm mx-auto p-10 bg-white rounded-[40px] shadow-2xl shadow-slate-900/10 border border-slate-100 relative z-[100]">
+        <div className="w-full max-w-sm mx-auto p-10 bg-white rounded-xl shadow-2xl shadow-slate-900/10 border border-slate-100 relative z-[100]">
             <div className="mb-8">
                 <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Commit History</h4>
                 <p className="text-xl font-black text-slate-900 tracking-tight">Active Contributions</p>
@@ -124,10 +124,10 @@ export const Heatmap = () => {
         <div className="max-w-[1000px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                    <h2 className="text-3xl font-black text-slate-900 tracking-tight font-heading">Data Heatmap</h2>
+                    <h2 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight font-heading">Data Heatmap</h2>
                     <span className="bg-emerald-100 text-emerald-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Performance</span>
                 </div>
-                <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+                <p className="text-slate-500 dark:text-zinc-400 font-medium leading-relaxed max-w-2xl">
                     Visualize data density across two dimensions. Commonly used for contribution graphs,
                     server load monitoring, and user activity patterns.
                 </p>

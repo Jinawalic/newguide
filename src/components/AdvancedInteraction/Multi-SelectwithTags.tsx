@@ -183,10 +183,10 @@ export const MultiSelectTags = () => {
             {/* Header */}
             <div className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                    <h2 className="text-xl font-black text-slate-900 tracking-tight font-heading">Multi-Select Tags</h2>
+                    <h2 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight font-heading">Multi-Select Tags</h2>
                     <span className="bg-emerald-100 text-emerald-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Premium</span>
                 </div>
-                <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+                <p className="text-slate-500 dark:text-zinc-400 font-medium leading-relaxed max-w-2xl">
                     Powerful selection component that allows users to pick multiple items from a list and manage them as interactive tags.
                     Highly accessible with keyboard support and responsive tagging.
                 </p>

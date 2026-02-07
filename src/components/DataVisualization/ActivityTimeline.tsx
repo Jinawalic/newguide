@@ -69,7 +69,7 @@ const TimelinePreview = () => {
     ];
 
     return (
-        <div className="w-full max-w-sm mx-auto bg-white p-8 rounded-[40px] shadow-2xl shadow-slate-900/10 border border-slate-100 relative z-[100]">
+        <div className="w-full max-w-sm mx-auto bg-white p-8 rounded-xl shadow-2xl shadow-slate-900/10 border border-slate-100 relative z-[100]">
             <div className="flex items-center justify-between mb-8">
                 <h4 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Activity Feed</h4>
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -110,10 +110,10 @@ export const ActivityTimeline = () => {
         <div className="max-w-[1000px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                    <h2 className="text-3xl font-black text-slate-900 tracking-tight font-heading">Activity Timeline</h2>
+                    <h2 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight font-heading">Activity Timeline</h2>
                     <span className="bg-purple-100 text-purple-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Tracking</span>
                 </div>
-                <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+                <p className="text-slate-500 dark:text-zinc-400 font-medium leading-relaxed max-w-2xl">
                     Chronological list of events or status updates. Perfect for audit logs, project history, or social feeds.
                     Includes support for different event types and responsive layouts.
                 </p>

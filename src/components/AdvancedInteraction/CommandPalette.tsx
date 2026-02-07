@@ -125,7 +125,7 @@ const CommandPalettePreview = () => {
   );
 
   return (
-    <div className="w-full max-w-sm mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100 relative z-[100] animate-in zoom-in-95 duration-500">
+    <div className="w-full max-w-sm mx-auto bg-white rounded-xl shadow-2xl overflow-hidden border border-slate-100 relative z-[100] animate-in zoom-in-95 duration-500">
       <div className="relative group p-3 border-b border-slate-100">
         <svg className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-emerald-500 transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -196,10 +196,10 @@ export const CommandPalette = () => {
       {/* Header */}
       <div className="mb-10">
         <div className="flex items-center gap-3 mb-4">
-          <h2 className="text-xl font-black text-slate-900 tracking-tight font-heading">Command Palette</h2>
+          <h2 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight font-heading">Command Palette</h2>
           <span className="bg-emerald-100 text-emerald-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Power Tool</span>
         </div>
-        <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+        <p className="text-slate-500 dark:text-zinc-400 font-medium leading-relaxed max-w-2xl">
           Supercharge user productivity with a keyboard-first command interface.
           Search features, trigger actions, and navigate your app without leaving the keyboard.
         </p>

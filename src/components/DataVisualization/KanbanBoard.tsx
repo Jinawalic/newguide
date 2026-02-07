@@ -78,7 +78,7 @@ const KanbanPreview = () => {
                     { title: 'Work in Progress', count: 1, tasks: [{ t: 'API Development', p: 'critical' }] },
                     { title: 'Testing / QA', count: 0, tasks: [] }
                 ].map((col, i) => (
-                    <div key={i} className={`flex-1 min-w-[260px] bg-slate-50/50 p-5 rounded-[32px] border border-slate-100/50 backdrop-blur-sm flex flex-col h-fit transition-all duration-500 hover:bg-white hover:shadow-2xl hover:shadow-slate-200/50`}>
+                    <div key={i} className={`flex-1 min-w-[260px] bg-slate-50/50 p-5 rounded-xl border border-slate-100/50 backdrop-blur-sm flex flex-col h-fit transition-all duration-500 hover:bg-white hover:shadow-2xl hover:shadow-slate-200/50`}>
                         <div className="flex items-center justify-between mb-6 px-1">
                             <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">{col.title}</h3>
                             <span className="w-6 h-6 rounded-lg bg-white flex items-center justify-center text-[10px] font-black text-slate-900 shadow-sm border border-slate-100">{col.count}</span>
@@ -86,7 +86,7 @@ const KanbanPreview = () => {
 
                         <div className="space-y-4">
                             {col.tasks.map((task, j) => (
-                                <div key={j} className="bg-white p-5 rounded-3xl border border-slate-50 shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
+                                <div key={j} className="bg-white p-5 rounded-xl border border-slate-50 shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
                                     <div className="flex justify-between items-start mb-4">
                                         <div className={`w-8 h-1 rounded-full ${task.p === 'critical' ? 'bg-rose-500' : 'bg-emerald-500'}`} />
                                         <div className="flex -space-x-2">
@@ -108,7 +108,7 @@ const KanbanPreview = () => {
                                 </div>
                             ))}
                             {col.tasks.length === 0 && (
-                                <div className="py-20 flex flex-col items-center justify-center border-2 border-dashed border-slate-100 rounded-[32px] text-slate-300 grayscale animate-pulse">
+                                <div className="py-20 flex flex-col items-center justify-center border-2 border-dashed border-slate-200 rounded-xl text-slate-300 grayscale animate-pulse">
                                     <svg className="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                     <span className="text-[10px] font-black uppercase tracking-widest">No Tasks</span>
                                 </div>
@@ -134,10 +134,10 @@ export const KanbanBoard = () => {
         <div className="max-w-[1000px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                    <h2 className="text-3xl font-black text-slate-900 tracking-tight font-heading">Kanban Board</h2>
+                    <h2 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight font-heading">Kanban Board</h2>
                     <span className="bg-emerald-100 text-emerald-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Workflow</span>
                 </div>
-                <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+                <p className="text-slate-500 dark:text-zinc-400 font-medium leading-relaxed max-w-2xl">
                     Agile project management interface for tracking tasks across stages.
                     Includes support for drag-and-drop, task prioritizing, and team assignment.
                 </p>

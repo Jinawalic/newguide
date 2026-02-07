@@ -207,10 +207,10 @@ export const DragDropUpload = () => {
             {/* Header */}
             <div className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                    <h2 className="text-xl font-black text-slate-900 tracking-tight font-heading">File Upload</h2>
+                    <h2 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight font-heading">File Upload</h2>
                     <span className="bg-blue-100 text-blue-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Enhanced UX</span>
                 </div>
-                <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+                <p className="text-slate-500 dark:text-zinc-400 font-medium leading-relaxed max-w-2xl">
                     A modern, interactive drag-and-drop file uploader with real-time feedback and file management.
                     Designed to provide a seamless uploading experience with visual drag states.
                 </p>

@@ -83,7 +83,7 @@ const LineChartPreview = () => {
     const areaData = `${pathData} L ${width} ${height} L 0 ${height} Z`;
 
     return (
-        <div className="w-full max-w-sm mx-auto p-10 bg-white rounded-[40px] shadow-2xl shadow-slate-900/10 border border-slate-100 relative z-[100]">
+        <div className="w-full max-w-sm mx-auto p-10 bg-white rounded-xl shadow-2xl shadow-slate-900/10 border border-slate-100 relative z-[100]">
             <div className="mb-10">
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Weekly Trends</p>
                 <h3 className="text-3xl font-black text-slate-900 tracking-tight">Analytics</h3>
@@ -146,10 +146,10 @@ export const LineChart = () => {
         <div className="max-w-[1000px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                    <h2 className="text-3xl font-black text-slate-900 tracking-tight font-heading">Line Chart</h2>
+                    <h2 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight font-heading">Line Chart</h2>
                     <span className="bg-blue-100 text-blue-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Trends</span>
                 </div>
-                <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+                <p className="text-slate-500 dark:text-zinc-400 font-medium leading-relaxed max-w-2xl">
                     Dynamic line charts for visualizing data over time.
                     Built with pure SVG path commands for high performance and full CSS customizability.
                 </p>

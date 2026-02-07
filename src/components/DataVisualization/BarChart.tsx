@@ -57,7 +57,7 @@ const BarChartPreview = () => {
     const maxValue = 100;
 
     return (
-        <div className="w-full max-w-sm mx-auto p-10 bg-white rounded-[40px] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] border border-slate-100 relative z-[100]">
+        <div className="w-full max-w-sm mx-auto p-10 bg-white rounded-xl shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] border border-slate-100 relative z-[100]">
             <div className="flex items-center justify-between mb-10">
                 <div>
                     <h4 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">User Engagement</h4>
@@ -100,10 +100,10 @@ export const BarChart = () => {
         <div className="max-w-[1000px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                    <h2 className="text-3xl font-black text-slate-900 tracking-tight font-heading">Interactive Bar Chart</h2>
+                    <h2 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight font-heading">Interactive Bar Chart</h2>
                     <span className="bg-emerald-100 text-emerald-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Growth</span>
                 </div>
-                <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+                <p className="text-slate-500 dark:text-zinc-400 font-medium leading-relaxed max-w-2xl">
                     Standard bar chart for comparing discrete categories.
                     Uses pure Tailwind CSS for height mapping and transitions, no heavy charting libraries required.
                 </p>

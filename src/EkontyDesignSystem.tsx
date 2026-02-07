@@ -1,4 +1,4 @@
-import { useState, type ButtonHTMLAttributes } from 'react';
+import { useState, useEffect, type ButtonHTMLAttributes } from 'react';
 import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react';
 import {
     Search01Icon as Search,
@@ -8,7 +8,8 @@ import {
     Copy01Icon as Copy,
     CheckmarkCircle01Icon as Check,
     Cancel01Icon as Close,
-
+    Moon02Icon as Moon,
+    Sun01Icon as Sun,
 } from '@hugeicons/core-free-icons';
 
 import { Autocomplete } from './components/AdvancedInteraction/Autocomplete';
@@ -31,6 +32,68 @@ import { LineChart } from './components/DataVisualization/LineChart';
 import { Heatmap } from './components/DataVisualization/Heatmap';
 import { CalendarView } from './components/DataVisualization/CalendarView';
 import { KanbanBoard } from './components/DataVisualization/KanbanBoard';
+
+// System Feedback
+import { ToastMessages } from './components/SystemFeedback/ToastMessages';
+import { AlertBanners } from './components/SystemFeedback/AlertBanners';
+import { ConfirmationDialog } from './components/SystemFeedback/ConfirmationDialog';
+import { ErrorStatePage } from './components/SystemFeedback/ErrorStatePage';
+import { EmptyStateDesign } from './components/SystemFeedback/EmptyStateDesign';
+import { SuccessStateScreen } from './components/SystemFeedback/SuccessStateScreen';
+import { OfflineIndicator } from './components/SystemFeedback/OfflineIndicator';
+
+// Layout & Structure
+import { StickyHeader } from './components/LayoutStructure/StickyHeader';
+import { CollapsibleSidebar } from './components/LayoutStructure/CollapsibleSidebar';
+import { ResizablePanels } from './components/LayoutStructure/ResizablePanels';
+import { SplitViewLayout } from './components/LayoutStructure/SplitViewLayout';
+import { MasonryGrid } from './components/LayoutStructure/MasonryGrid';
+import { CardGridSystem } from './components/LayoutStructure/CardGridSystem';
+
+// User & Account
+import { AvatarUpload } from './components/UserAccount/AvatarUpload';
+import { UserDropdownMenu } from './components/UserAccount/UserDropdownMenu';
+import { RoleBadge } from './components/UserAccount/RoleBadge';
+import { OnlineOfflineStatus } from './components/UserAccount/OnlineOfflineStatus';
+import { ProfileCard } from './components/UserAccount/ProfileCard';
+import { PermissionGate } from './components/UserAccount/PermissionGate';
+
+// Business Features
+import { StatusBadge } from './components/BusinessFeatures/StatusBadge';
+import { TagLabelSystem } from './components/BusinessFeatures/TagLabelSystem';
+import { RatingStars } from './components/BusinessFeatures/RatingStars';
+import { BookmarkButton } from './components/BusinessFeatures/BookmarkButton';
+import { ShareButton } from './components/BusinessFeatures/ShareButton';
+import { CopyToClipboard } from './components/BusinessFeatures/CopyToClipboard';
+import { QRCodeGenerator } from './components/BusinessFeatures/QRCodeGenerator';
+import { InvoiceView } from './components/BusinessFeatures/InvoiceView';
+
+// UX Polish
+import { Tooltips } from './components/UXPolish/Tooltips';
+import { Popovers } from './components/UXPolish/Popovers';
+import { HoverCards } from './components/UXPolish/HoverCards';
+import { FloatingActionButton } from './components/UXPolish/FloatingActionButton';
+import { ScrollToTop } from './components/UXPolish/ScrollToTop';
+import { BackButton } from './components/UXPolish/BackButton';
+import { SmoothScroll } from './components/UXPolish/SmoothScroll';
+import { ParallaxSection } from './components/UXPolish/ParallaxSection';
+
+// Security / Auth
+import { OTPInput } from './components/SecurityAuth/OTPInput';
+import { PasswordStrength } from './components/SecurityAuth/PasswordStrength';
+import { SessionTimeout } from './components/SecurityAuth/SessionTimeout';
+import { DeviceLoginHistory } from './components/SecurityAuth/DeviceLoginHistory';
+import { TwoFASetup } from './components/SecurityAuth/TwoFASetup';
+
+// Power Features
+import { ThemeSwitcher } from './components/PowerFeatures/ThemeSwitcher';
+import { LanguageSwitcher } from './components/PowerFeatures/LanguageSwitcher';
+import { ExportCSV_PDF } from './components/PowerFeatures/ExportCSV_PDF';
+import { ImportData } from './components/PowerFeatures/ImportData';
+import { BulkActions } from './components/PowerFeatures/BulkActions';
+import { ColumnVisibility } from './components/PowerFeatures/ColumnVisibility';
+import { TableSorting } from './components/PowerFeatures/TableSorting';
+import { TableActions } from './components/PowerFeatures/TableActions';
 
 const CodeBlock = ({ code }: { code: string, onClose: () => void }) => {
     const [copied, setCopied] = useState(false);
@@ -87,11 +150,11 @@ const Button = ({ variant = 'primary', size = 'md', rounded = 'xl', children, is
     const baseStyles = "inline-flex items-center justify-center font-semibold transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]";
 
     const variants = {
-        primary: "bg-emerald-800 text-white shadow-sm hover:bg-emerald-800/90 hover:shadow-md focus-visible:ring-brand",
-        secondary: "bg-slate-200 text-slate-900 shadow-sm hover:bg-slate-300 focus-visible:ring-slate-400",
-        outline: "bg-transparent border-2 border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50 focus-visible:ring-slate-400",
-        ghost: "bg-transparent text-slate-600 hover:bg-slate-100 focus-visible:ring-slate-200",
-        icon: "p-2 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 focus-visible:ring-slate-400",
+        primary: "bg-emerald-800 dark:bg-emerald-600 text-white shadow-sm hover:bg-emerald-800/90 dark:hover:bg-emerald-600/90 hover:shadow-md focus-visible:ring-brand",
+        secondary: "bg-slate-200 dark:bg-zinc-800 text-slate-900 dark:text-zinc-100 shadow-sm hover:bg-slate-300 dark:hover:bg-zinc-700 focus-visible:ring-slate-400",
+        outline: "bg-transparent border-2 border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-zinc-300 hover:border-slate-300 dark:hover:border-zinc-700 hover:bg-slate-50 dark:hover:bg-zinc-800/50 focus-visible:ring-slate-400",
+        ghost: "bg-transparent text-slate-600 dark:text-zinc-400 hover:bg-slate-100 dark:hover:bg-zinc-800 focus-visible:ring-slate-200",
+        icon: "p-2 rounded-full bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400 hover:bg-slate-200 dark:hover:bg-zinc-700 focus-visible:ring-slate-400",
         warning: "bg-warning text-white shadow-sm hover:bg-warning/90 hover:shadow-md focus-visible:ring-warning"
     };
 
@@ -141,20 +204,20 @@ const ComponentCard = ({ title, description, onClick }: { title: string, descrip
     return (
         <div
             onClick={onClick}
-            className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-emerald-900/5 transition-all duration-300 group cursor-pointer flex flex-col h-full"
+            className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-emerald-900/5 transition-all duration-300 group cursor-pointer flex flex-col h-full"
         >
-            <div className="h-40 bg-slate-50 flex items-center justify-center relative overflow-hidden">
+            <div className="h-40 bg-slate-50 dark:bg-zinc-800/50 flex items-center justify-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent"></div>
                 {/* Mock Illustration */}
-                <div className="relative w-2/3 h-2/3 bg-white rounded-xl shadow-lg border border-slate-100 p-4 transform group-hover:scale-105 transition-transform duration-500">
-                    <div className="w-full h-2 bg-slate-100 rounded-full mb-3"></div>
-                    <div className="w-2/3 h-2 bg-slate-100/60 rounded-full mb-6"></div>
+                <div className="relative w-2/3 h-2/3 bg-white dark:bg-zinc-900 rounded-xl shadow-lg border border-slate-100 dark:border-zinc-800 p-4 transform group-hover:scale-105 transition-transform duration-500">
+                    <div className="w-full h-2 bg-slate-100 dark:bg-zinc-800 rounded-full mb-3"></div>
+                    <div className="w-2/3 h-2 bg-slate-100/60 dark:bg-zinc-800/60 rounded-full mb-6"></div>
                     <div className="space-y-2">
                         <div className="flex gap-2">
-                            <div className="w-8 h-8 rounded-lg bg-emerald-100"></div>
+                            <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/30"></div>
                             <div className="flex-1 space-y-2">
-                                <div className="w-full h-2 bg-slate-50 rounded-full"></div>
-                                <div className="w-1/2 h-2 bg-slate-50 rounded-full"></div>
+                                <div className="w-full h-2 bg-slate-50 dark:bg-zinc-800/50 rounded-full"></div>
+                                <div className="w-1/2 h-2 bg-slate-50 dark:bg-zinc-800/50 rounded-full"></div>
                             </div>
                         </div>
                     </div>
@@ -166,8 +229,8 @@ const ComponentCard = ({ title, description, onClick }: { title: string, descrip
                 </div>
             </div>
             <div className="px-5 py-2 flex-1 flex flex-col">
-                <h4 className="text-[11px] font-bold text-slate-800 mb-1 group-hover:text-emerald-800 transition-colors uppercase tracking-tight">{title}</h4>
-                <p className="text-[10px] text-slate-400 font-medium leading-relaxed">{description}</p>
+                <h4 className="text-[11px] font-bold text-slate-800 dark:text-zinc-200 mb-1 group-hover:text-emerald-800 dark:group-hover:text-emerald-500 transition-colors uppercase tracking-tight">{title}</h4>
+                <p className="text-[10px] text-slate-400 dark:text-zinc-500 font-medium leading-relaxed">{description}</p>
             </div>
         </div>
     );
@@ -176,21 +239,21 @@ const ComponentCard = ({ title, description, onClick }: { title: string, descrip
 const CategoryOverview = ({ title, items, onSelect }: { title: string, items: string[], onSelect: (item: string) => void }) => {
     return (
         <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-100 pb-12">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-100 dark:border-zinc-800 pb-12">
                 <div className="max-w-2xl">
-                    <h1 className="text-xl font-black text-slate-900 tracking-tight mb-4 font-heading">{title}</h1>
-                    <p className="text-slate-500 text-sm leading-relaxed font-medium">
+                    <h1 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight mb-4 font-heading">{title}</h1>
+                    <p className="text-slate-500 dark:text-zinc-400 text-sm leading-relaxed font-medium">
                         Explore our collection of high-quality components designed for the {title} module.
                         Each element is crafted with modularity and accessibility in mind.
                     </p>
                 </div>
-                <div className="hidden md:flex items-center gap-4 bg-white p-3 rounded-2xl border border-slate-100 shadow-sm">
-                    <div className="w-8 h-8 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600">
+                <div className="hidden md:flex items-center gap-4 bg-white dark:bg-zinc-900 p-3 rounded-2xl border border-slate-100 dark:border-zinc-800 shadow-sm">
+                    <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 dark:text-emerald-500">
                         <HugeiconsIcon icon={ChevronRight} size={18} className="rotate-90" />
                     </div>
                     <div className="pr-4">
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Selected Module</p>
-                        <p className="text-sm font-bold text-slate-900">{items.length} Components</p>
+                        <p className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-widest">Selected Module</p>
+                        <p className="text-sm font-bold text-slate-900 dark:text-zinc-100">{items.length} Components</p>
                     </div>
                 </div>
             </div>
@@ -215,6 +278,27 @@ const EkontyDesignSystem = () => {
     const [activeCategory, setActiveCategory] = useState<string | null>("Advanced Interaction");
     const [codeModalData, setCodeModalData] = useState<{ title: string, code: string } | null>(null);
     const [globalSearch, setGlobalSearch] = useState('');
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('theme') === 'dark' ||
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        }
+        return false;
+    });
+
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+    };
+
+    useEffect(() => {
+        if (isDarkMode) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+    }, [isDarkMode]);
 
 
 
@@ -243,11 +327,11 @@ const EkontyDesignSystem = () => {
         },
         {
             title: "Business Features",
-            items: ["Status Badge", "Tag / Label System", "Rating Stars", "Bookmark Button", "Share Button", "Copy to Clipboard", "QR Code Generator", "Invoice View"]
+            items: ["Status Badge", "Tag / Label System", "Rating Stars", "Bookmark Button", "Share Button", "Copy to Clipboard", "Invoice View"]
         },
         {
             title: "UX Polish",
-            items: ["Tooltips", "Popovers", "Hover Cards", "Floating Action Button", "Scroll to Top", "Back Button", "Smooth Scroll", "Parallax Section"]
+            items: ["Tooltips", "Popovers", "Hover Cards", "Floating Action Button", "Back Button", "Smooth Scroll", "Parallax Section"]
         },
         {
             title: "Security / Auth",
@@ -259,7 +343,7 @@ const EkontyDesignSystem = () => {
         }
     ];
 
-    const [expandedMenus, setExpandedMenus] = useState<string[]>(["Advanced Interaction", "Data & Visualization"]);
+    const [expandedMenus, setExpandedMenus] = useState<string[]>(["Advanced Interaction"]);
 
     const toggleMenu = (title: string) => {
         setExpandedMenus(prev =>
@@ -272,10 +356,10 @@ const EkontyDesignSystem = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50">
+        <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 transition-colors duration-300">
             <CodeSnippetModal data={codeModalData} onClose={() => setCodeModalData(null)} />
             {/* Sidebar Navigation */}
-            <aside className="fixed left-0 top-0 h-full w-64 bg-white border-r border-slate-100 hidden lg:flex flex-col py-6 z-10">
+            <aside className="fixed left-0 top-0 h-full w-64 bg-white dark:bg-zinc-900 border-r border-slate-100 dark:border-zinc-800 hidden lg:flex flex-col py-6 z-10 transition-colors duration-300">
                 <div className="mb-6 flex items-center px-6">
                     <img src="/images/logo.png" alt="Ekonty Logo" className="h-6 w-auto object-contain" />
                 </div>
@@ -285,7 +369,7 @@ const EkontyDesignSystem = () => {
                         <div key={group.title} className="space-y-1">
                             <button
                                 onClick={() => toggleMenu(group.title)}
-                                className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-600 hover:text-emerald-800 hover:bg-slate-50 transition-all group"
+                                className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-600 dark:text-zinc-400 hover:text-emerald-800 dark:hover:text-emerald-500 hover:bg-slate-50 dark:hover:bg-zinc-800 transition-all group"
                             >
                                 <div className="flex items-center gap-3">
                                     {/* <span className="text-base">{group.icon}</span> */}
@@ -294,7 +378,7 @@ const EkontyDesignSystem = () => {
                                 <HugeiconsIcon
                                     icon={ChevronRight}
                                     size={14}
-                                    className={`text-slate-400 transition-transform duration-200 ${expandedMenus.includes(group.title) ? 'rotate-90' : ''}`}
+                                    className={`text-slate-400 dark:text-zinc-500 transition-transform duration-200 ${expandedMenus.includes(group.title) ? 'rotate-90' : ''}`}
                                 />
                             </button>
                             {expandedMenus.includes(group.title) && (
@@ -308,8 +392,8 @@ const EkontyDesignSystem = () => {
                                             }}
                                             className={`w-full text-left px-3 py-2 rounded-lg text-[12px] font-bold transition-all flex items-center gap-2 border-l-2 ml-2
                                          ${activeTab === item
-                                                    ? 'border-emerald-800 text-emerald-800 bg-emerald-50'
-                                                    : 'border-slate-100/0 text-slate-400 hover:text-slate-600 hover:border-slate-200'
+                                                    ? 'border-emerald-800 text-emerald-800 dark:text-emerald-500 bg-emerald-50 dark:bg-emerald-500/10'
+                                                    : 'border-slate-100/0 text-slate-400 dark:text-zinc-500 hover:text-slate-600 dark:hover:text-zinc-300 hover:border-slate-200 dark:hover:border-zinc-700'
                                                 }
                                      `}
                                         >
@@ -330,14 +414,21 @@ const EkontyDesignSystem = () => {
                     <img src="/images/logo.png" alt="Ekonty Logo" className="h-5 w-auto object-contain" />
                 </div>
 
-                <header className="sticky top-0 bg-slate-50/80 backdrop-blur-md z-[5] px-8 py-6 border-b border-slate-100 flex justify-between items-center">
-                    <div className="flex items-center gap-2 text-slate-400 text-sm">
-                        <span className="text-slate-400">{activeCategory}</span>
+                <header className="sticky top-0 bg-slate-50/80 dark:bg-zinc-950/80 backdrop-blur-md z-[5] px-8 py-6 border-b border-slate-100 dark:border-zinc-800 flex justify-between items-center transition-colors duration-300">
+                    <div className="flex items-center gap-2 text-slate-400 dark:text-zinc-500 text-sm">
+                        <span className="text-slate-400 dark:text-zinc-400">{activeCategory}</span>
                         {activeTab && (
                             <></>
                         )}
                     </div>
                     <div className="flex gap-4 items-center">
+                        <button
+                            onClick={toggleDarkMode}
+                            className="p-2.5 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-600 dark:text-zinc-400 hover:text-emerald-800 dark:hover:text-emerald-500 transition-all shadow-sm hover:shadow-md"
+                            title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                        >
+                            <HugeiconsIcon icon={isDarkMode ? Sun : Moon} size={18} />
+                        </button>
                         <div className="relative group min-w-[300px] hidden md:block">
                             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-800 transition-colors">
                                 <HugeiconsIcon icon={Search} size={16} />
@@ -347,13 +438,13 @@ const EkontyDesignSystem = () => {
                                 placeholder="Search anything "
                                 value={globalSearch}
                                 onChange={(e) => setGlobalSearch(e.target.value)}
-                                className="w-[300px] bg-white border border-slate-200 rounded-2xl py-2 pl-11 pr-4 text-[13px] font-bold focus:outline-none focus:border-emerald-800 focus:ring-4 focus:ring-emerald-800/5 transition-all placeholder:text-slate-400"
+                                className="w-[300px] bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl py-2 pl-11 pr-4 text-[13px] font-bold focus:outline-none focus:border-emerald-800 dark:focus:border-emerald-500 focus:ring-4 focus:ring-emerald-800/5 dark:focus:ring-emerald-500/5 transition-all placeholder:text-slate-400 dark:placeholder:text-zinc-500 dark:text-zinc-100"
                             />
 
                             {/* Search Results Dropdown */}
                             {globalSearch && (
-                                <div className="absolute top-full left-0 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 z-50 max-h-[400px] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
-                                    <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 mb-2">Search Results</h4>
+                                <div className="absolute top-full left-0 w-full mt-2 bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 rounded-2xl shadow-2xl p-3 z-50 max-h-[400px] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                                    <h4 className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-widest px-3 mb-2">Search Results</h4>
                                     <div className="space-y-1">
                                         {(() => {
                                             const searchItems: SearchResultItem[] = menuGroups.flatMap(group =>
@@ -382,18 +473,18 @@ const EkontyDesignSystem = () => {
                                                         setActiveCategory(item.detail || null);
                                                         setGlobalSearch('');
                                                     }}
-                                                    className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-50 flex items-center justify-between group transition-colors"
+                                                    className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-zinc-800 flex items-center justify-between group transition-colors"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-800 group-hover:text-white transition-colors">
+                                                        <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-zinc-800 flex items-center justify-center text-slate-400 dark:text-zinc-500 group-hover:bg-emerald-800 dark:group-hover:bg-emerald-500 group-hover:text-white transition-colors">
                                                             <HugeiconsIcon icon={item.icon || Search} size={14} />
                                                         </div>
                                                         <div>
-                                                            <p className="text-sm font-bold text-slate-700">{item.name}</p>
-                                                            <p className="text-[10px] text-slate-400">{item.type} in {item.tab}</p>
+                                                            <p className="text-sm font-bold text-slate-700 dark:text-zinc-200">{item.name}</p>
+                                                            <p className="text-[10px] text-slate-400 dark:text-zinc-500">{item.type} in {item.tab}</p>
                                                         </div>
                                                     </div>
-                                                    <HugeiconsIcon icon={ChevronRight} size={12} className="text-slate-300 opacity-0 group-hover:opacity-100 transition-all" />
+                                                    <HugeiconsIcon icon={ChevronRight} size={12} className="text-slate-300 dark:text-zinc-600 opacity-0 group-hover:opacity-100 transition-all" />
                                                 </button>
                                             ));
                                         })()}
@@ -442,6 +533,102 @@ const EkontyDesignSystem = () => {
                         <CalendarView />
                     ) : activeTab === "Kanban Board" ? (
                         <KanbanBoard />
+                    ) : activeTab === "Toast Messages" ? (
+                        <ToastMessages />
+                    ) : activeTab === "Alert Banners" ? (
+                        <AlertBanners />
+                    ) : activeTab === "Confirmation Dialog" ? (
+                        <ConfirmationDialog />
+                    ) : activeTab === "Error State Page" ? (
+                        <ErrorStatePage />
+                    ) : activeTab === "Empty State Design" ? (
+                        <EmptyStateDesign />
+                    ) : activeTab === "Success State Screen" ? (
+                        <SuccessStateScreen />
+                    ) : activeTab === "Offline Indicator" ? (
+                        <OfflineIndicator />
+                    ) : activeTab === "Sticky Header" ? (
+                        <StickyHeader />
+                    ) : activeTab === "Collapsible Sidebar" ? (
+                        <CollapsibleSidebar />
+                    ) : activeTab === "Resizable Panels" ? (
+                        <ResizablePanels />
+                    ) : activeTab === "Split View Layout" ? (
+                        <SplitViewLayout />
+                    ) : activeTab === "Masonry Grid" ? (
+                        <MasonryGrid />
+                    ) : activeTab === "Card Grid System" ? (
+                        <CardGridSystem />
+                    ) : activeTab === "Avatar Upload" ? (
+                        <AvatarUpload />
+                    ) : activeTab === "User Dropdown Menu" ? (
+                        <UserDropdownMenu />
+                    ) : activeTab === "Role Badge" ? (
+                        <RoleBadge />
+                    ) : activeTab === "Online / Offline Status" ? (
+                        <OnlineOfflineStatus />
+                    ) : activeTab === "Profile Card" ? (
+                        <ProfileCard />
+                    ) : activeTab === "Permission Gate" ? (
+                        <PermissionGate />
+                    ) : activeTab === "Status Badge" ? (
+                        <StatusBadge />
+                    ) : activeTab === "Tag / Label System" ? (
+                        <TagLabelSystem />
+                    ) : activeTab === "Rating Stars" ? (
+                        <RatingStars />
+                    ) : activeTab === "Bookmark Button" ? (
+                        <BookmarkButton />
+                    ) : activeTab === "Share Button" ? (
+                        <ShareButton />
+                    ) : activeTab === "Copy to Clipboard" ? (
+                        <CopyToClipboard />
+                    ) : activeTab === "QR Code Generator" ? (
+                        <QRCodeGenerator />
+                    ) : activeTab === "Invoice View" ? (
+                        <InvoiceView />
+                    ) : activeTab === "Tooltips" ? (
+                        <Tooltips />
+                    ) : activeTab === "Popovers" ? (
+                        <Popovers />
+                    ) : activeTab === "Hover Cards" ? (
+                        <HoverCards />
+                    ) : activeTab === "Floating Action Button" ? (
+                        <FloatingActionButton />
+                    ) : activeTab === "Scroll to Top" ? (
+                        <ScrollToTop />
+                    ) : activeTab === "Back Button" ? (
+                        <BackButton />
+                    ) : activeTab === "Smooth Scroll" ? (
+                        <SmoothScroll />
+                    ) : activeTab === "Parallax Section" ? (
+                        <ParallaxSection />
+                    ) : activeTab === "OTP Input" ? (
+                        <OTPInput />
+                    ) : activeTab === "Password Strength" ? (
+                        <PasswordStrength />
+                    ) : activeTab === "Session Timeout" ? (
+                        <SessionTimeout />
+                    ) : activeTab === "Device Login History" ? (
+                        <DeviceLoginHistory />
+                    ) : activeTab === "2FA Setup" ? (
+                        <TwoFASetup />
+                    ) : activeTab === "Theme Switcher" ? (
+                        <ThemeSwitcher />
+                    ) : activeTab === "Language Switcher" ? (
+                        <LanguageSwitcher />
+                    ) : activeTab === "Export CSV/PDF" ? (
+                        <ExportCSV_PDF />
+                    ) : activeTab === "Import Data" ? (
+                        <ImportData />
+                    ) : activeTab === "Bulk Actions" ? (
+                        <BulkActions />
+                    ) : activeTab === "Column Visibility" ? (
+                        <ColumnVisibility />
+                    ) : activeTab === "Table Sorting" ? (
+                        <TableSorting />
+                    ) : activeTab === "Table Actions" ? (
+                        <TableActions />
                     ) : activeTab ? (
                         <div className="flex flex-col items-center justify-center h-[60vh] text-center space-y-4 animate-in fade-in zoom-in-95 duration-300">
                             <div className="p-4 rounded-full bg-emerald-50 border border-emerald-100">
