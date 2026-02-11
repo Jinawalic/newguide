@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
     Copy01Icon as Copy,
@@ -7,108 +7,125 @@ import {
     Tick01Icon as Tick,
     Moon02Icon as Moon,
     Sun01Icon as Sun,
-    // PaintBoardIcon as ThemeIcon,
     ComputerIcon as SystemIcon
 } from '@hugeicons/core-free-icons';
 
-const themeSwitcherCode = `import React, { useState } from 'react';
+const themeSwitcherCode = `import React, { useState, useEffect } from 'react';
 
-const ThemeSwitcher = () => {
+
+const ThemeSwitcherCard = () => {
   const [theme, setTheme] = useState('light');
+  const isDark = theme === 'dark';
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
 
   const themes = [
-    { id: 'light', label: 'Light', icon: 'SunSVG' },
-    { id: 'dark', label: 'Dark', icon: 'MoonSVG' },
-    { id: 'system', label: 'System', icon: 'SystemSVG' }
+    { id: 'light', label: 'Light', icon: 'Sun' },
+    { id: 'dark', label: 'Dark', icon: 'Moon' },
+    { id: 'system', label: 'System', icon: 'System' }
   ];
 
   return (
-    <div className="flex p-1 bg-slate-100 rounded-2xl w-fit">
-      {themes.map((t) => (
-        <button
-          key={t.id}
-          onClick={() => setTheme(t.id)}
-          className={\`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all \${
-            theme === t.id 
-              ? 'bg-white text-slate-900 shadow-sm' 
-              : 'text-slate-500 hover:text-slate-700'
-          }\`}
-        >
-          {t.id === 'light' ? <SunSVG /> : t.id === 'dark' ? <MoonSVG /> : <SystemSVG />}
-          {t.label}
-        </button>
-      ))}
+    <div className={\`w-full max-w-4xl mx-auto rounded-3xl border overflow-hidden shadow-2xl transition-all duration-700 relative \${
+      isDark ? 'bg-zinc-950 border-zinc-800' : 'bg-white border-slate-200'
+    }\`}>
+       {/* Top Right Controls */}
+       <div className="absolute top-6 right-6 z-20 flex gap-1 p-1 bg-white/5 backdrop-blur-lg rounded-full border border-white/10 shadow-lg">
+          {themes.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setTheme(t.id)}
+              className={\`relative px-4 py-2 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 \${
+                theme === t.id
+                  ? (isDark ? 'bg-zinc-800 text-white shadow-md' : 'bg-white text-slate-900 shadow-md')
+                  : (isDark ? 'text-zinc-400 hover:text-zinc-200' : 'text-slate-500 hover:text-slate-800')
+              }\`}
+            >
+              {t.label}
+            </button>
+          ))}
+       </div>
+
+      <div className={\`h-[500px] relative flex items-center justify-center transition-all duration-700 \${
+        isDark ? 'bg-zinc-950' : 'bg-[#f8fafc]'
+      }\`}>
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-40" style={{
+            backgroundImage: \`radial-gradient(\${isDark ? '#3f3f46' : '#e2e8f0'} 1.5px, transparent 1.5px)\`,
+            backgroundSize: '24px 24px'
+        }}></div>
+
+        {/* Main Content (Centered Theme Text) */}
+        <div className="relative z-10 text-center">
+            <span className={\`text-8xl font-black tracking-tighter opacity-10 transition-colors duration-700 select-none \${
+                isDark ? 'text-white' : 'text-slate-900'
+            }\`}>
+                {theme.toUpperCase()}
+            </span>
+        </div>
+      </div>
     </div>
   );
 };
 
-const SunSVG = () => (
-  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <circle cx="12" cy="12" r="5" /><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-  </svg>
-);
+export default ThemeSwitcherCard;`;
 
-const MoonSVG = () => (
-  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M21 12.79A9 9 0 1111.213 3 7 7 0 0021 12.79z" />
-  </svg>
-);
+interface ThemePreviewProps {
+    theme: string;
+    setTheme: (theme: string) => void;
+}
 
-const SystemSVG = () => (
-  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" /><path d="M8 21h8m-4-4v4" />
-  </svg>
-);
-
-export default ThemeSwitcher;`;
-
-const ThemePreview = () => {
-    const [activeTheme, setActiveTheme] = useState('light');
+const ThemePreview = ({ theme, setTheme }: ThemePreviewProps) => {
+    const isDark = theme === 'dark';
 
     const themes = [
-        { id: 'light', label: 'Light', icon: Sun, color: 'text-amber-500', bg: 'bg-amber-50' },
-        { id: 'dark', label: 'Dark', icon: Moon, color: 'text-indigo-500', bg: 'bg-indigo-50' },
-        { id: 'system', label: 'System', icon: SystemIcon, color: 'text-emerald-500', bg: 'bg-emerald-50' }
+        { id: 'light', label: 'Light', icon: Sun },
+        { id: 'dark', label: 'Dark', icon: Moon },
+        { id: 'system', label: 'System', icon: SystemIcon }
     ];
 
     return (
-        <div className="w-full flex flex-col items-center gap-10 relative z-[100]">
-            <div className="w-full max-w-sm bg-white p-10 rounded-xl border border-slate-100 shadow-sm relative group overflow-hidden">
-                <div className="p-1.5 bg-slate-50 rounded-xl grid grid-cols-3 gap-1 shadow-inner border border-slate-100 mb-8">
+        <div className="w-full flex items-center justify-center p-8 relative z-[100]">
+            <div className={`w-full max-w-4xl mx-auto rounded-3xl border overflow-hidden shadow-2xl transition-all duration-700 relative ${isDark ? 'bg-zinc-950 border-zinc-800' : 'bg-white border-slate-200'
+                }`}>
+                {/* Top Right Controls */}
+                <div className="absolute top-6 right-6 z-20 flex gap-1 p-1 bg-white/5 backdrop-blur-lg rounded-full border border-white/10 shadow-lg">
                     {themes.map((t) => (
                         <button
                             key={t.id}
-                            onClick={() => setActiveTheme(t.id)}
-                            className={`flex flex-col items-center gap-2 py-4 rounded-xl transition-all duration-500 relative group/btn ${activeTheme === t.id
-                                ? 'bg-white text-slate-900 shadow-lg shadow-slate-200/50 scale-100'
-                                : 'text-slate-400 hover:text-slate-600'
+                            onClick={() => setTheme(t.id)}
+                            className={`relative px-4 py-2 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 ${theme === t.id
+                                ? (isDark ? 'bg-zinc-800 text-white shadow-md' : 'bg-white text-slate-900 shadow-md')
+                                : (isDark ? 'text-zinc-400 hover:text-zinc-200' : 'text-slate-500 hover:text-slate-800')
                                 }`}
                         >
-                            <HugeiconsIcon
-                                icon={t.icon}
-                                size={20}
-                                className={`transition-transform duration-500 ${activeTheme === t.id ? 'scale-110' : 'group-hover/btn:scale-110'}`}
-                            />
-                            <span className="text-[9px] font-black uppercase tracking-widest">{t.label}</span>
-                            {activeTheme === t.id && (
-                                <div className="absolute -bottom-1 w-1.5 h-1.5 rounded-full bg-slate-900" />
-                            )}
+                            <HugeiconsIcon icon={t.icon} size={14} />
+                            <span>{t.label}</span>
                         </button>
                     ))}
                 </div>
 
-                <div className={`p-6 rounded-xl border transition-all duration-500 ${activeTheme === 'dark' ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-100'
+                <div className={`h-[500px] relative flex items-center justify-center transition-all duration-700 ${isDark ? 'bg-zinc-950' : 'bg-[#f8fafc]'
                     }`}>
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-full bg-slate-200" />
-                        <div className="flex-1 space-y-2">
-                            <div className={`h-2 w-24 rounded-full ${activeTheme === 'dark' ? 'bg-slate-700' : 'bg-slate-200'}`} />
-                            <div className={`h-2 w-16 rounded-full ${activeTheme === 'dark' ? 'bg-slate-800' : 'bg-slate-100'}`} />
-                        </div>
-                    </div>
-                    <div className="space-y-2">
-                        <div className={`h-2 w-full rounded-full ${activeTheme === 'dark' ? 'bg-slate-800' : 'bg-slate-100'}`} />
-                        <div className={`h-2 w-3/4 rounded-full ${activeTheme === 'dark' ? 'bg-slate-800' : 'bg-slate-100'}`} />
+                    {/* Background Pattern */}
+                    <div className="absolute inset-0 opacity-40" style={{
+                        backgroundImage: `radial-gradient(${isDark ? '#3f3f46' : '#e2e8f0'} 1.5px, transparent 1.5px)`,
+                        backgroundSize: '24px 24px'
+                    }}></div>
+
+                    {/* Main Content (Centered Theme Text) */}
+                    <div className="relative z-10 text-center">
+                        <span className={`text-8xl font-black tracking-tighter opacity-10 transition-colors duration-700 select-none ${isDark ? 'text-white' : 'text-slate-900'
+                            }`}>
+                            {theme.toUpperCase()}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -118,6 +135,17 @@ const ThemePreview = () => {
 
 export const ThemeSwitcher = () => {
     const [copied, setCopied] = useState(false);
+    const [theme, setTheme] = useState('light');
+    const isDark = theme === 'dark';
+
+    useEffect(() => {
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    }, [theme]);
+
 
     const handleCopy = () => {
         navigator.clipboard.writeText(themeSwitcherCode);
@@ -138,13 +166,15 @@ export const ThemeSwitcher = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[600px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className={`border rounded-2xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-all duration-700 ${isDark ? 'bg-zinc-950 border-zinc-800' : 'bg-white border-slate-200'
+                }`}>
+                <div className={`h-[600px] relative flex items-center justify-center border-b overflow-hidden transition-all duration-700 ${isDark ? 'bg-zinc-950 border-zinc-800' : 'bg-[#f8fafc] border-slate-100'
+                    }`}>
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: `radial-gradient(${isDark ? '#3f3f46' : '#e2e8f0'} 1.5px, transparent 1.5px)`,
                         backgroundSize: '24px 24px'
                     }}></div>
-                    <ThemePreview />
+                    <ThemePreview theme={theme} setTheme={setTheme} />
                 </div>
 
                 <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">

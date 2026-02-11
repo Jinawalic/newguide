@@ -1,4 +1,4 @@
-import { useState, useEffect, type ButtonHTMLAttributes } from 'react';
+import { useState, type ButtonHTMLAttributes } from 'react';
 import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react';
 import {
     Search01Icon as Search,
@@ -8,8 +8,8 @@ import {
     Copy01Icon as Copy,
     CheckmarkCircle01Icon as Check,
     Cancel01Icon as Close,
-    Moon02Icon as Moon,
-    Sun01Icon as Sun,
+    // Moon02Icon as Moon,
+    // Sun01Icon as Sun,
 } from '@hugeicons/core-free-icons';
 
 import { Autocomplete } from './components/AdvancedInteraction/Autocomplete';
@@ -277,32 +277,6 @@ const EkontyDesignSystem = () => {
     const [activeCategory, setActiveCategory] = useState<string | null>("Advanced Interaction");
     const [codeModalData, setCodeModalData] = useState<{ title: string, code: string } | null>(null);
     const [globalSearch, setGlobalSearch] = useState('');
-    const [isDarkMode, setIsDarkMode] = useState(() => {
-        if (typeof window !== 'undefined') {
-            return localStorage.getItem('theme') === 'dark' ||
-                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        }
-        return false;
-    });
-
-    const toggleDarkMode = () => {
-        setIsDarkMode(!isDarkMode);
-    };
-
-    useEffect(() => {
-        if (isDarkMode) {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        }
-    }, [isDarkMode]);
-
-
-
-
-
     const menuGroups = [
         {
             title: "Advanced Interaction",
@@ -422,13 +396,13 @@ const EkontyDesignSystem = () => {
                         )}
                     </div>
                     <div className="flex gap-4 items-center">
-                        <button
+                        {/* <button
                             onClick={toggleDarkMode}
                             className="p-2.5 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-600 dark:text-zinc-400 hover:text-emerald-800 dark:hover:text-emerald-500 transition-all shadow-sm hover:shadow-md"
                             title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                         >
                             <HugeiconsIcon icon={isDarkMode ? Sun : Moon} size={18} />
-                        </button>
+                        </button> */}
                         <div className="relative group min-w-[300px] hidden md:block">
                             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-800 transition-colors">
                                 <HugeiconsIcon icon={Search} size={16} />

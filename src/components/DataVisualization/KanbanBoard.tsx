@@ -11,57 +11,147 @@ import {
 const kanbanBoardSourceCode = `import React, { useState } from 'react';
 
 const KanbanBoard = () => {
-  const [columns, setColumns] = useState([
-    {
-      id: 'todo',
-      title: 'To Do',
-      tasks: [
-        { id: '1', title: 'System Architecture', tag: 'Core', priority: 'High' },
-        { id: '2', title: 'User Interviews', tag: 'UX', priority: 'Medium' }
-      ]
-    },
-    {
-      id: 'progress',
-      title: 'In Progress',
-      tasks: [
-        { id: '3', title: 'API Integration', tag: 'Dev', priority: 'High' }
-      ]
-    },
-    {
-      id: 'done',
-      title: 'Done',
-      tasks: [
-        { id: '4', title: 'Brand Guidelines', tag: 'Design', priority: 'Low' }
-      ]
-    }
+  const [tasks, setTasks] = useState([
+    { id: '1', title: 'Market research', status: 'todo' },
+    { id: '2', title: 'Write projects', status: 'in-progress' },
+    { id: '3', title: 'Set up repository', status: 'in-progress' },
+    { id: '4', title: 'test3', status: 'done' },
+    { id: '5', title: 'Design UI mockups', status: 'done' }
   ]);
+  
+  const [draggedTaskId, setDraggedTaskId] = useState(null);
+  const [newTask, setNewTask] = useState(null);
+
+  const columns = [
+    { id: 'todo', title: 'To Do', color: 'bg-blue-600' },
+    { id: 'in-progress', title: 'In Progress', color: 'bg-amber-500' },
+    { id: 'done', title: 'Done', color: 'bg-emerald-500' }
+  ];
+
+  const handleDragStart = (e, taskId) => {
+    setDraggedTaskId(taskId);
+    e.dataTransfer.effectAllowed = 'move';
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  };
+
+  const handleDrop = (e, status) => {
+    e.preventDefault();
+    if (draggedTaskId) {
+      setTasks(tasks.map(t => 
+        t.id === draggedTaskId ? { ...t, status } : t
+      ));
+      setDraggedTaskId(null);
+    }
+  };
+
+  const handleDelete = (taskId) => {
+    setTasks(tasks.filter(t => t.id !== taskId));
+  };
+
+  const handleAddTask = () => {
+    if (newTask?.title.trim()) {
+      setTasks([...tasks, { 
+        id: Date.now().toString(), 
+        title: newTask.title, 
+        status: newTask.status 
+      }]);
+      setNewTask(null);
+    }
+  };
 
   return (
-    <div className="flex gap-6 overflow-x-auto pb-4">
-      {columns.map(col => (
-        <div key={col.id} className="min-w-[300px] bg-slate-50 p-4 rounded-3xl border border-slate-100 flex flex-col h-fit">
-          <div className="flex items-center justify-between mb-4 px-2">
-            <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest">{col.title}</h3>
-            <span className="bg-white px-2 py-0.5 rounded-lg text-[10px] font-black text-slate-400 border border-slate-100">{col.tasks.length}</span>
-          </div>
-          
-          <div className="space-y-3">
-            {col.tasks.map(task => (
-              <div key={task.id} className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing group">
-                <div className="flex justify-between items-start mb-2">
-                   <span className="px-2 py-0.5 bg-emerald-50 text-emerald-600 text-[9px] font-black uppercase tracking-wider rounded-md">{task.tag}</span>
-                   <div className="text-slate-200 group-hover:text-slate-400">
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                      </svg>
-                   </div>
+    <div className="w-full bg-white p-8 overflow-x-auto min-h-[600px] text-zinc-100 font-sans">
+      <div className="flex gap-2 min-w-max items-start">
+        {columns.map(col => {
+          const colTasks = tasks.filter(t => t.status === col.id);
+          return (
+            <div 
+              key={col.id} 
+              className="w-[300px] flex flex-col gap-0 group/col relative"
+              onDragOver={handleDragOver}
+              onDrop={(e) => handleDrop(e, col.id)}
+            >
+              {/* Column Header */}
+              <div className={\`\${col.color} p-4 rounded-t-xl flex items-center justify-between shadow-lg relative z-10\`}>
+                <div className="flex items-center gap-3">
+                  <h3 className="text-white font-bold text-lg">{col.title}</h3>
+                  <span className="bg-white/20 text-white px-2 py-0.5 rounded-full text-xs font-bold ring-1 ring-white/10">
+                    {colTasks.length}
+                  </span>
                 </div>
-                <p className="text-sm font-bold text-slate-700 leading-tight">{task.title}</p>
               </div>
-            ))}
-          </div>
-        </div>
-      ))}
+
+              {/* Tasks Container */}
+              <div className="bg-zinc-900/50 p-3 flex flex-col gap-3 min-h-[150px] rounded-b-xl border border-zinc-900 border-t-0">
+                {colTasks.map(task => (
+                  <div 
+                    key={task.id}
+                    draggable
+                    onDragStart={(e) => handleDragStart(e, task.id)}
+                    className="bg-zinc-800 p-4 rounded-xl shadow-sm border border-zinc-700/50 hover:border-zinc-600 cursor-grab active:cursor-grabbing group/task relative transition-all hover:shadow-md hover:-translate-y-1"
+                  >
+                    <p className="text-zinc-300 text-sm font-medium pr-6">{task.title}</p>
+                    <button 
+                      onClick={() => handleDelete(task.id)}
+                      className="absolute top-2 right-2 text-zinc-500 hover:text-rose-500 opacity-0 group-hover/task:opacity-100 transition-all p-1 hover:bg-zinc-700 rounded"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                ))}
+                
+                {colTasks.length === 0 && (
+                   <div className="h-24 border-2 border-dashed border-zinc-800 rounded-xl flex items-center justify-center text-zinc-600 text-xs uppercase tracking-widest font-bold">
+                     Drop here
+                   </div>
+                )}
+              </div>
+
+               {/* Add Task Button (Visible on Hover) */}
+               <div className="mt-3 opacity-0 group-hover/col:opacity-100 transition-all duration-300 translate-y-[-10px] group-hover/col:translate-y-0">
+                 {newTask?.status === col.id ? (
+                   <div className="bg-zinc-800 p-2 rounded-xl border border-zinc-700 shadow-xl flex gap-2 animate-in slide-in-from-top-2">
+                     <input 
+                       autoFocus
+                       type="text" 
+                       value={newTask.title}
+                       onChange={(e) => setNewTask({...newTask, title: e.target.value})}
+                       onKeyDown={(e) => e.key === 'Enter' && handleAddTask()}
+                       onBlur={() => !newTask.title && setNewTask(null)}
+                       placeholder="Task title..."
+                       className="bg-transparent text-sm text-white placeholder-zinc-500 focus:outline-none flex-1 px-2"
+                     />
+                     <button 
+                       onClick={() => handleAddTask()}
+                       className="p-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors"
+                     >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path d="M5 12h14M12 5v14" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                     </button>
+                   </div>
+                 ) : (
+                   <button 
+                     onClick={() => setNewTask({ status: col.id, title: '' })}
+                     className="w-full py-2 flex items-center justify-center gap-2 text-zinc-500 hover:text-white bg-zinc-900/50 hover:bg-zinc-800 rounded-xl border border-transparent hover:border-zinc-700 transition-all cursor-pointer"
+                   >
+                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path d="M12 4v16m8-8H4" strokeLinecap="round" strokeLinejoin="round" />
+                     </svg>
+                     <span className="text-xs font-bold uppercase tracking-wider">Add Task</span>
+                   </button>
+                 )}
+               </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
@@ -70,52 +160,143 @@ export default KanbanBoard;`;
 
 // --- THE PREVIEW COMPONENT ---
 const KanbanPreview = () => {
-    return (
-        <div className="w-full h-full flex items-center justify-center p-8 relative z-[100] animate-in fade-in duration-700">
-            <div className="flex gap-6 w-full max-w-4xl h-full">
-                {[
-                    { title: 'In Planning', count: 3, tasks: [{ t: 'Design Prototype', p: 'priority' }, { t: 'Market Research', p: 'low' }] },
-                    { title: 'Work in Progress', count: 1, tasks: [{ t: 'API Development', p: 'critical' }] },
-                    { title: 'Testing / QA', count: 0, tasks: [] }
-                ].map((col, i) => (
-                    <div key={i} className={`flex-1 min-w-[260px] bg-slate-50/50 p-5 rounded-xl border border-slate-100/50 backdrop-blur-sm flex flex-col h-fit transition-all duration-500 hover:bg-white hover:shadow-2xl hover:shadow-slate-200/50`}>
-                        <div className="flex items-center justify-between mb-6 px-1">
-                            <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">{col.title}</h3>
-                            <span className="w-6 h-6 rounded-lg bg-white flex items-center justify-center text-[10px] font-black text-slate-900 shadow-sm border border-slate-100">{col.count}</span>
-                        </div>
+    const [tasks, setTasks] = useState([
+        { id: '1', title: 'Market research', status: 'todo' },
+        { id: '2', title: 'Write projects', status: 'in-progress' },
+        { id: '3', title: 'Set up repository', status: 'in-progress' },
+        { id: '4', title: 'test3', status: 'done' },
+        { id: '5', title: 'Design UI mockups', status: 'done' }
+    ]);
 
-                        <div className="space-y-4">
-                            {col.tasks.map((task, j) => (
-                                <div key={j} className="bg-white p-5 rounded-xl border border-slate-50 shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div className={`w-8 h-1 rounded-full ${task.p === 'critical' ? 'bg-rose-500' : 'bg-emerald-500'}`} />
-                                        <div className="flex -space-x-2">
-                                            <div className="w-6 h-6 rounded-full bg-slate-200 border-2 border-white" />
-                                            <div className="w-6 h-6 rounded-full bg-slate-300 border-2 border-white" />
-                                        </div>
-                                    </div>
-                                    <p className="text-[13px] font-bold text-slate-800 mb-4 group-hover:text-emerald-700 transition-colors leading-tight">{task.t}</p>
-                                    <div className="flex items-center gap-4 text-slate-300">
-                                        <div className="flex items-center gap-1.5">
-                                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" /></svg>
-                                            <span className="text-[10px] font-bold">4</span>
-                                        </div>
-                                        <div className="flex items-center gap-1.5">
-                                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.414a4 4 0 00-5.656-5.656l-6.415 6.414a6 6 0 108.486 8.486L20.5 13" /></svg>
-                                            <span className="text-[10px] font-bold">2</span>
-                                        </div>
-                                    </div>
+    const [draggedTaskId, setDraggedTaskId] = useState<string | null>(null);
+    const [newTask, setNewTask] = useState<{ status: string, title: string } | null>(null);
+
+    const columns = [
+        { id: 'todo', title: 'To Do', color: 'bg-blue-600' },
+        { id: 'in-progress', title: 'In Progress', color: 'bg-amber-500' },
+        { id: 'done', title: 'Done', color: 'bg-emerald-500' }
+    ];
+
+    const handleDragStart = (e: React.DragEvent, taskId: string) => {
+        setDraggedTaskId(taskId);
+        e.dataTransfer.effectAllowed = 'move';
+        // Transparent drag image or default
+    };
+
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+    };
+
+    const handleDrop = (e: React.DragEvent, status: string) => {
+        e.preventDefault();
+        if (draggedTaskId) {
+            setTasks(tasks.map(t =>
+                t.id === draggedTaskId ? { ...t, status } : t
+            ));
+            setDraggedTaskId(null);
+        }
+    };
+
+    const handleDelete = (taskId: string) => {
+        setTasks(tasks.filter(t => t.id !== taskId));
+    };
+
+    const handleAddTask = () => {
+        if (newTask?.title.trim()) {
+            setTasks([...tasks, { id: Date.now().toString(), title: newTask.title, status: newTask.status }]);
+            setNewTask(null);
+        }
+    };
+
+    return (
+        <div className="w-full h-[500px] bg-white p-4 relative z-[100] animate-in fade-in duration-700 font-sans">
+            <div className="flex gap-2 min-w-max h-full items-start">
+                {columns.map(col => {
+                    const colTasks = tasks.filter(t => t.status === col.id);
+                    return (
+                        <div
+                            key={col.id}
+                            className="w-[300px] flex flex-col gap-0 group/col relative"
+                            onDragOver={handleDragOver}
+                            onDrop={(e) => handleDrop(e, col.id)}
+                        >
+                            {/* Column Header */}
+                            <div className={`${col.color} p-4 rounded-t-xl flex items-center justify-between shadow-lg relative z-10`}>
+                                <div className="flex items-center gap-3">
+                                    <h3 className="text-white font-bold text-lg">{col.title}</h3>
+                                    <span className="bg-white/20 text-white px-2 py-0.5 rounded-full text-xs font-bold ring-1 ring-white/10">
+                                        {colTasks.length}
+                                    </span>
                                 </div>
-                            ))}
-                            {col.tasks.length === 0 && (
-                                <div className="py-20 flex flex-col items-center justify-center border-2 border-dashed border-slate-200 rounded-xl text-slate-300 grayscale animate-pulse">
-                                    <svg className="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                    <span className="text-[10px] font-black uppercase tracking-widest">No Tasks</span>
-                                </div>
-                            )}
+                            </div>
+
+                            {/* Tasks Container */}
+                            <div className="bg-zinc-900/50 p-3 flex flex-col gap-3 min-h-[150px] rounded-b-xl border border-zinc-900 border-t-0">
+                                {colTasks.map(task => (
+                                    <div
+                                        key={task.id}
+                                        draggable
+                                        onDragStart={(e) => handleDragStart(e, task.id)}
+                                        className="bg-zinc-800 p-4 rounded-xl shadow-sm border border-zinc-700/50 hover:border-zinc-600 cursor-grab active:cursor-grabbing group/task relative transition-all hover:shadow-md hover:-translate-y-1"
+                                    >
+                                        <p className="text-zinc-300 text-sm font-medium pr-6">{task.title}</p>
+                                        <button
+                                            onClick={() => handleDelete(task.id)}
+                                            className="absolute top-2 right-2 text-zinc-500 hover:text-rose-500 opacity-0 group-hover/task:opacity-100 transition-all p-1 hover:bg-zinc-700 rounded"
+                                        >
+                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                ))}
+
+                                {colTasks.length === 0 && (
+                                    <div className="h-24 border-2 border-dashed border-zinc-800 rounded-xl flex items-center justify-center text-zinc-600 text-xs uppercase tracking-widest font-bold">
+                                        Drop here
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Add Task Button (Visible on Hover) */}
+                            <div className="mt-3 opacity-0 group-hover/col:opacity-100 transition-all duration-300 translate-y-[-10px] group-hover/col:translate-y-0">
+                                {newTask?.status === col.id ? (
+                                    <div className="bg-zinc-800 p-2 rounded-xl border border-zinc-700 shadow-xl flex gap-2 animate-in slide-in-from-top-2">
+                                        <input
+                                            autoFocus
+                                            type="text"
+                                            value={newTask.title}
+                                            onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+                                            onKeyDown={(e) => e.key === 'Enter' && handleAddTask()}
+                                            onBlur={() => !newTask.title && setNewTask(null)}
+                                            placeholder="Task title..."
+                                            className="bg-transparent text-sm text-white placeholder-zinc-500 focus:outline-none flex-1 px-2"
+                                        />
+                                        <button
+                                            onClick={() => handleAddTask()}
+                                            className="p-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors"
+                                        >
+                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                                <path d="M5 12h14M12 5v14" strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <button
+                                        onClick={() => setNewTask({ status: col.id, title: '' })}
+                                        className="w-full py-2 flex items-center justify-center gap-2 text-zinc-500 hover:text-white bg-zinc-900/50 hover:bg-zinc-800 rounded-xl border border-transparent hover:border-zinc-700 transition-all cursor-pointer"
+                                    >
+                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                            <path d="M12 4v16m8-8H4" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                        <span className="text-xs font-bold uppercase tracking-wider">Add Task</span>
+                                    </button>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
         </div>
     );
