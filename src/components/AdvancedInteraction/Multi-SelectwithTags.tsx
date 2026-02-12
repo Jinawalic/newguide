@@ -113,15 +113,15 @@ const MultiSelectPreview = () => {
     return (
         <div className="relative w-full max-w-md relative z-[100]">
             <div
-                className="min-h-[48px] p-1.5 flex flex-wrap gap-2 items-center bg-white border border-slate-200 rounded-2xl focus-within:ring-4 focus-within:ring-emerald-500/10 focus-within:border-emerald-500 transition-all cursor-text shadow-sm"
+                className="min-h-[48px] p-1.5 flex flex-wrap gap-2 items-center bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl focus-within:ring-4 focus-within:ring-emerald-500/10 focus-within:border-emerald-500 transition-all cursor-text shadow-sm"
                 onClick={() => setIsOpen(true)}
             >
                 {selected.map(item => (
-                    <span key={item} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-xl border border-emerald-100 animate-in zoom-in-95 duration-200">
+                    <span key={item} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-bold rounded-xl border border-emerald-100 dark:border-emerald-500/20 animate-in zoom-in-95 duration-200 transition-colors">
                         {item}
                         <button
                             onClick={(e) => { e.stopPropagation(); toggleOption(item); }}
-                            className="hover:bg-emerald-200/50 p-0.5 rounded-lg transition-colors"
+                            className="hover:bg-emerald-200/50 dark:hover:bg-emerald-500/20 p-0.5 rounded-lg transition-colors"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-3.5 h-3.5">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -135,9 +135,9 @@ const MultiSelectPreview = () => {
                     onChange={(e) => { setQuery(e.target.value); setIsOpen(true); }}
                     onFocus={() => setIsOpen(true)}
                     placeholder={selected.length === 0 ? "Select technologies..." : ""}
-                    className="flex-1 min-w-[120px] px-2 py-1 text-sm font-medium focus:outline-none bg-transparent placeholder:text-slate-400"
+                    className="flex-1 min-w-[120px] px-2 py-1 text-sm font-medium focus:outline-none bg-transparent placeholder:text-slate-400 dark:placeholder:text-zinc-600 dark:text-zinc-100"
                 />
-                <div className="pr-2 text-slate-400">
+                <div className="pr-2 text-slate-400 dark:text-zinc-600">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>
@@ -145,20 +145,20 @@ const MultiSelectPreview = () => {
             </div>
 
             {isOpen && (
-                <ul className="absolute z-[110] w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl shadow-slate-900/10 max-h-60 overflow-y-auto py-2 animate-in fade-in slide-in-from-top-2 duration-200">
+                <ul className="absolute z-[110] w-full mt-2 bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/50 max-h-60 overflow-y-auto py-2 animate-in fade-in slide-in-from-top-2 duration-200 transition-colors">
                     {filteredOptions.length > 0 ? (
                         filteredOptions.map((opt) => (
                             <li
                                 key={opt}
                                 onClick={() => toggleOption(opt)}
-                                className="px-4 py-2.5 hover:bg-emerald-50 cursor-pointer text-[13px] text-slate-600 font-bold transition-colors flex items-center justify-between group"
+                                className="px-4 py-2.5 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 cursor-pointer text-[13px] text-slate-600 dark:text-zinc-400 font-bold transition-colors flex items-center justify-between group hover:text-emerald-700 dark:hover:text-emerald-400"
                             >
                                 {opt}
-                                <div className="w-5 h-5 rounded-lg border-2 border-slate-200 group-hover:border-emerald-500 transition-colors" />
+                                <div className="w-5 h-5 rounded-lg border-2 border-slate-200 dark:border-zinc-800 group-hover:border-emerald-500 transition-colors" />
                             </li>
                         ))
                     ) : (
-                        <li className="px-4 py-10 text-center text-xs font-bold text-slate-400 italic">No options found</li>
+                        <li className="px-4 py-10 text-center text-xs font-bold text-slate-400 dark:text-zinc-600 italic">No options found</li>
                     )}
                 </ul>
             )}
@@ -193,22 +193,25 @@ export const MultiSelectTags = () => {
             </div>
 
             {/* Design Card */}
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
                 {/* Preview Area */}
-                <div className="h-[400px] bg-[#f8fafc] relative flex items-center justify-center overflow-visible border-b border-slate-100">
-                    <div className="absolute inset-0" style={{
-                        backgroundImage: `radial-gradient(#e2e8f0 1.5px, transparent 1.5px)`,
+                <div className="h-[400px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center overflow-visible border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
+                    <div className="absolute inset-0 opacity-40" style={{
+                        backgroundImage: `radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)`,
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[400px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <div className="relative z-10 w-full flex justify-center">
                         <MultiSelectPreview />
                     </div>
                 </div>
 
                 {/* Toolbar */}
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Customizable</span>
                         </button>
@@ -216,12 +219,12 @@ export const MultiSelectTags = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
                         </button>
-                        <button className="flex items-center gap-2 hover:text-slate-900 text-slate-500 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={ExternalLink} size={16} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
                             <span>Documentation</span>
                         </button>

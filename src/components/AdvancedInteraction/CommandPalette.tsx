@@ -125,15 +125,15 @@ const CommandPalettePreview = () => {
   );
 
   return (
-    <div className="w-full max-w-sm mx-auto bg-white rounded-xl shadow-2xl overflow-hidden border border-slate-100 relative z-[100] animate-in zoom-in-95 duration-500">
-      <div className="relative group p-3 border-b border-slate-100">
-        <svg className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-emerald-500 transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
+    <div className="w-full max-w-sm mx-auto bg-white dark:bg-zinc-900/50 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-slate-100 dark:border-zinc-800 relative z-[100] animate-in zoom-in-95 duration-500 transition-colors">
+      <div className="relative group p-3 border-b border-slate-100 dark:border-zinc-800 transition-colors">
+        <svg className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-zinc-600 group-focus-within:text-emerald-500 transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
         </svg>
         <input
           type="text"
           placeholder="Search commands..."
-          className="w-full pl-9 pr-4 py-2 text-[13px] font-bold outline-none placeholder:text-slate-400"
+          className="w-full pl-9 pr-4 py-2 text-[13px] font-bold outline-none placeholder:text-slate-400 dark:placeholder:text-zinc-600 bg-transparent dark:text-zinc-100"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
@@ -147,18 +147,18 @@ const CommandPalettePreview = () => {
               if (categoryCmds.length === 0) return null;
               return (
                 <div key={category}>
-                  <h3 className="px-3 py-1.5 text-[9px] font-black text-slate-400 uppercase tracking-widest">{category}</h3>
+                  <h3 className="px-3 py-1.5 text-[9px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-widest">{category}</h3>
                   <div className="space-y-0.5">
                     {categoryCmds.map(cmd => (
                       <button
                         key={cmd.id}
-                        className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 transition-all group"
+                        className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-500/10 text-slate-700 dark:text-zinc-300 hover:text-emerald-800 dark:hover:text-emerald-400 transition-all group"
                       >
                         <div className="flex items-center gap-3">
                           <span className="text-xs grayscale group-hover:grayscale-0 transition-all">{cmd.icon}</span>
                           <span className="text-[12px] font-bold">{cmd.name}</span>
                         </div>
-                        <span className="px-1.5 py-0.5 bg-slate-100 text-[9px] font-black text-slate-500 rounded-lg group-hover:bg-emerald-100 group-hover:text-emerald-700 transition-colors">
+                        <span className="px-1.5 py-0.5 bg-slate-100 dark:bg-zinc-800 text-[9px] font-black text-slate-500 dark:text-zinc-500 rounded-lg group-hover:bg-emerald-100 dark:group-hover:bg-emerald-500/20 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
                           {cmd.shortcut}
                         </span>
                       </button>
@@ -170,13 +170,13 @@ const CommandPalettePreview = () => {
           </div>
         ) : (
           <div className="p-8 text-center italic">
-            <p className="text-xs font-bold text-slate-400">Nothing found...</p>
+            <p className="text-xs font-bold text-slate-400 dark:text-zinc-600">Nothing found...</p>
           </div>
         )}
       </div>
 
-      <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-100 flex justify-center gap-4 text-[9px] font-black text-slate-400 uppercase tracking-wider">
-        <span>Search via <span className="text-emerald-600">⌘+K</span> anywhere</span>
+      <div className="px-4 py-2.5 bg-slate-50 dark:bg-zinc-900 border-t border-slate-100 dark:border-zinc-800 flex justify-center gap-4 text-[9px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-wider transition-colors">
+        <span>Search via <span className="text-emerald-600 dark:text-emerald-400">⌘+K</span> anywhere</span>
       </div>
     </div>
   );
@@ -206,12 +206,15 @@ export const CommandPalette = () => {
       </div>
 
       {/* Design Card */}
-      <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-        <div className="h-[500px] bg-[#0f172a] relative flex items-center justify-center border-b border-slate-800 p-8 overflow-hidden">
+      <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+        <div className="h-[500px] bg-[#0f172a] relative flex items-center justify-center border-b border-slate-800 p-8 overflow-hidden transition-colors duration-700">
           <div className="absolute inset-0 opacity-20" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, #334155 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 2px 2px, var(--pattern-color, #334155) 1px, transparent 0)',
             backgroundSize: '24px 24px'
           }}></div>
+          <style>{`
+            .dark .h-\\[500px\\] { --pattern-color: #3f3f46; }
+          `}</style>
           <div className="relative z-10 w-full max-w-sm">
             <CommandPalettePreview />
           </div>
@@ -219,9 +222,9 @@ export const CommandPalette = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
         </div>
 
-        <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+        <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
           <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+            <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
               <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
               <span>Global Shortcut</span>
             </button>
@@ -229,7 +232,7 @@ export const CommandPalette = () => {
           <div className="flex items-center gap-6 text-slate-400">
             <button
               onClick={handleCopy}
-              className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+              className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
             >
               <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
               <span>{copied ? 'Copied' : 'Copy code'}</span>

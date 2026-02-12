@@ -55,8 +55,8 @@ export default ProfileCard;`;
 
 const ProfileCardPreview = () => {
     return (
-        <div className="w-full h-full flex items-center justify-center p-8 bg-slate-50 rounded-xl border border-slate-200 relative z-[100] overflow-hidden">
-            <div className="w-full max-w-sm bg-white rounded-xl border border-slate-100 shadow-2xl overflow-hidden relative group">
+        <div className="w-full h-full flex items-center justify-center p-8 bg-slate-50 dark:bg-zinc-950/20 rounded-xl border border-slate-200 dark:border-zinc-800 relative z-[100] overflow-hidden transition-colors">
+            <div className="w-full max-w-sm bg-white dark:bg-zinc-900/50 backdrop-blur-md rounded-xl border border-slate-100 dark:border-zinc-800 shadow-2xl overflow-hidden relative group transition-colors">
                 {/* Header/Cover */}
                 <div className="h-40 bg-zinc-950 overflow-hidden relative">
                     <div className="absolute inset-0 opacity-20 grayscale" style={{
@@ -75,7 +75,7 @@ const ProfileCardPreview = () => {
                 <div className="px-8 pb-8 relative">
                     {/* Avatar */}
                     <div className="absolute -top-14 left-8">
-                        <div className="w-20 h-20 rounded-full border-4 border-white bg-slate-50 shadow-2xl shadow-zinc-950/20 overflow-hidden relative group-hover:scale-105 transition-transform duration-500">
+                        <div className="w-20 h-20 rounded-full border-4 border-white dark:border-zinc-900 bg-slate-50 dark:bg-zinc-800 shadow-2xl shadow-zinc-950/20 overflow-hidden relative group-hover:scale-105 transition-all duration-500">
                             <div className="w-full h-full bg-gradient-to-br from-emerald-400 to-indigo-600 p-6 flex items-center justify-center text-white">
                                 <HugeiconsIcon icon={Profile} size={38} />
                             </div>
@@ -84,42 +84,42 @@ const ProfileCardPreview = () => {
 
                     <div className="pt-10">
                         <div className="flex items-center justify-between mb-2">
-                            <h3 className="text-2xl font-bold text-slate-900 tracking-tighter">David Kostas</h3>
-                            <div className="px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full text-[9px] font-black uppercase tracking-widest border border-emerald-100">Verified</div>
+                            <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tighter transition-colors">David Kostas</h3>
+                            <div className="px-3 py-1 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-full text-[9px] font-black uppercase tracking-widest border border-emerald-100 dark:border-emerald-500/20 transition-colors">Verified</div>
                         </div>
-                        <p className="text-[10px] font-bold text-slate-400 capitalize tracking-widest leading-none mb-6">Founding Engineer</p>
+                        <p className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 capitalize tracking-widest leading-none mb-6 transition-colors">Founding Engineer</p>
 
                         <div className="space-y-3 mb-8">
-                            <div className="flex items-center gap-3 text-slate-500">
-                                <HugeiconsIcon icon={Location} size={16} className="text-slate-300" />
+                            <div className="flex items-center gap-3 text-slate-500 dark:text-zinc-400 transition-colors">
+                                <HugeiconsIcon icon={Location} size={16} className="text-slate-300 dark:text-zinc-600" />
                                 <span className="text-[10px] font-bold capitalize tracking-widest">Berlin, Germany</span>
                             </div>
-                            <div className="flex items-center gap-3 text-slate-500">
-                                <HugeiconsIcon icon={Calendar} size={16} className="text-slate-300" />
+                            <div className="flex items-center gap-3 text-slate-500 dark:text-zinc-400 transition-colors">
+                                <HugeiconsIcon icon={Calendar} size={16} className="text-slate-300 dark:text-zinc-600" />
                                 <span className="text-[10px] font-bold capitalize tracking-widest">Joined Oct 2024</span>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-3 gap-6 py-4 border-y border-slate-50">
+                        <div className="grid grid-cols-3 gap-6 py-4 border-y border-slate-50 dark:border-zinc-800 transition-colors">
                             <div className="text-center">
-                                <p className="text-sm font-bold text-slate-900 tracking-tighter">242</p>
-                                <p className="text-[9px] font-bold text-slate-400 capitalize tracking-widest">Followers</p>
+                                <p className="text-sm font-bold text-slate-900 dark:text-white tracking-tighter transition-colors">242</p>
+                                <p className="text-[9px] font-bold text-slate-400 dark:text-zinc-500 capitalize tracking-widest transition-colors">Followers</p>
                             </div>
                             <div className="text-center">
-                                <p className="text-sm font-bold text-slate-900 tracking-tighter">1.2k</p>
-                                <p className="text-[9px] font-bold text-slate-400 capitalize tracking-widest">Following</p>
+                                <p className="text-sm font-bold text-slate-900 dark:text-white tracking-tighter transition-colors">1.2k</p>
+                                <p className="text-[9px] font-bold text-slate-400 dark:text-zinc-500 capitalize tracking-widest transition-colors">Following</p>
                             </div>
                             <div className="text-center">
-                                <p className="text-sm font-bold text-slate-900 tracking-tighter">18</p>
-                                <p className="text-[9px] font-bold text-slate-400 capitalize tracking-widest">Posts</p>
+                                <p className="text-sm font-bold text-slate-900 dark:text-white tracking-tighter transition-colors">18</p>
+                                <p className="text-[9px] font-bold text-slate-400 dark:text-zinc-500 capitalize tracking-widest transition-colors">Posts</p>
                             </div>
                         </div>
 
                         <div className="mt-3 flex gap-3">
-                            <button className="flex-1 h-12 bg-emerald-800 text-white rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-slate-900/20 active:scale-95 hover:bg-emerald-900 transition-all">
+                            <button className="flex-1 h-12 bg-emerald-800 dark:bg-emerald-500/20 text-white dark:text-emerald-400 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-slate-900/20 dark:shadow-emerald-500/10 active:scale-95 hover:bg-emerald-900 dark:hover:bg-emerald-500/30 transition-all border border-transparent dark:border-emerald-500/20">
                                 Send Message
                             </button>
-                            <button className="w-12 h-12 bg-slate-50 border border-slate-100 text-slate-400 rounded-2xl flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all">
+                            <button className="w-12 h-12 bg-slate-50 dark:bg-zinc-800 border border-slate-100 dark:border-zinc-700 text-slate-400 dark:text-zinc-500 rounded-2xl flex items-center justify-center hover:bg-slate-100 dark:hover:bg-zinc-700 active:scale-95 transition-all">
                                 <HugeiconsIcon icon={Mail} size={20} />
                             </button>
                         </div>
@@ -128,7 +128,7 @@ const ProfileCardPreview = () => {
             </div>
 
             <div className="absolute bottom-10 right-10 flex gap-1 transform rotate-90 origin-right">
-                <span className="text-[9px] font-black text-slate-300 uppercase tracking-[0.5em]">Identity Profile V4</span>
+                <span className="text-[9px] font-black text-slate-300 dark:text-zinc-700 uppercase tracking-[0.5em] transition-colors">Identity Profile V4</span>
             </div>
         </div>
     );
@@ -156,18 +156,21 @@ export const ProfileCard = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[650px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[650px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[650px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <ProfileCardPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Stats Density</span>
                         </button>
@@ -175,7 +178,7 @@ export const ProfileCard = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

@@ -53,12 +53,12 @@ const ColumnPreview = () => {
 
     return (
         <div className="w-full flex flex-col items-center gap-10 relative z-[100] mt-5">
-            <div className="w-full max-w-sm bg-white p-10 rounded-xl border border-slate-100 shadow-sm relative group overflow-hidden">
+            <div className="w-full max-w-sm bg-white dark:bg-zinc-900/50 backdrop-blur-md p-10 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-sm relative group overflow-hidden transition-colors duration-700">
                 <div className="flex items-center justify-between mb-10">
                     <div>
-                        <h3 className="text-[15px] font-black text-slate-900 tracking-tight uppercase leading-none my-2">Display Mode</h3>
+                        <h3 className="text-[15px] font-black text-slate-900 dark:text-white tracking-tight uppercase leading-none my-2 transition-colors">Display Mode</h3>
                     </div>
-                    <div className="w-10 h-10 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600">
+                    <div className="w-10 h-10 bg-emerald-50 dark:bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-600 dark:text-emerald-400">
                         <HugeiconsIcon icon={ColumnIcon} size={24} />
                     </div>
                 </div>
@@ -68,26 +68,30 @@ const ColumnPreview = () => {
                         <div
                             key={f.id}
                             onClick={() => toggle(f.id)}
-                            className={`group/item flex items-center justify-between px-5 py-4 rounded-xl border transition-all duration-500 cursor-pointer ${f.visible ? 'bg-slate-100 border-emerald-100' : 'bg-slate-50 border-slate-50 opacity-60'
+                            className={`group/item flex items-center justify-between px-5 py-4 rounded-xl border transition-all duration-500 cursor-pointer ${f.visible
+                                ? 'bg-slate-100 dark:bg-zinc-800/50 border-emerald-100 dark:border-emerald-500/20'
+                                : 'bg-slate-50 dark:bg-zinc-900/30 border-slate-50 dark:border-zinc-800 opacity-60'
                                 }`}
                         >
                             <div className="flex items-center gap-4">
-                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${f.visible ? 'bg-white text-emerald-600 shadow-sm' : 'bg-white text-slate-300'
+                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${f.visible
+                                    ? 'bg-white dark:bg-zinc-800 text-emerald-600 dark:text-emerald-400 shadow-sm'
+                                    : 'bg-white dark:bg-zinc-900 text-slate-300 dark:text-zinc-700'
                                     }`}>
                                     <HugeiconsIcon icon={f.visible ? ShowIcon : HideIcon} size={18} />
                                 </div>
                                 <div>
-                                    <div className={`text-[11px] font-black uppercase tracking-widest leading-none mb-1 ${f.visible ? 'text-slate-900' : 'text-slate-400'}`}>{f.label}</div>
-                                    <div className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">{f.locked ? 'Primary Key' : 'Variable Field'}</div>
+                                    <div className={`text-[11px] font-black uppercase tracking-widest leading-none mb-1 ${f.visible ? 'text-slate-900 dark:text-zinc-100' : 'text-slate-400 dark:text-zinc-500'}`}>{f.label}</div>
+                                    <div className="text-[8px] font-bold text-slate-400 dark:text-zinc-600 uppercase tracking-widest">{f.locked ? 'Primary Key' : 'Variable Field'}</div>
                                 </div>
                             </div>
 
                             {!f.locked ? (
-                                <div className={`w-12 h-7 rounded-full px-1 flex items-center transition-all duration-500 ${f.visible ? 'bg-emerald-600' : 'bg-slate-200'}`}>
+                                <div className={`w-12 h-7 rounded-full px-1 flex items-center transition-all duration-500 ${f.visible ? 'bg-emerald-600' : 'bg-slate-200 dark:bg-zinc-700'}`}>
                                     <div className={`w-5 h-5 rounded-full bg-white shadow-sm transform transition-transform duration-500 ${f.visible ? 'translate-x-5' : 'translate-x-0'}`} />
                                 </div>
                             ) : (
-                                <div className="w-8 h-8 rounded-full flex items-center justify-center text-slate-200">
+                                <div className="w-8 h-8 rounded-full flex items-center justify-center text-slate-200 dark:text-zinc-700">
                                     <HugeiconsIcon icon={Tick} size={16} strokeWidth={3} />
                                 </div>
                             )}
@@ -95,9 +99,9 @@ const ColumnPreview = () => {
                     ))}
                 </div>
 
-                <div className="mt-8 flex items-center gap-2 group/reorder cursor-pointer justify-center py-3 border border-dashed border-slate-200 rounded-2xl hover:border-emerald-500 transition-colors">
-                    <HugeiconsIcon icon={ReorderIcon} size={14} className="text-slate-300 group-hover/reorder:text-emerald-500 transition-colors" />
-                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest group-hover/reorder:text-emerald-500 transition-colors">Hold To Reorder</span>
+                <div className="mt-8 flex items-center gap-2 group/reorder cursor-pointer justify-center py-3 border border-dashed border-slate-200 dark:border-zinc-800 rounded-2xl hover:border-emerald-500 transition-colors">
+                    <HugeiconsIcon icon={ReorderIcon} size={14} className="text-slate-300 dark:text-zinc-700 group-hover/reorder:text-emerald-500 transition-colors" />
+                    <span className="text-[9px] font-black text-slate-400 dark:text-zinc-600 uppercase tracking-widest group-hover/reorder:text-emerald-500 transition-colors">Hold To Reorder</span>
                 </div>
             </div>
         </div>
@@ -126,18 +130,21 @@ export const ColumnVisibility = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[750px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[750px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[750px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <ColumnPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Persistence Hooks</span>
                         </button>
@@ -145,7 +152,7 @@ export const ColumnVisibility = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

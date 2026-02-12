@@ -67,13 +67,13 @@ const ExportPreview = () => {
 
     return (
         <div className="w-full flex flex-col items-center gap-10 relative z-[100]">
-            <div className="w-full max-w-sm bg-white p-10 rounded-xl border border-slate-100 shadow-sm relative group overflow-hidden">
+            <div className="w-full max-w-sm bg-white dark:bg-zinc-900/50 backdrop-blur-md p-10 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-sm relative group overflow-hidden transition-colors duration-700">
                 <div className="mb-10 text-center">
-                    <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center text-blue-600 mx-auto mb-6">
+                    <div className="w-12 h-12 bg-blue-50 dark:bg-blue-500/10 border border-blue-100 dark:border-blue-500/20 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mx-auto mb-6">
                         <HugeiconsIcon icon={ExportIcon} size={30} />
                     </div>
-                    <h3 className="text-2xl font-black text-slate-900 tracking-tight leading-none mb-3">Export Assets</h3>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Select target format</p>
+                    <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-3 transition-colors">Export Assets</h3>
+                    <p className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-widest leading-none transition-colors">Select target format</p>
                 </div>
 
                 <div className="space-y-4">
@@ -82,16 +82,20 @@ const ExportPreview = () => {
                             key={f.id}
                             onClick={() => handleExport(f.id)}
                             disabled={exporting !== null}
-                            className={`w-full group/item p-6 rounded-xl border transition-all duration-500 flex items-center justify-between ${exporting === f.id ? 'bg-slate-900 border-slate-900 scale-[0.98]' : 'bg-white border-slate-100 hover:border-slate-300 hover:shadow-xl'
+                            className={`w-full group/item p-6 rounded-xl border transition-all duration-500 flex items-center justify-between ${exporting === f.id
+                                ? 'bg-slate-900 dark:bg-zinc-800 border-slate-900 dark:border-zinc-700 scale-[0.98]'
+                                : 'bg-white dark:bg-zinc-900/50 border-slate-100 dark:border-zinc-800 hover:border-slate-300 dark:hover:border-zinc-700 hover:shadow-xl'
                                 }`}
                         >
                             <div className="flex items-center gap-5">
-                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 ${exporting === f.id ? 'bg-white/10 text-white' : `${f.bg} ${f.color}`}`}>
+                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 ${exporting === f.id
+                                    ? 'bg-white/10 text-white'
+                                    : `${f.bg} dark:bg-opacity-10 ${f.color} dark:text-opacity-80`}`}>
                                     <HugeiconsIcon icon={f.icon} size={24} />
                                 </div>
                                 <div className="text-left">
-                                    <div className={`text-[11px] font-black uppercase tracking-widest mb-1 ${exporting === f.id ? 'text-white' : 'text-slate-900'}`}>{f.name}</div>
-                                    <div className={`text-[9px] font-bold uppercase tracking-widest ${exporting === f.id ? 'text-slate-500' : 'text-slate-400'}`}>{f.ext}</div>
+                                    <div className={`text-[11px] font-black uppercase tracking-widest mb-1 ${exporting === f.id ? 'text-white' : 'text-slate-900 dark:text-zinc-100'}`}>{f.name}</div>
+                                    <div className={`text-[9px] font-bold uppercase tracking-widest ${exporting === f.id ? 'text-slate-500' : 'text-slate-400 dark:text-zinc-500'}`}>{f.ext}</div>
                                 </div>
                             </div>
 
@@ -99,7 +103,7 @@ const ExportPreview = () => {
                                 {exporting === f.id ? (
                                     <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
                                 ) : (
-                                    <HugeiconsIcon icon={Tick} size={16} className="text-slate-200 group-hover/item:text-slate-900" />
+                                    <HugeiconsIcon icon={Tick} size={16} className="text-slate-200 dark:text-zinc-700 group-hover/item:text-slate-900 dark:group-hover/item:text-zinc-100" />
                                 )}
                             </div>
                         </button>
@@ -132,18 +136,21 @@ export const ExportCSV_PDF = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[650px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[650px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[650px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <ExportPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Client-Side Streams</span>
                         </button>
@@ -151,7 +158,7 @@ export const ExportCSV_PDF = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

@@ -57,12 +57,12 @@ const BulkPreview = () => {
 
     return (
         <div className="w-full flex flex-col items-center gap-10 relative z-[100]">
-            <div className="w-full max-w-md bg-white p-10 rounded-xl border border-slate-100 shadow-sm relative group overflow-hidden">
-                <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-50">
-                    <h3 className="text-xl font-black text-slate-900 tracking-tight uppercase leading-none mb-2">Customer List</h3>
+            <div className="w-full max-w-md bg-white dark:bg-zinc-900/50 backdrop-blur-md p-10 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-sm relative group overflow-hidden transition-colors duration-700">
+                <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-50 dark:border-zinc-800 transition-colors">
+                    <h3 className="text-xl font-black text-slate-900 dark:text-white tracking-tight uppercase leading-none mb-2">Customer List</h3>
                     <button
                         onClick={toggleAll}
-                        className="text-[10px] font-black text-blue-600 uppercase tracking-widest px-4 py-2 bg-blue-50 rounded-xl"
+                        className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest px-4 py-2 bg-blue-50 dark:bg-blue-500/10 rounded-xl transition-colors"
                     >
                         {selected.length === total ? 'Deselect All' : 'Select All'}
                     </button>
@@ -73,34 +73,38 @@ const BulkPreview = () => {
                         <div
                             key={i}
                             onClick={() => toggle(i)}
-                            className={`p-5 rounded-xl border transition-all duration-500 cursor-pointer flex items-center justify-between ${selected.includes(i) ? 'bg-emerald-50 border-emerald-200 shadow-sm shadow-emerald-500/5' : 'bg-slate-50 border-slate-50 hover:bg-white hover:border-slate-200'
+                            className={`p-5 rounded-xl border transition-all duration-500 cursor-pointer flex items-center justify-between ${selected.includes(i)
+                                ? 'bg-emerald-50 dark:bg-emerald-500/10 border-emerald-200 dark:border-emerald-500/30 shadow-sm shadow-emerald-500/5'
+                                : 'bg-slate-50 dark:bg-zinc-800/30 border-slate-50 dark:border-zinc-800 hover:bg-white dark:hover:bg-zinc-800 hover:border-slate-200 dark:hover:border-zinc-700'
                                 }`}
                         >
                             <div className="flex items-center gap-4">
-                                <div className={`w-8 h-8 rounded-xl border-2 transition-all flex items-center justify-center ${selected.includes(i) ? 'bg-emerald-500 border-emerald-500 text-white' : 'bg-white border-slate-200'
+                                <div className={`w-8 h-8 rounded-xl border-2 transition-all flex items-center justify-center ${selected.includes(i)
+                                    ? 'bg-emerald-500 border-emerald-500 text-white'
+                                    : 'bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-800'
                                     }`}>
                                     {selected.includes(i) && <HugeiconsIcon icon={Tick} size={14} strokeWidth={4} />}
                                 </div>
                                 <div className="space-y-1">
-                                    <div className="h-2.5 w-24 bg-slate-900/10 rounded-full" />
-                                    <div className="h-1.5 w-16 bg-slate-400/20 rounded-full" />
+                                    <div className="h-2.5 w-24 bg-slate-900/10 dark:bg-zinc-100/10 rounded-full" />
+                                    <div className="h-1.5 w-16 bg-slate-400/20 dark:bg-zinc-500/20 rounded-full" />
                                 </div>
                             </div>
-                            <div className="w-2 h-2 rounded-full bg-slate-200" />
+                            <div className="w-2 h-2 rounded-full bg-slate-200 dark:bg-zinc-800" />
                         </div>
                     ))}
                 </div>
 
                 {selected.length > 0 && (
-                    <div className="absolute inset-x-6 bottom-6 flex items-center justify-between bg-slate-100 px-6 py-4 rounded-xl shadow-sm animate-in slide-in-from-bottom-full duration-500 ring-4 ring-white">
-                        <div className="flex items-center gap-3 pr-6 border-r border-slate-200">
-                            <div className="w-8 h-8 bg-emerald-500 text-white rounded-xl flex items-center justify-center text-xs font-black shadow-lg shadow-indigo-500/30">
+                    <div className="absolute inset-x-6 bottom-6 flex items-center justify-between bg-slate-100 dark:bg-zinc-800 px-6 py-4 rounded-xl shadow-sm animate-in slide-in-from-bottom-full duration-500 ring-4 ring-white dark:ring-zinc-900 transition-all">
+                        <div className="flex items-center gap-3 pr-6 border-r border-slate-200 dark:border-zinc-700">
+                            <div className="w-8 h-8 bg-emerald-500 text-white rounded-xl flex items-center justify-center text-xs font-black shadow-lg shadow-emerald-500/30">
                                 {selected.length}
                             </div>
-                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] leading-none">Selected</span>
+                            <span className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-[0.2em] leading-none">Selected</span>
                         </div>
 
-                        <div className="flex-1 flex justify-around items-center px-4">
+                        <div className="flex-1 flex justify-around items-center px-4 gap-2">
                             {[
                                 { icon: MarkRead, label: 'Read', color: 'hover:text-blue-400' },
                                 { icon: LabelIcon, label: 'Label', color: 'hover:text-emerald-400' },
@@ -108,8 +112,8 @@ const BulkPreview = () => {
                                 { icon: DeleteIcon, label: 'Delete', color: 'hover:text-rose-400' }
                             ].map((action, i) => (
                                 <button key={i} className={`flex flex-col items-center gap-1.5 group/action transition-colors ${action.color}`}>
-                                    <HugeiconsIcon icon={action.icon} size={20} className="text-slate-400 group-hover/action:text-inherit" />
-                                    <span className="text-[7px] font-black uppercase tracking-widest text-slate-500 group-hover/action:text-inherit">{action.label}</span>
+                                    <HugeiconsIcon icon={action.icon} size={20} className="text-slate-400 dark:text-zinc-500 group-hover/action:text-inherit transition-colors" />
+                                    <span className="text-[7px] font-black uppercase tracking-widest text-slate-500 dark:text-zinc-600 group-hover/action:text-inherit transition-colors">{action.label}</span>
                                 </button>
                             ))}
                         </div>
@@ -142,18 +146,21 @@ export const BulkActions = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[650px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[650px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[650px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <BulkPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Pivot States</span>
                         </button>
@@ -161,7 +168,7 @@ export const BulkActions = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

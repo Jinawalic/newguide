@@ -78,9 +78,9 @@ const TimeoutPreview = () => {
                     <div className="absolute inset-0 z-[110] flex items-center justify-center p-6 animate-in fade-in zoom-in-95 duration-500">
                         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-md" onClick={() => setShow(false)} />
 
-                        <div className="bg-white w-full max-w-sm rounded-xl shadow-sm p-10 relative z-[120] border border-slate-50">
+                        <div className="bg-white dark:bg-zinc-900 w-full max-w-sm rounded-xl shadow-sm p-10 relative z-[120] border border-slate-50 dark:border-zinc-800 transition-colors duration-700">
                             <div className="flex justify-center mb-8">
-                                <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-amber-500 relative overflow-hidden">
+                                <div className="w-12 h-12 bg-amber-50 dark:bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-500 relative overflow-hidden">
                                     <HugeiconsIcon icon={Clock} size={35} className="relative z-10" />
                                     <div className="absolute inset-0 bg-gradient-to-tr from-rose-500/10 to-transparent" />
                                     <div className="absolute bottom-0 left-0 w-full bg-amber-500/10 transition-all duration-1000" style={{ height: `${(timeLeft / 30) * 100}%` }} />
@@ -88,8 +88,8 @@ const TimeoutPreview = () => {
                             </div>
 
                             <div className="text-center mb-10">
-                                <h4 className="text-xl font-black text-slate-900 tracking-tight leading-none mb-4 capitalize">Session Timeout</h4>
-                                <p className="text-[11px] font-bold text-slate-400 capitalize tracking-widest leading-relaxed">
+                                <h4 className="text-xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-4 capitalize transition-colors">Session Timeout</h4>
+                                <p className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 capitalize tracking-widest leading-relaxed transition-colors">
                                     Your session will automatically expire in <span className="text-rose-500">{timeLeft} Seconds</span>
                                 </p>
                             </div>
@@ -97,14 +97,14 @@ const TimeoutPreview = () => {
                             <div className="grid grid-cols-1 gap-3">
                                 <button
                                     onClick={() => setShow(false)}
-                                    className="w-full h-12 bg-emerald-800 text-white rounded-xl flex items-center justify-center gap-3 text-[10px] font-black uppercase tracking-widest hover:bg-emerald-900 transition-all transform hover:scale-[1.02] shadow-sm shadow-emerald-700/10"
+                                    className="w-full h-12 bg-emerald-800 dark:bg-emerald-600 text-white rounded-xl flex items-center justify-center gap-3 text-[10px] font-black uppercase tracking-widest hover:bg-emerald-900 dark:hover:bg-emerald-500 transition-all transform hover:scale-[1.02] shadow-sm shadow-emerald-700/10"
                                 >
                                     <HugeiconsIcon icon={Refresh} size={18} />
                                     Extend Session
                                 </button>
                                 <button
                                     onClick={() => setShow(false)}
-                                    className="w-full h-14 bg-slate-50 text-slate-400 hover:text-rose-600 rounded-2xl flex items-center justify-center gap-3 text-[10px] font-black uppercase tracking-widest transition-all"
+                                    className="w-full h-14 bg-slate-50 dark:bg-zinc-800 text-slate-400 dark:text-zinc-500 hover:text-rose-600 dark:hover:text-rose-400 rounded-2xl flex items-center justify-center gap-3 text-[10px] font-black uppercase tracking-widest transition-all"
                                 >
                                     <HugeiconsIcon icon={Logout} size={18} />
                                     Logout Now
@@ -131,27 +131,30 @@ export const SessionTimeout = () => {
         <div className="max-w-[1000px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                    <h2 className="text-3xl font-black text-slate-900 tracking-tight font-heading">Session Timeout</h2>
+                    <h2 className="text-3xl font-black text-slate-900 dark:text-zinc-100 tracking-tight font-heading">Session Timeout</h2>
                     <span className="bg-amber-100 text-amber-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Security</span>
                 </div>
-                <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+                <p className="text-slate-500 dark:text-zinc-400 font-medium leading-relaxed max-w-2xl">
                     A critical security component that warns users before their session expires.
                     Protects sensitive data on shared devices by enforcing automatic logout during inactivity.
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[550px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[550px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[550px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <TimeoutPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Idle Logic</span>
                         </button>
@@ -159,7 +162,7 @@ export const SessionTimeout = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

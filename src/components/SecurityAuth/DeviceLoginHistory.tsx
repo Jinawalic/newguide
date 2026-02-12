@@ -66,25 +66,25 @@ const HistoryPreview = () => {
 
     return (
         <div className="w-full flex flex-col items-center gap-10 relative z-[100]">
-            <div className="w-full max-w-lg bg-white p-10 rounded-xl border border-slate-100 shadow-sm relative group overflow-hidden">
+            <div className="w-full max-w-lg bg-white dark:bg-zinc-900/50 backdrop-blur-md p-10 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-sm relative group overflow-hidden transition-colors duration-700">
                 <div className="flex items-center justify-between mb-10">
                     <div>
-                        <h3 className="text-base font-black text-slate-900 tracking-tight leading-none mb-2 uppercase">Device History</h3>
-                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Manage active sessions</p>
+                        <h3 className="text-base font-black text-slate-900 dark:text-white tracking-tight leading-none mb-2 uppercase transition-colors">Device History</h3>
+                        <p className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-widest leading-none transition-colors">Manage active sessions</p>
                     </div>
-                    <button className="px-5 py-2.5 bg-rose-50 text-rose-600 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-rose-100 transition-colors">Terminate All</button>
+                    <button className="px-5 py-2.5 bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-rose-100 dark:hover:bg-rose-500/20 transition-colors">Terminate All</button>
                 </div>
 
                 <div className="space-y-4">
                     {sessions.map((session) => (
-                        <div key={session.id} className={`group/item flex items-center justify-between px-5 py-4 rounded-xl border transition-all duration-500 ${session.isCurrent ? 'bg-indigo-50/30 border-indigo-100' : 'bg-slate-50/50 border-slate-100 hover:bg-white hover:shadow-xl'}`}>
+                        <div key={session.id} className={`group/item flex items-center justify-between px-5 py-4 rounded-xl border transition-all duration-500 ${session.isCurrent ? 'bg-indigo-50/30 dark:bg-indigo-500/10 border-indigo-100 dark:border-indigo-500/20' : 'bg-slate-50/50 dark:bg-zinc-800/30 border-slate-100 dark:border-zinc-800 hover:bg-white dark:hover:bg-zinc-800 hover:shadow-xl'}`}>
                             <div className="flex items-center gap-5">
-                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-500 group-hover/item:scale-110 ${session.isCurrent ? 'bg-indigo-500 text-white shadow-sm shadow-indigo-500/20' : 'bg-white text-slate-400 shadow-sm border border-slate-100'}`}>
+                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-500 group-hover/item:scale-110 ${session.isCurrent ? 'bg-indigo-500 text-white shadow-sm shadow-indigo-500/20' : 'bg-white dark:bg-zinc-800 text-slate-400 dark:text-zinc-500 shadow-sm border border-slate-100 dark:border-zinc-800 transition-colors'}`}>
                                     <HugeiconsIcon icon={session.type === 'mobile' ? Phone : Desktop} size={24} />
                                 </div>
                                 <div className="space-y-1">
                                     <div className="flex items-center gap-2">
-                                        <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight">{session.browser} on {session.os}</h4>
+                                        <h4 className="text-sm font-black text-slate-900 dark:text-zinc-100 uppercase tracking-tight transition-colors">{session.browser} on {session.os}</h4>
                                         {session.isCurrent && (
                                             <div className="flex items-center gap-1 px-2 py-0.5 bg-emerald-500 text-white rounded-full">
                                                 <HugeiconsIcon icon={Verified} size={8} strokeWidth={3} />
@@ -92,12 +92,12 @@ const HistoryPreview = () => {
                                             </div>
                                         )}
                                     </div>
-                                    <div className="flex items-center gap-3 text-slate-400">
+                                    <div className="flex items-center gap-3 text-slate-400 dark:text-zinc-500">
                                         <div className="flex items-center gap-1">
                                             <HugeiconsIcon icon={Location} size={10} />
                                             <span className="text-[9px] font-bold uppercase tracking-widest">{session.location}</span>
                                         </div>
-                                        <span className="text-slate-200">|</span>
+                                        <span className="text-slate-200 dark:text-zinc-800">|</span>
                                         <span className="text-[9px] font-bold uppercase tracking-widest">{session.lastActive}</span>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@ const HistoryPreview = () => {
                             {!session.isCurrent && (
                                 <button
                                     onClick={() => handleRevoke(session.id)}
-                                    className="w-10 h-10 rounded-full flex items-center justify-center text-slate-300 hover:bg-rose-50 hover:text-rose-600 transition-all opacity-0 group-hover/item:opacity-100"
+                                    className="w-10 h-10 rounded-full flex items-center justify-center text-slate-300 dark:text-zinc-600 hover:bg-rose-50 dark:hover:bg-rose-500/10 hover:text-rose-600 dark:hover:text-rose-400 transition-all opacity-0 group-hover/item:opacity-100"
                                 >
                                     <HugeiconsIcon icon={Remove} size={18} />
                                 </button>
@@ -132,27 +132,30 @@ export const DeviceLoginHistory = () => {
         <div className="max-w-[1000px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                    <h2 className="text-3xl font-black text-slate-900 tracking-tight font-heading">Device Login History</h2>
+                    <h2 className="text-3xl font-black text-slate-900 dark:text-zinc-100 tracking-tight font-heading">Device Login History</h2>
                     <span className="bg-blue-100 text-blue-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Security</span>
                 </div>
-                <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+                <p className="text-slate-500 dark:text-zinc-400 font-medium leading-relaxed max-w-2xl">
                     A transparency interface for account activity. Allows users to
                     monitor active sessions across different browsers and locations, providing remote revocation capabilities.
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[650px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[650px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[650px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <HistoryPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Geo-IP Engine</span>
                         </button>
@@ -160,7 +163,7 @@ export const DeviceLoginHistory = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

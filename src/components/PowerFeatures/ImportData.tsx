@@ -72,9 +72,9 @@ const ImportPreview = () => {
 
     return (
         <div className="w-full flex flex-col items-center gap-10 relative z-[100]">
-            <div className="w-full max-w-sm bg-white p-10 rounded-xl border border-slate-100 shadow-sm relative group overflow-hidden">
+            <div className="w-full max-w-sm bg-white dark:bg-zinc-900/50 backdrop-blur-md p-10 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-sm relative group overflow-hidden transition-colors duration-700">
                 <div className="mb-10 text-center">
-                    <div className="w-12 h-12 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 mx-auto mb-3 transform group-hover:rotate-10 transition-transform duration-700">
+                    <div className="w-12 h-12 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 mx-auto mb-3 transform group-hover:rotate-10 transition-transform duration-700">
                         <HugeiconsIcon icon={ImportIcon} size={40} />
                     </div>
                 </div>
@@ -83,38 +83,38 @@ const ImportPreview = () => {
                     {!file ? (
                         <div
                             onClick={() => fileRef.current?.click()}
-                            className="border-2 border-dashed border-slate-100 rounded-[30px] p-10 bg-slate-50 text-center cursor-pointer hover:bg-white hover:border-emerald-500 hover:shadow-sm hover:shadow-emerald-500/10 transition-all duration-500 group/drop"
+                            className="border-2 border-dashed border-slate-100 dark:border-zinc-800 rounded-[30px] p-10 bg-slate-50 dark:bg-zinc-900/30 text-center cursor-pointer hover:bg-white dark:hover:bg-zinc-800 hover:border-emerald-500 transition-all duration-500 group/drop"
                         >
                             <input type="file" ref={fileRef} onChange={handleSelect} className="hidden" />
-                            <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-slate-300 mx-auto mb-6 transition-all group-hover/drop:scale-110 group-hover/drop:text-emerald-500">
+                            <div className="w-16 h-16 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-slate-300 dark:text-zinc-700 mx-auto mb-6 transition-all group-hover/drop:scale-110 group-hover/drop:text-emerald-500">
                                 <HugeiconsIcon icon={SheetIcon} size={32} />
                             </div>
-                            <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-2 leading-none">Drop Your File</h4>
-                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">CSV, PDF or XLSX</p>
+                            <h4 className="text-sm font-black text-slate-900 dark:text-zinc-100 uppercase tracking-widest mb-2 leading-none">Drop Your File</h4>
+                            <p className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-widest">CSV, PDF or XLSX</p>
                         </div>
                     ) : (
-                        <div className="bg-slate-50 rounded-xl p-8 animate-in zoom-in-95 duration-500">
+                        <div className="bg-slate-50 dark:bg-zinc-900/40 rounded-xl p-8 animate-in zoom-in-95 duration-500">
                             <div className="flex items-center justify-between mb-8">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-emerald-500 shadow-sm">
+                                    <div className="w-12 h-12 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-emerald-500 shadow-sm">
                                         <HugeiconsIcon icon={SheetIcon} size={24} />
                                     </div>
                                     <div className="text-left">
-                                        <div className="text-[11px] font-black text-slate-900 uppercase tracking-widest leading-none mb-1 truncate max-w-[120px]">{file.name}</div>
-                                        <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{file.size}</div>
+                                        <div className="text-[11px] font-black text-slate-900 dark:text-zinc-100 uppercase tracking-widest leading-none mb-1 truncate max-w-[120px]">{file.name}</div>
+                                        <div className="text-[9px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-widest">{file.size}</div>
                                     </div>
                                 </div>
-                                <button onClick={reset} className="w-10 h-10 rounded-full flex items-center justify-center text-slate-300 hover:text-rose-600 hover:bg-rose-50 transition-all">
+                                <button onClick={reset} className="w-10 h-10 rounded-full flex items-center justify-center text-slate-300 dark:text-zinc-600 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-all">
                                     <HugeiconsIcon icon={Remove} size={18} />
                                 </button>
                             </div>
 
                             <div className="space-y-6">
-                                <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                                <div className="h-1.5 w-full bg-slate-200 dark:bg-zinc-800 rounded-full overflow-hidden transition-colors">
                                     <div className={`h-full bg-emerald-500 transition-all duration-[2.5s] ease-out ${uploading ? 'w-full' : done ? 'w-full' : 'w-0'}`} />
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <span className="text-[9px] font-black text-slate-900 uppercase tracking-[0.2em]">
+                                    <span className="text-[9px] font-black text-slate-900 dark:text-white uppercase tracking-[0.2em]">
                                         {done ? 'Validation Complete' : uploading ? 'Ingesting Data...' : 'Waiting'}
                                     </span>
                                     {done && (
@@ -126,9 +126,9 @@ const ImportPreview = () => {
                     )}
                 </div>
 
-                <div className="mt-10 px-6 py-4 bg-slate-900 rounded-xl flex items-center justify-between group/status overflow-hidden relative">
+                <div className="mt-10 px-6 py-4 bg-slate-900 dark:bg-zinc-800 rounded-xl flex items-center justify-between group/status overflow-hidden relative transition-colors">
                     <span className="text-[10px] font-black text-white uppercase tracking-widest relative z-10">Queue Status</span>
-                    <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest relative z-10">Optimized</span>
+                    <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest relative z-10 outline-none">Optimized</span>
                     <div className="absolute inset-y-0 left-0 bg-emerald-500/10 animate-pulse w-full" />
                 </div>
             </div>
@@ -158,18 +158,21 @@ export const ImportData = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[650px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[650px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[650px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <ImportPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>FileReader API</span>
                         </button>
@@ -177,7 +180,7 @@ export const ImportData = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

@@ -70,26 +70,26 @@ const SortingPreview = () => {
 
     return (
         <div className="w-full flex flex-col items-center gap-10 relative z-[100]">
-            <div className="w-full max-w-2xl bg-white p-10 rounded-xl border border-slate-100 shadow-sm relative group overflow-hidden">
+            <div className="w-full max-w-2xl bg-white dark:bg-zinc-900/50 backdrop-blur-md p-10 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-sm relative group overflow-hidden transition-colors duration-700">
                 <div className="flex items-center justify-between mb-10 px-4">
                     <div>
-                        <h3 className="text-xl font-black text-slate-900 tracking-tight uppercase leading-none mb-2">Revenue Analytics</h3>
-                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Ordered view</p>
+                        <h3 className="text-xl font-black text-slate-900 dark:text-white tracking-tight uppercase leading-none mb-2 transition-colors">Revenue Analytics</h3>
+                        <p className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-widest leading-none transition-colors">Ordered view</p>
                     </div>
                     <div className="flex gap-2">
-                        <button className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-900 transition-colors">
+                        <button className="w-10 h-10 bg-slate-50 dark:bg-zinc-800 rounded-xl flex items-center justify-center text-slate-400 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 transition-colors">
                             <HugeiconsIcon icon={FilterIcon} size={18} />
                         </button>
-                        <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600">
+                        <div className="w-10 h-10 bg-blue-50 dark:bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400">
                             <HugeiconsIcon icon={SortIcon} size={24} />
                         </div>
                     </div>
                 </div>
 
-                <div className="overflow-hidden bg-[#fcfdfe] border border-slate-100 rounded-xl">
+                <div className="overflow-hidden bg-[#fcfdfe] dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 rounded-xl transition-colors duration-700">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="border-b border-slate-100 bg-slate-50/50">
+                            <tr className="border-b border-slate-100 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-800/50">
                                 {[
                                     { id: 'name', label: 'Entity Name' },
                                     { id: 'rev', label: 'Rev ($)' },
@@ -98,20 +98,20 @@ const SortingPreview = () => {
                                     <th
                                         key={col.id}
                                         onClick={() => handleSort(col.id)}
-                                        className="px-8 py-6 cursor-pointer group/th transition-colors hover:bg-white"
+                                        className="px-8 py-6 cursor-pointer group/th transition-colors hover:bg-white dark:hover:bg-zinc-800"
                                     >
                                         <div className="flex items-center gap-3">
-                                            <span className={`text-[10px] font-black uppercase tracking-widest ${sort.field === col.id ? 'text-blue-600' : 'text-slate-500'}`}>{col.label}</span>
+                                            <span className={`text-[10px] font-black uppercase tracking-widest ${sort.field === col.id ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500 dark:text-zinc-400'}`}>{col.label}</span>
                                             <div className="flex flex-col -space-y-1 transition-all">
                                                 <HugeiconsIcon
                                                     icon={SortUp}
                                                     size={10}
-                                                    className={`transition-all ${sort.field === col.id && sort.dir === 'asc' ? 'text-blue-600 scale-125' : 'text-slate-200 opacity-0 group-hover/th:opacity-100'}`}
+                                                    className={`transition-all ${sort.field === col.id && sort.dir === 'asc' ? 'text-blue-600 dark:text-blue-400 scale-125' : 'text-slate-200 dark:text-zinc-700 opacity-0 group-hover/th:opacity-100'}`}
                                                 />
                                                 <HugeiconsIcon
                                                     icon={SortDown}
                                                     size={10}
-                                                    className={`transition-all ${sort.field === col.id && sort.dir === 'desc' ? 'text-blue-600 scale-125' : 'text-slate-200 opacity-0 group-hover/th:opacity-100'}`}
+                                                    className={`transition-all ${sort.field === col.id && sort.dir === 'desc' ? 'text-blue-600 dark:text-blue-400 scale-125' : 'text-slate-200 dark:text-zinc-700 opacity-0 group-hover/th:opacity-100'}`}
                                                 />
                                             </div>
                                         </div>
@@ -121,13 +121,13 @@ const SortingPreview = () => {
                         </thead>
                         <tbody>
                             {sortedData.map((row, i) => (
-                                <tr key={row.id} className={`group/tr transition-all duration-500 border-b border-slate-50 last:border-0 hover:bg-white ${i % 2 === 1 ? 'bg-slate-50/30' : ''}`}>
-                                    <td className="px-8 py-5 text-[11px] font-black text-slate-900 uppercase tracking-tight">{row.name}</td>
-                                    <td className="px-8 py-5 text-[11px] font-mono font-bold text-slate-500">
+                                <tr key={row.id} className={`group/tr transition-all duration-500 border-b border-slate-50 dark:border-zinc-800/50 last:border-0 hover:bg-white dark:hover:bg-zinc-800 ${i % 2 === 1 ? 'bg-slate-50/30 dark:bg-zinc-800/20' : ''}`}>
+                                    <td className="px-8 py-5 text-[11px] font-black text-slate-900 dark:text-zinc-100 uppercase tracking-tight">{row.name}</td>
+                                    <td className="px-8 py-5 text-[11px] font-mono font-bold text-slate-500 dark:text-zinc-400">
                                         {row.rev.toLocaleString()}
                                     </td>
                                     <td className="px-8 py-5">
-                                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{row.date}</span>
+                                        <span className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-widest">{row.date}</span>
                                     </td>
                                 </tr>
                             ))}
@@ -161,18 +161,21 @@ export const TableSorting = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[650px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[650px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[650px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <SortingPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Generic Sorters</span>
                         </button>
@@ -180,7 +183,7 @@ export const TableSorting = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

@@ -8,8 +8,6 @@ import {
     Copy01Icon as Copy,
     CheckmarkCircle01Icon as Check,
     Cancel01Icon as Close,
-    // Moon02Icon as Moon,
-    // Sun01Icon as Sun,
 } from '@hugeicons/core-free-icons';
 
 import { Autocomplete } from './components/AdvancedInteraction/Autocomplete';

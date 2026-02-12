@@ -85,44 +85,44 @@ const LanguagePreview = () => {
 
     return (
         <div className="w-full flex flex-col items-center gap-10 relative z-[100]">
-            <div className="w-full max-w-sm bg-white p-10 rounded-xl border border-slate-100 shadow-sm relative group overflow-visible" ref={dropdownRef}>
+            <div className="w-full max-w-sm bg-white dark:bg-zinc-900/50 backdrop-blur-md p-10 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-sm relative group overflow-visible transition-colors duration-700" ref={dropdownRef}>
                 <div className="mb-10 text-center">
-                    <h3 className="text-2xl font-black text-slate-900 tracking-tight leading-none mb-3">Localization</h3>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.4em]">Switch Language and Region</p>
+                    <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-3 transition-colors">Localization</h3>
+                    <p className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-[0.4em] transition-colors">Switch Language and Region</p>
                 </div>
 
                 <div className="relative">
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className={`w-full h-14 bg-white border-2 rounded-xl px-8 flex items-center justify-between transition-all duration-500 ${isOpen ? 'border-emerald-500 shadow-sm shadow-emerald-500/10' : 'border-slate-100 hover:border-slate-300'
+                        className={`w-full h-14 bg-white dark:bg-zinc-900 border-2 rounded-xl px-8 flex items-center justify-between transition-all duration-500 ${isOpen ? 'border-emerald-500 shadow-sm shadow-emerald-500/10' : 'border-slate-100 dark:border-zinc-800 hover:border-slate-300 dark:hover:border-zinc-700'
                             }`}
                     >
                         <div className="flex items-center gap-4">
                             <span className="text-2xl">{activeLang.flag}</span>
-                            <span className="text-sm font-black text-slate-900 uppercase tracking-widest">{activeLang.name}</span>
+                            <span className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest transition-colors">{activeLang.name}</span>
                         </div>
                         <HugeiconsIcon
                             icon={ChevronDown}
                             size={20}
-                            className={`text-slate-400 transition-transform duration-500 ${isOpen ? 'rotate-180 text-indigo-500' : ''}`}
+                            className={`text-slate-400 dark:text-zinc-500 transition-transform duration-500 ${isOpen ? 'rotate-180 text-indigo-500' : ''}`}
                         />
                     </button>
 
                     {isOpen && (
-                        <div className="absolute top-full left-0 right-0 mt-4 bg-white border border-slate-100 rounded-xl shadow-sm shadow-emerald-800/10 overflow-hidden animate-in fade-in zoom-in-95 duration-500 z-[110] p-4">
+                        <div className="absolute top-full left-0 right-0 mt-4 bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 rounded-xl shadow-sm shadow-emerald-800/10 overflow-hidden animate-in fade-in zoom-in-95 duration-500 z-[110] p-4">
                             <div className="grid grid-cols-1 gap-2">
                                 {languages.map((l) => (
                                     <button
                                         key={l.code}
                                         onClick={() => { setActiveLang(l); setIsOpen(false); }}
-                                        className={`flex items-center justify-between px-6 py-3 rounded-xl transition-all group/lang ${activeLang.code === l.code ? 'bg-emerald-50 text-emerald-600' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+                                        className={`flex items-center justify-between px-6 py-3 rounded-xl transition-all group/lang ${activeLang.code === l.code ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600' : 'text-slate-500 dark:text-zinc-400 hover:bg-slate-50 dark:hover:bg-zinc-800 hover:text-slate-900 dark:hover:text-zinc-100'
                                             }`}
                                     >
                                         <div className="flex items-center gap-4">
                                             <span className="text-xl group-hover/lang:scale-125 transition-transform duration-500">{l.flag}</span>
                                             <div className="text-left leading-none">
                                                 <div className="text-[11px] font-black uppercase tracking-widest mb-1">{l.name}</div>
-                                                <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{l.label}</div>
+                                                <div className="text-[9px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-widest">{l.label}</div>
                                             </div>
                                         </div>
                                         {activeLang.code === l.code && (
@@ -161,18 +161,21 @@ export const LanguageSwitcher = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[650px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-visible">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
+                <div className="h-[650px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-visible transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[650px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <LanguagePreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>I18n Hooks</span>
                         </button>
@@ -180,7 +183,7 @@ export const LanguageSwitcher = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

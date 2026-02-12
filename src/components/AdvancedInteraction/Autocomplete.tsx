@@ -72,9 +72,9 @@ const AutocompletePreview = () => {
                     onChange={(e) => { setQuery(e.target.value); setIsOpen(true); }}
                     onFocus={() => setIsOpen(true)}
                     placeholder="Search fruits..."
-                    className="w-full px-4 py-2.5 pl-11 bg-white border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all placeholder:text-slate-400 group-hover:border-slate-300 shadow-sm"
+                    className="w-full px-4 py-2.5 pl-11 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all placeholder:text-slate-400 dark:placeholder:text-zinc-600 group-hover:border-slate-300 dark:group-hover:border-zinc-700 shadow-sm dark:text-zinc-100"
                 />
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-zinc-600 group-focus-within:text-emerald-500 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                     </svg>
@@ -82,12 +82,12 @@ const AutocompletePreview = () => {
             </div>
 
             {isOpen && filteredOptions.length > 0 && (
-                <ul className="absolute z-[110] w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl shadow-slate-900/10 max-h-60 overflow-hidden py-1 animate-in fade-in slide-in-from-top-2 duration-200">
+                <ul className="absolute z-[110] w-full mt-2 bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/50 max-h-60 overflow-hidden py-1 animate-in fade-in slide-in-from-top-2 duration-200 transition-colors">
                     {filteredOptions.map((opt) => (
                         <li
                             key={opt}
                             onClick={() => { setQuery(opt); setIsOpen(false); }}
-                            className="px-4 py-2.5 hover:bg-emerald-50 cursor-pointer text-[13px] text-slate-600 font-bold transition-colors"
+                            className="px-4 py-2.5 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 cursor-pointer text-[13px] text-slate-600 dark:text-zinc-400 font-bold transition-colors hover:text-emerald-700 dark:hover:text-emerald-400"
                         >
                             {opt}
                         </li>
@@ -125,36 +125,38 @@ export const Autocomplete = () => {
             </div>
 
             {/* Design Card */}
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
                 {/* Preview Area */}
-                <div className="h-[300px] bg-[#f8fafc] relative flex items-center justify-center overflow-visible border-b border-slate-100">
-                    <div className="absolute inset-0" style={{
-                        backgroundImage: `radial-gradient(#e2e8f0 1.5px, transparent 1.5px)`,
+                <div className="h-[300px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center overflow-visible border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
+                    <div className="absolute inset-0 opacity-40" style={{
+                        backgroundImage: `radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)`,
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[300px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <div className="relative z-10 w-full flex justify-center">
                         <AutocompletePreview />
                     </div>
                 </div>
 
                 {/* Toolbar */}
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Styles</span>
-                            <HugeiconsIcon icon={Styles} size={14} className="opacity-50" />
                         </button>
                     </div>
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
                         </button>
-                        <button className="flex items-center gap-2 hover:text-slate-900 text-slate-500 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={ExternalLink} size={16} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
                             <span>Edit in code sandbox</span>
                         </button>
