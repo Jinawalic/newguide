@@ -81,14 +81,14 @@ const InvoicePreview = () => {
     };
 
     return (
-        <div className="w-full h-full flex items-center justify-center p-8 bg-slate-50 rounded-xl border border-slate-200 relative z-[100] overflow-y-auto custom-scrollbar">
-            <div className="w-full max-w-2xl bg-white rounded-xl shadow-sm px-4 relative overflow-hidden flex flex-col group">
+        <div className="w-full h-full flex items-center justify-center p-8 bg-slate-50 dark:bg-zinc-950 rounded-xl border border-slate-200 dark:border-zinc-800 relative z-[100] overflow-y-auto custom-scrollbar transition-colors duration-700">
+            <div className="w-full max-w-2xl bg-white dark:bg-zinc-900 rounded-xl shadow-sm dark:shadow-black/50 px-4 relative overflow-hidden flex flex-col group transition-colors">
                 {/* Header Bar */}
-                <div className="px-10 py-10 bg-zinc-950 flex justify-between items-center relative overflow-hidden">
+                <div className="px-10 py-10 bg-zinc-950 dark:bg-black/40 backdrop-blur-md flex justify-between items-center relative overflow-hidden transition-colors">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
                     <div className="relative z-10">
-                        <h2 className="text-3xl font-black text-white tracking-tighter leading-none mb-2 italic">Ekonty <span className="text-emerald-400">Design</span></h2>
-                        <p className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">Official Statement #88219</p>
+                        <h2 className="text-3xl font-black text-white tracking-tighter leading-none mb-2 italic transition-colors">Ekonty <span className="text-emerald-400">Design</span></h2>
+                        <p className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em] transition-colors">Official Statement #88219</p>
                     </div>
                     <div className="flex gap-2 relative z-10">
                         <button className="w-8 h-8 rounded-2xl bg-emerald-500 text-slate-900 border border-emerald-400 flex items-center justify-center hover:bg-emerald-400 transition-all">
@@ -98,48 +98,48 @@ const InvoicePreview = () => {
                 </div>
 
                 <div className="p-10">
-                    <div className="grid grid-cols-2 gap-20 mb-12">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-20 mb-12">
                         <div>
-                            <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.3em] mb-4">Customer Details</p>
-                            <h4 className="text-lg font-black text-slate-900 truncate mb-1">{data.clientName}</h4>
-                            <p className="text-[11px] font-bold text-slate-400 uppercase leading-relaxed tracking-widest">{data.clientAddress}</p>
+                            <p className="text-[10px] font-black text-slate-300 dark:text-zinc-600 uppercase tracking-[0.3em] mb-4 transition-colors">Customer Details</p>
+                            <h4 className="text-lg font-black text-slate-900 dark:text-zinc-100 truncate mb-1 transition-colors">{data.clientName}</h4>
+                            <p className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase leading-relaxed tracking-widest transition-colors">{data.clientAddress}</p>
                         </div>
-                        <div className="text-right">
-                            <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.3em] mb-4">Maturity Date</p>
-                            <h4 className="text-lg font-black text-slate-900 mb-1">{data.date}</h4>
-                            <p className="text-[11px] font-bold text-emerald-500 uppercase tracking-[0.2em]">Status: Paid</p>
+                        <div className="sm:text-right">
+                            <p className="text-[10px] font-black text-slate-300 dark:text-zinc-600 uppercase tracking-[0.3em] mb-4 transition-colors">Maturity Date</p>
+                            <h4 className="text-lg font-black text-slate-900 dark:text-zinc-100 mb-1 transition-colors">{data.date}</h4>
+                            <p className="text-[11px] font-bold text-emerald-500 dark:text-emerald-400 uppercase tracking-[0.2em] transition-colors">Status: Paid</p>
                         </div>
                     </div>
 
-                    <div className="space-y-2 mb-16">
-                        <div className="grid grid-cols-12 gap-4 pb-4 border-b border-slate-50 text-[10px] font-black text-slate-300 uppercase tracking-[0.3em]">
+                    <div className="space-y-4 mb-16">
+                        <div className="grid grid-cols-12 gap-4 pb-4 border-b border-slate-50 dark:border-zinc-800 text-[10px] font-black text-slate-300 dark:text-zinc-600 uppercase tracking-[0.3em] transition-colors">
                             <div className="col-span-8">Product / Service</div>
                             <div className="col-span-4 text-right">Total USD</div>
                         </div>
                         {data.items.map((item, i) => (
-                            <div key={i} className="grid grid-cols-12 gap-4 py-2 group/row">
+                            <div key={i} className="grid grid-cols-12 gap-4 py-2 group/row transition-all hover:translate-x-1">
                                 <div className="col-span-8">
-                                    <p className="text-sm font-black text-slate-900 tracking-tight leading-none mb-1">{item.name}</p>
-                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Service Level Basic</p>
+                                    <p className="text-sm font-black text-slate-900 dark:text-zinc-100 tracking-tight leading-none mb-1 transition-colors">{item.name}</p>
+                                    <p className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-widest transition-colors">Service Level Basic</p>
                                 </div>
                                 <div className="col-span-4 text-right">
-                                    <p className="text-sm font-black text-slate-900 tracking-tighter italic">${item.price}</p>
+                                    <p className="text-sm font-black text-slate-900 dark:text-zinc-100 tracking-tighter italic transition-colors">${item.price}</p>
                                 </div>
                             </div>
                         ))}
                     </div>
 
-                    <div className="flex justify-between items-end bg-slate-50 p-10 rounded-xl border border-slate-100">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end bg-slate-50 dark:bg-zinc-800/30 p-10 rounded-xl border border-slate-100 dark:border-zinc-800 transition-colors gap-8 sm:gap-0">
                         <div>
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-4">Method</p>
-                            <div className="flex gap-2">
+                            <p className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-[0.3em] mb-4 transition-colors">Method</p>
+                            <div className="flex gap-2 items-center">
                                 <div className="w-8 h-5 bg-red-500/50 rounded-sm" />
-                                <span className="text-[11px] font-black text-slate-900 uppercase tracking-widest leading-none">Visa •••• 4242</span>
+                                <span className="text-[11px] font-black text-slate-900 dark:text-zinc-300 uppercase tracking-widest leading-none transition-colors">Visa •••• 4242</span>
                             </div>
                         </div>
-                        <div className="text-right">
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-2">Grand Total Paid</p>
-                            <p className="text-xl font-black text-slate-900 tracking-tighter italic">${data.total}</p>
+                        <div className="sm:text-right">
+                            <p className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-[0.3em] mb-2 transition-colors">Grand Total Paid</p>
+                            <p className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tighter italic transition-colors">${data.total}</p>
                         </div>
                     </div>
                 </div>
@@ -170,18 +170,21 @@ export const InvoiceView = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[750px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[750px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[750px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <InvoicePreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Letterhead Themes</span>
                         </button>
@@ -189,7 +192,7 @@ export const InvoiceView = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

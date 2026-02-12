@@ -198,13 +198,13 @@ export const BulkActions = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">UX Pattern</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">UX Pattern</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         Always include a <strong>"Deselect All"</strong> option when the action bar is active. The floating bar should use <code>z-index</code> layering to stay above all other content.
                     </p>
                 </div>

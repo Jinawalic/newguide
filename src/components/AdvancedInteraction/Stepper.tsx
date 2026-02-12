@@ -103,7 +103,7 @@ const StepperPreview = () => {
     return (
         <div className="w-full max-w-sm mx-auto relative z-[100]">
             <div className="flex justify-between items-center relative mb-16">
-                <div className="absolute top-1/2 left-0 w-full h-1 bg-slate-100 -translate-y-1/2 z-0 rounded-full">
+                <div className="absolute top-1/2 left-0 w-full h-1 bg-slate-100 dark:bg-zinc-800 -translate-y-1/2 z-0 rounded-full">
                     <div
                         className="h-full bg-emerald-500 transition-all duration-700 ease-out rounded-full shadow-[0_0_10px_rgba(16,185,129,0.3)]"
                         style={{ width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` }}
@@ -117,8 +117,8 @@ const StepperPreview = () => {
                             className={`
                                 w-10.5 h-10.5 rounded-2xl flex items-center justify-center font-bold text-xs transition-all duration-500 transform
                                 ${currentStep >= step.id
-                                    ? 'bg-emerald-800 text-white shadow-xl shadow-emerald-100 scale-100'
-                                    : 'bg-white border-2 border-slate-100 text-slate-300 hover:border-slate-200 scale-90'}
+                                    ? 'bg-emerald-800 dark:bg-emerald-500 text-white shadow-xl shadow-emerald-100 dark:shadow-emerald-500/20 scale-100'
+                                    : 'bg-white dark:bg-zinc-900 border-2 border-slate-100 dark:border-zinc-800 text-slate-300 dark:text-zinc-600 hover:border-slate-200 dark:hover:border-zinc-700 scale-90'}
                             `}
                         >
                             {currentStep > step.id ? (
@@ -130,7 +130,7 @@ const StepperPreview = () => {
                             )}
                         </button>
                         <div className="absolute top-14">
-                            <p className={`text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-colors duration-300 ${currentStep >= step.id ? 'text-slate-800' : 'text-slate-400'}`}>
+                            <p className={`text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-colors duration-300 ${currentStep >= step.id ? 'text-slate-800 dark:text-zinc-100' : 'text-slate-400 dark:text-zinc-600'}`}>
                                 {step.title}
                             </p>
                         </div>
@@ -141,7 +141,7 @@ const StepperPreview = () => {
             <div className="flex justify-center gap-3">
                 <button
                     onClick={() => setCurrentStep(prev => Math.max(1, prev - 1))}
-                    className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 hover:text-emerald-800 hover:border-emerald-100 transition-all active:scale-95 shadow-sm"
+                    className="w-12 h-12 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 flex items-center justify-center text-slate-400 dark:text-zinc-500 hover:text-emerald-800 dark:hover:text-emerald-400 hover:border-emerald-100 dark:hover:border-emerald-500/20 transition-all active:scale-95 shadow-sm"
                 >
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -149,7 +149,7 @@ const StepperPreview = () => {
                 </button>
                 <button
                     onClick={() => setCurrentStep(prev => Math.min(steps.length, prev + 1))}
-                    className="px-8 h-12 rounded-2xl bg-emerald-800 text-white font-black text-xs uppercase tracking-widest shadow-lg shadow-emerald-900/10 hover:bg-emerald-900 transition-all active:scale-95"
+                    className="px-8 h-12 rounded-2xl bg-emerald-800 dark:bg-emerald-500/20 text-white dark:text-emerald-400 font-black text-xs uppercase tracking-widest shadow-lg shadow-emerald-900/10 dark:shadow-emerald-500/10 hover:bg-emerald-900 dark:hover:bg-emerald-500/30 transition-all active:scale-95 border border-transparent dark:border-emerald-500/20"
                 >
                     {currentStep === steps.length ? 'Finalize' : 'Continue'}
                 </button>
@@ -180,18 +180,21 @@ export const Stepper = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[400px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[400px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="absolute inset-0" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[400px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <StepperPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Flow Settings</span>
                         </button>
@@ -199,7 +202,7 @@ export const Stepper = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

@@ -57,13 +57,13 @@ const BarChartPreview = () => {
     const maxValue = 100;
 
     return (
-        <div className="w-full max-w-sm mx-auto p-10 bg-white rounded-xl shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] border border-slate-100 relative z-[100]">
+        <div className="w-full max-w-sm mx-auto p-10 bg-white dark:bg-zinc-900 rounded-xl shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] dark:shadow-black/50 border border-slate-100 dark:border-zinc-800 relative z-[100] transition-colors">
             <div className="flex items-center justify-between mb-10">
                 <div>
-                    <h4 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">User Engagement</h4>
-                    <p className="text-xl font-black text-slate-900 tracking-tight">Daily Traffic</p>
+                    <h4 className="text-[11px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-[0.2em] mb-1 transition-colors">User Engagement</h4>
+                    <p className="text-xl font-black text-slate-900 dark:text-white tracking-tight transition-colors">Daily Traffic</p>
                 </div>
-                <div className="w-10 h-10 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600">
+                <div className="w-10 h-10 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 transition-colors">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                     </svg>
@@ -75,9 +75,9 @@ const BarChartPreview = () => {
                     <div key={i} className="flex-1 flex flex-col items-center group">
                         <div
                             style={{ height: `${(item.value / maxValue) * 100}%` }}
-                            className={`w-full bg-emerald-500 rounded-t-xl transition-all duration-700 delay-[${i * 100}ms] group-hover:bg-emerald-600 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] relative`}
+                            className={`w-full bg-emerald-500 rounded-t-xl transition-all duration-700 delay-[${i * 100}ms] group-hover:bg-emerald-600 dark:group-hover:bg-emerald-400 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] relative`}
                         />
-                        <span className="text-[10px] font-black text-slate-300 mt-3 group-hover:text-emerald-500 transition-colors">{item.label}</span>
+                        <span className="text-[10px] font-black text-slate-300 dark:text-zinc-600 mt-3 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">{item.label}</span>
                     </div>
                 ))}
             </div>
@@ -109,18 +109,21 @@ export const BarChart = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[500px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[500px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[500px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <BarChartPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Animation Modes</span>
                         </button>
@@ -128,7 +131,7 @@ export const BarChart = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

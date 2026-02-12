@@ -66,18 +66,18 @@ const HeatmapPreview = () => {
     ];
 
     const getColorClass = (val: number) => {
-        if (val < 20) return 'bg-slate-50';
-        if (val < 40) return 'bg-emerald-100/50';
-        if (val < 60) return 'bg-emerald-300/80';
-        if (val < 80) return 'bg-emerald-500';
-        return 'bg-emerald-700 shadow-lg shadow-emerald-200';
+        if (val < 20) return 'bg-slate-50 dark:bg-zinc-800';
+        if (val < 40) return 'bg-emerald-100/50 dark:bg-emerald-900/30';
+        if (val < 60) return 'bg-emerald-300/80 dark:bg-emerald-700/50';
+        if (val < 80) return 'bg-emerald-500 dark:bg-emerald-500';
+        return 'bg-emerald-700 dark:bg-emerald-400 shadow-lg shadow-emerald-200 dark:shadow-emerald-900/30';
     };
 
     return (
-        <div className="w-full max-w-sm mx-auto p-10 bg-white rounded-xl shadow-2xl shadow-slate-900/10 border border-slate-100 relative z-[100]">
-            <div className="mb-8">
-                <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Commit History</h4>
-                <p className="text-xl font-black text-slate-900 tracking-tight">Active Contributions</p>
+        <div className="w-full max-w-sm mx-auto p-10 bg-white dark:bg-zinc-900 rounded-xl shadow-2xl shadow-slate-900/10 dark:shadow-black/50 border border-slate-100 dark:border-zinc-800 relative z-[100] transition-colors">
+            <div className="mb-10">
+                <h4 className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-[0.2em] mb-1 transition-colors">Commit History</h4>
+                <p className="text-xl font-black text-slate-900 dark:text-white tracking-tight transition-colors">Active Contributions</p>
             </div>
 
             <div className="grid grid-cols-20 gap-1.5 mb-8">
@@ -91,16 +91,16 @@ const HeatmapPreview = () => {
 
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Nov</span>
-                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Dec</span>
-                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Jan</span>
+                    <span className="text-[9px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-widest transition-colors">Nov</span>
+                    <span className="text-[9px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-widest transition-colors">Dec</span>
+                    <span className="text-[9px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-widest transition-colors">Jan</span>
                 </div>
                 <div className="flex items-center gap-1.5 opacity-60">
-                    <div className="w-2 h-2 rounded-sm bg-slate-50" />
-                    <div className="w-2 h-2 rounded-sm bg-emerald-100" />
-                    <div className="w-2 h-2 rounded-sm bg-emerald-300" />
-                    <div className="w-2 h-2 rounded-sm bg-emerald-500" />
-                    <div className="w-2 h-2 rounded-sm bg-emerald-700" />
+                    <div className="w-2 h-2 rounded-sm bg-slate-50 dark:bg-zinc-800 transition-colors" />
+                    <div className="w-2 h-2 rounded-sm bg-emerald-100 dark:bg-emerald-900/30 transition-colors" />
+                    <div className="w-2 h-2 rounded-sm bg-emerald-300 dark:bg-emerald-700/50 transition-colors" />
+                    <div className="w-2 h-2 rounded-sm bg-emerald-500 transition-colors" />
+                    <div className="w-2 h-2 rounded-sm bg-emerald-700 dark:bg-emerald-400 transition-colors" />
                 </div>
             </div>
 
@@ -133,18 +133,21 @@ export const Heatmap = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[450px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[450px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[450px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <HeatmapPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Intensity Mapping</span>
                         </button>
@@ -152,7 +155,7 @@ export const Heatmap = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
@@ -182,13 +185,13 @@ export const Heatmap = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Grid System</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Grid System</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         Uses CSS Grid for the layout. For very large datasets, consider using <strong>HTML5 Canvas</strong> to avoid excessive DOM nodes and improve rendering performance.
                     </p>
                 </div>

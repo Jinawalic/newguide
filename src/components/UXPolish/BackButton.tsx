@@ -30,33 +30,33 @@ export default BackButton;`;
 
 const BackPreview = () => {
     return (
-        <div className="w-full h-full flex items-center justify-center p-12 bg-white rounded-xl border border-slate-100 shadow-2xl relative z-[100] group/canvas">
+        <div className="w-full h-full flex items-center justify-center p-12 bg-white dark:bg-zinc-900 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-2xl relative z-[100] group/canvas transition-colors">
             <div className="flex flex-col items-start gap-12 max-w-sm w-full">
                 <button className="group flex items-center gap-4 transition-all active:scale-95">
                     <div className="w-10 h-10 rounded-xl bg-emerald-800 text-white flex items-center justify-center shadow-2xl shadow-emerald-500/20 group-hover:-translate-x-2 transition-transform duration-500">
                         <HugeiconsIcon icon={ArrowLeft} size={20} />
                     </div>
                     <div className="flex flex-col items-start translate-x-0 group-hover:translate-x-2 transition-transform duration-500">
-                        <span className="text-[10px] font-bold text-slate-300 uppercase tracking-[0.4em] mb-1">Return to</span>
-                        <span className="text-sm font-black text-slate-900 tracking-tighter uppercase italic">Dashboard</span>
+                        <span className="text-[10px] font-bold text-slate-300 dark:text-zinc-600 uppercase tracking-[0.4em] mb-1 transition-colors">Return to</span>
+                        <span className="text-sm font-black text-slate-900 dark:text-white tracking-tighter uppercase italic transition-colors">Dashboard</span>
                     </div>
                 </button>
 
-                <div className="w-full h-px bg-slate-50" />
+                <div className="w-full h-px bg-slate-50 dark:bg-zinc-800 transition-colors" />
 
                 <div className="flex gap-4">
                     {[1, 2].map(i => (
-                        <button key={i} className="flex items-center gap-2 group/sm text-slate-400 hover:text-slate-900 transition-colors">
-                            <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center group-hover/sm:bg-emerald-500 group-hover/sm:text-white transition-all">
+                        <button key={i} className="flex items-center gap-2 group/sm text-slate-400 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                            <div className="w-8 h-8 rounded-lg bg-slate-50 dark:bg-zinc-800 flex items-center justify-center group-hover/sm:bg-emerald-500 group-hover/sm:text-white transition-all">
                                 <HugeiconsIcon icon={ArrowLeft} size={14} />
                             </div>
-                            <span className="text-[10px] font-black uppercase tracking-widest">Previous Step</span>
+                            <span className="text-[10px] font-black uppercase tracking-widest transition-colors">Previous Step</span>
                         </button>
                     ))}
                 </div>
             </div>
 
-            <div className="absolute top-10 left-10 text-[10px] font-black text-slate-200 uppercase tracking-widest">Navigation Primitives</div>
+            <div className="absolute top-10 left-10 text-[10px] font-black text-slate-200 dark:text-zinc-800 uppercase tracking-widest transition-colors">Navigation Primitives</div>
         </div>
     );
 };
@@ -83,18 +83,21 @@ export const BackButton = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[500px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[500px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[500px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <BackPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Exit Animations</span>
                         </button>
@@ -102,7 +105,7 @@ export const BackButton = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
@@ -132,13 +135,13 @@ export const BackButton = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Navigation Clarity</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Navigation Clarity</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         Avoid using ambiguous icons like a plain small arrow. A <strong>descriptive label</strong> alongside the icon significantly reduces cognitive load.
                     </p>
                 </div>

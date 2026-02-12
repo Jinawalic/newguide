@@ -57,19 +57,19 @@ const CopyPreview = () => {
 
     return (
         <div className="w-full flex flex-col items-center gap-8 relative z-[100]">
-            <div className="w-full max-w-sm bg-white px-8 py-4 rounded-xl border border-slate-100 shadow-sm relative overflow-hidden group">
+            <div className="w-full max-w-sm bg-white dark:bg-zinc-900 px-8 py-4 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-sm dark:shadow-black/50 relative overflow-hidden group transition-colors">
                 <div className="mb-8">
-                    <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em] mb-4">API Endpoint</p>
-                    <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 relative group/box">
+                    <p className="text-[10px] font-black text-slate-300 dark:text-zinc-600 uppercase tracking-[0.4em] mb-4 transition-colors">API Endpoint</p>
+                    <div className="bg-slate-50 dark:bg-zinc-800/50 p-3 rounded-xl border border-slate-100 dark:border-zinc-800 relative group/box transition-colors">
                         <div className="flex items-center gap-3 mb-2">
-                            <HugeiconsIcon icon={LinkIcon} size={16} className="text-blue-500" />
-                            <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest leading-none">Access Link</span>
+                            <HugeiconsIcon icon={LinkIcon} size={16} className="text-blue-500 dark:text-blue-400" />
+                            <span className="text-[10px] font-black text-slate-900 dark:text-zinc-100 uppercase tracking-widest leading-none transition-colors">Access Link</span>
                         </div>
-                        <p className="text-xs font-bold text-slate-400 truncate pr-10">{link}</p>
+                        <p className="text-xs font-bold text-slate-400 dark:text-zinc-500 truncate pr-10 transition-colors">{link}</p>
 
                         <button
                             onClick={handleCopy}
-                            className={`absolute top-1/2 -translate-y-1/2 right-4 w-8 h-8 rounded-2xl flex items-center justify-center transition-all duration-500 ${copied ? 'bg-emerald-500 text-white scale-110 shadow-lg shadow-emerald-500/30' : 'bg-white text-slate-400 border border-slate-100 hover:text-slate-900'
+                            className={`absolute top-1/2 -translate-y-1/2 right-4 w-8 h-8 rounded-2xl flex items-center justify-center transition-all duration-500 ${copied ? 'bg-emerald-500 text-white scale-110 shadow-lg shadow-emerald-500/30' : 'bg-white dark:bg-zinc-900 text-slate-400 dark:text-zinc-600 border border-slate-100 dark:border-zinc-800 hover:text-slate-900 dark:hover:text-zinc-100'
                                 }`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={20} />
@@ -80,10 +80,10 @@ const CopyPreview = () => {
                 <div className="flex items-center gap-3">
                     <div className="flex -space-x-2">
                         {[1, 2, 3].map(i => (
-                            <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-slate-100" />
+                            <div key={i} className="w-6 h-6 rounded-full border-2 border-white dark:border-zinc-900 bg-slate-100 dark:bg-zinc-800 transition-colors" />
                         ))}
                     </div>
-                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Shared with 12 others</span>
+                    <span className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-widest transition-colors">Shared with 12 others</span>
                 </div>
 
                 {copied && (
@@ -93,9 +93,9 @@ const CopyPreview = () => {
                 )}
             </div>
 
-            <div className="flex gap-2 opacity-20 transform rotate-12">
-                <div className="w-8 h-2 bg-slate-900 rounded-full" />
-                <div className="w-2 h-2 bg-slate-900 rounded-full" />
+            <div className="flex gap-2 opacity-20 transform rotate-12 transition-opacity">
+                <div className="w-8 h-2 bg-slate-900 dark:bg-zinc-100 rounded-full" />
+                <div className="w-2 h-2 bg-slate-900 dark:bg-zinc-100 rounded-full" />
             </div>
         </div>
     );
@@ -123,18 +123,21 @@ export const CopyToClipboard = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[450px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[450px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[450px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <CopyPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Confirm Animation</span>
                         </button>
@@ -142,7 +145,7 @@ export const CopyToClipboard = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

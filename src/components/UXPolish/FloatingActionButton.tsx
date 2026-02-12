@@ -57,12 +57,12 @@ const FABPreview = () => {
     ];
 
     return (
-        <div className="w-full h-full flex items-end justify-center p-20 bg-slate-50 rounded-xl border border-slate-100 relative overflow-hidden group/canvas">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white border border-slate-100 rounded-xl shadow-sm p-2 overflow-hidden">
+        <div className="w-full h-full flex items-end justify-center p-20 bg-slate-50 dark:bg-zinc-950 rounded-xl border border-slate-100 dark:border-zinc-800 relative overflow-hidden group/canvas transition-colors">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 rounded-xl shadow-sm p-2 overflow-hidden transition-colors">
                 <div className="space-y-4 opacity-10">
-                    <div className="h-8 w-full bg-slate-100 rounded-2xl" />
-                    <div className="h-40 w-full bg-slate-100 rounded-[32px]" />
-                    <div className="h-32 w-full bg-slate-100 rounded-[32px]" />
+                    <div className="h-8 w-full bg-slate-100 dark:bg-zinc-800 rounded-2xl" />
+                    <div className="h-40 w-full bg-slate-100 dark:bg-zinc-800 rounded-[32px]" />
+                    <div className="h-32 w-full bg-slate-100 dark:bg-zinc-800 rounded-[32px]" />
                 </div>
 
                 <div className="absolute bottom-6 right-6 flex flex-col items-end gap-3">
@@ -74,7 +74,7 @@ const FABPreview = () => {
                                     className="flex items-center gap-3 animate-in fade-in slide-in-from-bottom-4 duration-300"
                                     style={{ transitionDelay: `${i * 50}ms` }}
                                 >
-                                    <span className="px-3 py-1 bg-slate-900/10 backdrop-blur-md rounded-xl text-[9px] font-black text-slate-900 uppercase tracking-widest leading-none">
+                                    <span className="px-3 py-1 bg-slate-900/10 dark:bg-white/10 backdrop-blur-md rounded-xl text-[9px] font-black text-slate-900 dark:text-white uppercase tracking-widest leading-none transition-colors">
                                         {a.label}
                                     </span>
                                     <div className={`w-8 h-8 rounded-2xl bg-${a.color}-500 text-white shadow-lg flex items-center justify-center active:scale-90 transition-transform`}>
@@ -94,7 +94,7 @@ const FABPreview = () => {
             </div>
 
             <div className="absolute top-10 right-10 flex items-center gap-2">
-                <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Action Pivot V1</span>
+                <span className="text-[10px] font-black text-slate-300 dark:text-zinc-600 uppercase tracking-widest transition-colors">Action Pivot V1</span>
             </div>
         </div>
     );
@@ -122,18 +122,21 @@ export const FloatingActionButton = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[600px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden text-center">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[600px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden text-center transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[600px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <FABPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Speed Dial Effects</span>
                         </button>
@@ -141,7 +144,7 @@ export const FloatingActionButton = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
@@ -171,13 +174,13 @@ export const FloatingActionButton = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Mobile Optimization</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Mobile Optimization</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         FABs should be placed in the bottom right corner for <strong>right-hand thumb accessibility</strong>. Ensure there is enough vertical space for the menu to expand without covering other critical UI elements.
                     </p>
                 </div>

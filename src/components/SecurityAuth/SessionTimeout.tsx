@@ -63,12 +63,12 @@ const TimeoutPreview = () => {
     }, [show, timeLeft]);
 
     return (
-        <div className="w-full flex flex-col items-center gap-10 relative z-[100]">
-            <div className="w-full h-[450px] bg-slate-100 rounded-[48px] border border-slate-200 relative overflow-hidden flex items-center justify-center p-8 group">
+        <div className="w-full flex flex-col items-center justify-center gap-10 relative z-[100] transition-colors">
+            <div className="w-full h-[450px] bg-slate-100 dark:bg-zinc-900/50 rounded-[48px] border border-slate-200 dark:border-zinc-800 relative overflow-hidden flex items-center justify-center p-8 group transition-colors">
                 <div className="flex flex-col items-center gap-6 opacity-40 group-hover:opacity-100 transition-opacity">
                     <button
                         onClick={() => { setShow(true); setTimeLeft(30); }}
-                        className="px-6 py-3 bg-emerald-800 text-white rounded-[24px] text-[10px] font-black uppercase tracking-[0.3em] shadow-2xl hover:scale-105 active:scale-95 transition-all"
+                        className="px-6 py-3 bg-emerald-800 dark:bg-emerald-600 text-white rounded-[24px] text-[10px] font-black uppercase tracking-[0.3em] shadow-2xl hover:scale-105 active:scale-95 transition-all"
                     >
                         Simulate Inactivity
                     </button>
@@ -192,13 +192,13 @@ export const SessionTimeout = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Compliance Standard</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Compliance Standard</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         Most financial and healthcare regulations (like HIPAA or PCI-DSS) require session timeouts of <strong>15 to 30 minutes</strong> of inactivity. Always allow users to extend their session before logging out.
                     </p>
                 </div>

@@ -59,38 +59,38 @@ const SidebarPreview = () => {
     const [collapsed, setCollapsed] = useState(false);
 
     return (
-        <div className="w-full h-full bg-slate-100 flex items-center justify-center p-7 rounded-xl border border-slate-200 overflow-hidden relative z-[100]">
-            <div className={`h-[400px] border border-slate-200 rounded-xl bg-white shadow-2xl transition-all duration-500 flex relative overflow-hidden ${collapsed ? 'w-24' : 'w-72'}`}>
-                <div className="flex flex-col flex-1 border-r border-slate-100">
-                    <div className="p-6 border-b border-slate-50 flex items-center gap-4">
-                        <div className="w-10 h-10 bg-slate-900 rounded-2xl flex-shrink-0 shadow-lg shadow-slate-900/10 flex items-center justify-center text-white">
+        <div className="w-full h-full bg-slate-100 dark:bg-zinc-950/20 flex items-center justify-center p-7 rounded-xl border border-slate-200 dark:border-zinc-800 overflow-hidden relative z-[100] transition-colors">
+            <div className={`h-[400px] border border-slate-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-2xl transition-all duration-500 flex relative overflow-hidden ${collapsed ? 'w-24' : 'w-72'}`}>
+                <div className="flex flex-col flex-1 border-r border-slate-100 dark:border-zinc-800 transition-colors">
+                    <div className="p-6 border-b border-slate-50 dark:border-zinc-800 flex items-center gap-4 transition-colors">
+                        <div className="w-10 h-10 bg-slate-900 dark:bg-zinc-800 rounded-2xl flex-shrink-0 shadow-lg shadow-slate-900/10 flex items-center justify-center text-white border border-transparent dark:border-zinc-700">
                             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                         </div>
-                        {!collapsed && <span className="font-black text-slate-900 tracking-tighter text-xl">LGI</span>}
+                        {!collapsed && <span className="font-black text-slate-900 dark:text-white tracking-tighter text-xl transition-colors">LGI</span>}
                     </div>
 
-                    <div className="p-4 space-y-2 flex-1">
+                    <div className="p-4 space-y-2 flex-1 overflow-hidden transition-colors">
                         {[
                             { l: 'Analytics', i: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z', c: 'blue' },
                             { l: 'Customer Feed', i: 'M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z', c: 'purple' },
                             { l: 'Team Access', i: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z', c: 'orange' }
                         ].map((item, i) => (
-                            <div key={i} className="flex items-center gap-4 px-3 py-2 rounded-xl hover:bg-slate-100 group cursor-pointer transition-all overflow-hidden whitespace-nowrap">
-                                <div className={`w-8 h-8 rounded-xl bg-${item.c}-50 flex items-center justify-center text-${item.c}-600 flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                            <div key={i} className="flex items-center gap-4 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-800 group cursor-pointer transition-all overflow-hidden whitespace-nowrap">
+                                <div className={`w-8 h-8 rounded-xl bg-${item.c}-50 dark:bg-${item.c}-500/10 flex items-center justify-center text-${item.c}-600 dark:text-${item.c}-400 flex-shrink-0 group-hover:scale-110 transition-transform`}>
                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path d={item.i} /></svg>
                                 </div>
-                                {!collapsed && <span className="text-sm font-black text-slate-500 group-hover:text-slate-900 transition-colors uppercase tracking-widest">{item.l}</span>}
+                                {!collapsed && <span className="text-sm font-black text-slate-500 dark:text-zinc-500 group-hover:text-slate-900 dark:group-hover:text-white transition-colors uppercase tracking-widest">{item.l}</span>}
                             </div>
                         ))}
                     </div>
 
-                    <div className="p-4 border-t border-slate-50">
+                    <div className="p-4 border-t border-slate-50 dark:border-zinc-800 transition-colors">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-slate-100 flex-shrink-0 border-2 border-white shadow-sm" />
+                            <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-zinc-800 flex-shrink-0 border-2 border-white dark:border-zinc-900 shadow-sm transition-colors" />
                             {!collapsed && (
                                 <div className="overflow-hidden">
-                                    <p className="text-xs font-black text-slate-900 truncate uppercase tracking-widest leading-none mb-1">Jinawa Titus</p>
-                                    <p className="text-[10px] font-bold text-slate-400 truncate uppercase tracking-widest">Admin</p>
+                                    <p className="text-xs font-black text-slate-900 dark:text-white truncate uppercase tracking-widest leading-none mb-1 transition-colors">Jinawa Titus</p>
+                                    <p className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 truncate uppercase tracking-widest transition-colors">Admin</p>
                                 </div>
                             )}
                         </div>
@@ -99,16 +99,16 @@ const SidebarPreview = () => {
 
                 <button
                     onClick={() => setCollapsed(!collapsed)}
-                    className="absolute bottom-2 left-1/2 -translate-x-1/2 w-10 h-10 rounded-2xl bg-emerald-800/50 flex items-center justify-center text-white shadow-lg active:scale-90 transition-all z-20 group hover:w-16"
+                    className="absolute bottom-2 left-1/2 -translate-x-1/2 w-10 h-10 rounded-2xl bg-emerald-800/50 dark:bg-emerald-500/20 text-white dark:text-emerald-400 border border-transparent dark:border-emerald-500/20 shadow-lg active:scale-90 transition-all z-20 group hover:w-16"
                 >
                     <svg className={`w-5 h-5 transition-transform duration-500 ${collapsed ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path d="M15 19l-7-7 7-7" /></svg>
                 </button>
             </div>
 
             <div className="absolute top-10 right-10 text-right">
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-2">Space Mode</p>
-                <div className="w-24 h-1 bg-slate-200 rounded-full overflow-hidden">
-                    <div className={`h-full bg-slate-900 transition-all duration-700 ${collapsed ? 'w-1/3' : 'w-full'}`} />
+                <p className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-[0.3em] mb-2 transition-colors">Space Mode</p>
+                <div className="w-24 h-1 bg-slate-200 dark:bg-zinc-800 rounded-full overflow-hidden transition-colors">
+                    <div className={`h-full bg-slate-900 dark:bg-white transition-all duration-700 ${collapsed ? 'w-1/3' : 'w-full'}`} />
                 </div>
             </div>
         </div>
@@ -137,18 +137,21 @@ export const CollapsibleSidebar = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[600px] bg-[#f8fafc] relative p-4 border-b border-slate-100 overflow-hidden">
-                    <div className="absolute inset-0 opacity-10" style={{
-                        backgroundImage: 'linear-gradient(#475569 1px, transparent 1px), linear-gradient(90deg, #475569 1px, transparent 1px)',
-                        backgroundSize: '40px 40px'
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[600px] bg-[#f8fafc] dark:bg-zinc-950/50 relative p-4 border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
+                    <div className="absolute inset-0 opacity-40" style={{
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
+                        backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[600px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <SidebarPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Animation Curves</span>
                         </button>
@@ -156,7 +159,7 @@ export const CollapsibleSidebar = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-white text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
@@ -186,13 +189,13 @@ export const CollapsibleSidebar = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Interaction Tip</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Interaction Tip</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         Always include a <strong>Tooltip</strong> for sidebar items when in collapsed mode, so users can identify navigation links without text labels.
                     </p>
                 </div>

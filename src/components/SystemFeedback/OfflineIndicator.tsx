@@ -42,29 +42,29 @@ export default OfflineIndicator;`;
 // --- THE PREVIEW COMPONENT ---
 const OfflinePreview = () => {
     return (
-        <div className="w-full max-w-sm mx-auto p-10 bg-white rounded-xl shadow-sm shadow-slate-900/10 border border-slate-100 relative z-[100] animate-in zoom-in-95 duration-500 overflow-hidden">
+        <div className="w-full max-w-sm mx-auto p-10 bg-white dark:bg-zinc-900 rounded-xl shadow-sm shadow-slate-900/10 dark:shadow-black/50 border border-slate-100 dark:border-zinc-800 relative z-[100] animate-in zoom-in-95 duration-500 overflow-hidden transition-colors">
             <div className="absolute top-0 left-0 w-full h-1.5 bg-rose-500/20" />
 
             <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-2xl bg-rose-50 flex items-center justify-center text-rose-500 shadow-sm border border-rose-100">
+                    <div className="w-10 h-10 rounded-2xl bg-rose-50 dark:bg-rose-500/10 flex items-center justify-center text-rose-500 dark:text-rose-400 shadow-sm border border-rose-100 dark:border-zinc-800 transition-colors">
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-3.536c0-1.38.56-2.63 1.465-3.535m-4.243 1.414a9 9 0 010 12.728m0 0l2.829-2.829m-2.829 2.829L3 21M9 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                     </div>
                     <div>
-                        <h4 className="text-[13px] font-black tracking-tight uppercase leading-none">Offline</h4>
-                        <p className="text-[10px] font-bold text-slate-400 mt-1">Checking connection...</p>
+                        <h4 className="text-[13px] font-black tracking-tight uppercase leading-none dark:text-white transition-colors">Offline</h4>
+                        <p className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 mt-1 transition-colors">Checking connection...</p>
                     </div>
                 </div>
-                <div className="px-2 py-1 rounded-lg bg-slate-50 border border-slate-100 text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                <div className="px-2 py-1 rounded-lg bg-slate-50 dark:bg-zinc-800 border border-slate-100 dark:border-zinc-700 text-[9px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-widest transition-colors">
                     v1.0.4
                 </div>
             </div>
 
-            <div className="p-4 bg-slate-50/50 rounded-2xl border border-slate-100 mb-8">
-                <p className="text-[11px] font-bold text-slate-500 leading-relaxed">Changes made now will be synchronized automatically once you're back online.</p>
+            <div className="p-4 bg-slate-50/50 dark:bg-zinc-800/50 rounded-2xl border border-slate-100 dark:border-zinc-800 mb-8 transition-colors">
+                <p className="text-[11px] font-bold text-slate-500 dark:text-zinc-400 leading-relaxed transition-colors">Changes made now will be synchronized automatically once you're back online.</p>
             </div>
 
-            <button className="w-full h-11 bg-slate-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl active:scale-[0.98] transition-all">Reconnect Manualy</button>
+            <button className="w-full h-11 bg-slate-900 dark:bg-zinc-800 text-white dark:text-zinc-100 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl active:scale-[0.98] transition-all border border-transparent dark:border-zinc-700">Reconnect Manually</button>
 
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-rose-500/5 rounded-full blur-[60px]" />
         </div>
@@ -93,18 +93,21 @@ export const OfflineIndicator = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[450px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[450px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[450px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <OfflinePreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>System Hooks</span>
                         </button>
@@ -112,7 +115,7 @@ export const OfflineIndicator = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

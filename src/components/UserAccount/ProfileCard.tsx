@@ -56,7 +56,7 @@ export default ProfileCard;`;
 const ProfileCardPreview = () => {
     return (
         <div className="w-full h-full flex items-center justify-center p-8 bg-slate-50 dark:bg-zinc-950/20 rounded-xl border border-slate-200 dark:border-zinc-800 relative z-[100] overflow-hidden transition-colors">
-            <div className="w-full max-w-sm bg-white dark:bg-zinc-900/50 backdrop-blur-md rounded-xl border border-slate-100 dark:border-zinc-800 shadow-2xl overflow-hidden relative group transition-colors">
+            <div className="w-full max-w-sm bg-white dark:bg-zinc-900 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-2xl overflow-hidden relative group transition-colors">
                 {/* Header/Cover */}
                 <div className="h-40 bg-zinc-950 overflow-hidden relative">
                     <div className="absolute inset-0 opacity-20 grayscale" style={{
@@ -208,13 +208,13 @@ export const ProfileCard = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Privacy Check</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Privacy Check</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         Always include a way for users to hide specific data points (like location or join date) from their public profile cards to respect user privacy.
                     </p>
                 </div>

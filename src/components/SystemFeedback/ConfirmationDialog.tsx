@@ -63,15 +63,15 @@ const DialogPreview = () => {
             </button>
 
             {isOpen && (
-                <div className="absolute inset-0 z-[110] flex items-center justify-center bg-slate-100/10 backdrop-blur-[2px] rounded-[32px] overflow-hidden animate-in fade-in duration-300">
-                    <div className="w-[320px] bg-white rounded-[40px] shadow-[0_32px_128px_-12px_rgba(244,63,94,0.3)] p-8 border border-slate-100 animate-in zoom-in-95 duration-200">
-                        <div className="w-14 h-14 rounded-2xl bg-rose-50 flex items-center justify-center text-rose-500 mb-6 mx-auto">
+                <div className="absolute inset-0 z-[110] flex items-center justify-center bg-slate-100/10 dark:bg-black/40 backdrop-blur-[2px] rounded-[32px] overflow-hidden animate-in fade-in duration-300">
+                    <div className="w-[320px] bg-white dark:bg-zinc-900 rounded-[40px] shadow-[0_32px_128px_-12px_rgba(244,63,94,0.3)] dark:shadow-black/60 p-8 border border-slate-100 dark:border-zinc-800 animate-in zoom-in-95 duration-200 transition-colors">
+                        <div className="w-14 h-14 rounded-2xl bg-rose-50 dark:bg-rose-500/10 flex items-center justify-center text-rose-500 dark:text-rose-400 mb-6 mx-auto transition-colors">
                             <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                         </div>
 
                         <div className="text-center mb-8">
-                            <h3 className="text-xl font-black text-slate-900 tracking-tight mb-2">Are you sure?</h3>
-                            <p className="text-slate-400 text-[11px] font-bold leading-relaxed">This action will permanently delete all your projects and data. This cannot be undone.</p>
+                            <h3 className="text-xl font-black text-slate-900 dark:text-white tracking-tight mb-2 transition-colors">Are you sure?</h3>
+                            <p className="text-slate-400 dark:text-zinc-500 text-[11px] font-bold leading-relaxed transition-colors">This action will permanently delete all your projects and data. This cannot be undone.</p>
                         </div>
 
                         <div className="flex flex-col gap-2">
@@ -83,7 +83,7 @@ const DialogPreview = () => {
                             </button>
                             <button
                                 onClick={() => setIsOpen(false)}
-                                className="w-full h-11 bg-slate-50 text-slate-400 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-100 transition-all active:scale-[0.98]"
+                                className="w-full h-11 bg-slate-50 dark:bg-zinc-800 text-slate-400 dark:text-zinc-500 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-zinc-700 border border-transparent dark:border-zinc-700 transition-all active:scale-[0.98]"
                             >
                                 Nevermind
                             </button>
@@ -117,18 +117,21 @@ export const ConfirmationDialog = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[500px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden rounded-t-2xl">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[500px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden rounded-t-2xl transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[500px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <DialogPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Risk Thresholds</span>
                         </button>
@@ -136,7 +139,7 @@ export const ConfirmationDialog = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

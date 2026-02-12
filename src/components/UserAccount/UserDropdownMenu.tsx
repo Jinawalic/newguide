@@ -93,7 +93,7 @@ const DropdownPreview = () => {
                 </button>
 
                 {isOpen && (
-                    <div className="absolute right-0 top-full w-72 bg-white dark:bg-zinc-900/50 backdrop-blur-md border border-slate-100 dark:border-zinc-800 rounded-xl shadow-2xl dark:shadow-black/50 animate-in fade-in slide-in-from-top-4 duration-300 transition-colors">
+                    <div className="absolute right-0 top-full w-72 bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 rounded-xl shadow-2xl dark:shadow-black/50 animate-in fade-in slide-in-from-top-4 duration-300 transition-colors">
                         <div className="p-4 mb-2">
                             <p className="text-[10px] font-black text-slate-300 dark:text-zinc-600 uppercase tracking-[0.3em] mb-4 transition-colors">Management</p>
                             <div className="space-y-1">
@@ -193,13 +193,13 @@ export const UserDropdownMenu = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Accessibility Rule</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Accessibility Rule</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         Use <strong>aria-haspopup="true"</strong> and <strong>aria-expanded</strong> to inform assistive technologies about the dropdown state. Ensure the menu can be closed using the <code>Esc</code> key.
                     </p>
                 </div>

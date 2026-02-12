@@ -131,23 +131,23 @@ const DragDropListPreview = () => {
                         onDragStart={(e) => onDragStart(e, index)}
                         onDragEnd={onDragEnd}
                         className={`
-                            flex items-center gap-3 p-3.5 bg-white border rounded-2xl cursor-grab active:cursor-grabbing transition-all duration-200
-                            ${draggedItem?.id === item.id ? 'opacity-40 border-emerald-500 scale-95 shadow-inner' : 'border-slate-100 hover:border-emerald-500/30 hover:shadow-xl hover:shadow-slate-200/50'}
+                            flex items-center gap-3 p-3.5 bg-white dark:bg-zinc-900 border rounded-2xl cursor-grab active:cursor-grabbing transition-all duration-200
+                            ${draggedItem?.id === item.id ? 'opacity-40 border-emerald-500 scale-95 shadow-inner' : 'border-slate-100 dark:border-zinc-800 hover:border-emerald-500/30 dark:hover:border-emerald-500/30 hover:shadow-xl dark:hover:shadow-black/50'}
                         `}
                     >
-                        <div className="text-slate-300 group-hover:text-emerald-500 transition-colors">
+                        <div className="text-slate-300 dark:text-zinc-700 group-hover:text-emerald-500 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                             </svg>
                         </div>
 
                         <div className="flex-1 overflow-hidden">
-                            <h4 className="text-[13px] font-bold text-slate-800 truncate">{item.title}</h4>
-                            <p className="text-[10px] text-slate-400 font-bold truncate tracking-tight">{item.description}</p>
+                            <h4 className="text-[13px] font-bold text-slate-800 dark:text-zinc-100 truncate transition-colors">{item.title}</h4>
+                            <p className="text-[10px] text-slate-400 dark:text-zinc-500 font-bold truncate tracking-tight transition-colors">{item.description}</p>
                         </div>
 
-                        <span className={`px-2 py-0.5 rounded-lg text-[9px] font-black uppercase tracking-widest whitespace-nowrap
-                            ${item.status === 'Completed' ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500'}
+                        <span className={`px-2 py-0.5 rounded-lg text-[9px] font-black uppercase tracking-widest whitespace-nowrap transition-colors
+                            ${item.status === 'Completed' ? 'bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-200/50 dark:border-emerald-500/20' : 'bg-slate-100 dark:bg-zinc-800 text-slate-500 dark:text-zinc-500 border border-slate-200/50 dark:border-zinc-700/50'}
                         `}>
                             {item.status}
                         </span>
@@ -182,20 +182,23 @@ export const DragDropListReorder = () => {
             </div>
 
             {/* Design Card */}
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[450px] bg-[#f8fafc] relative flex items-center justify-center overflow-visible border-b border-slate-100 p-8">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[450px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center overflow-visible border-b border-slate-100 dark:border-zinc-800 p-8 transition-colors duration-700">
                     <div className="absolute inset-0" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[450px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <div className="relative z-10 w-full">
                         <DragDropListPreview />
                     </div>
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Animation Settings</span>
                         </button>
@@ -203,7 +206,7 @@ export const DragDropListReorder = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

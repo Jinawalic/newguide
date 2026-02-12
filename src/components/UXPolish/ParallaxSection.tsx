@@ -46,11 +46,11 @@ const ParallaxPreview = () => {
     };
 
     return (
-        <div className="w-full h-full flex items-center justify-center p-8 lg:p-12 relative z-[100]">
+        <div className="w-full h-full flex items-center justify-center p-8 lg:p-12 relative z-[100] transition-colors">
             <div
                 ref={containerRef}
                 onScroll={handleScroll}
-                className="w-full max-w-2xl h-[400px] bg-white rounded-xl border border-slate-100 shadow-sm relative overflow-y-auto custom-scrollbar group"
+                className="w-full max-w-2xl h-[400px] bg-white dark:bg-zinc-900 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-sm relative overflow-y-auto custom-scrollbar group transition-colors"
             >
                 <div className="relative h-[600px] overflow-hidden">
                     <div
@@ -76,19 +76,19 @@ const ParallaxPreview = () => {
                     </div>
                 </div>
 
-                <div className="relative z-20 bg-white p-12 text-center h-[400px]">
-                    <h4 className="text-xl font-black text-slate-900 tracking-tight mb-4 uppercase">Surface Layer</h4>
-                    <p className="text-slate-500 font-bold leading-relaxed max-w-sm mx-auto mb-10">
+                <div className="relative z-20 bg-white dark:bg-zinc-900 p-12 text-center h-[400px] transition-colors">
+                    <h4 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight mb-4 uppercase">Surface Layer</h4>
+                    <p className="text-slate-500 dark:text-zinc-400 font-bold leading-relaxed max-w-sm mx-auto mb-10 transition-colors">
                         As you scroll, notice how the background moves at a slower pace compared to the foreground text. This creates a sense of spatial depth.
                     </p>
-                    <div className="inline-flex gap-2 p-1.5 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div className="inline-flex gap-2 p-1.5 bg-slate-50 dark:bg-zinc-950 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
                         {[1, 2, 3].map(i => (
-                            <div key={i} className="w-12 h-12 rounded-xl bg-white shadow-sm border border-slate-100" />
+                            <div key={i} className="w-12 h-12 rounded-xl bg-white dark:bg-zinc-800 shadow-sm border border-slate-100 dark:border-zinc-800 transition-colors" />
                         ))}
                     </div>
                 </div>
 
-                <div className="absolute top-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/10 z-30">
+                <div className="absolute top-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/10 z-30 transition-colors">
                     <span className="text-[9px] font-black text-white uppercase tracking-widest">Scroll to witness depth</span>
                 </div>
             </div>
@@ -118,18 +118,21 @@ export const ParallaxSection = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[600px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[600px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[600px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <ParallaxPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Depth Factor</span>
                         </button>
@@ -137,7 +140,7 @@ export const ParallaxSection = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
@@ -167,13 +170,13 @@ export const ParallaxSection = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Performance Tip</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Performance Tip</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         Always use <code>transform: translate3d()</code> or <code>will-change: transform</code> to trigger hardware acceleration. This ensures the parallax effect remains smooth on lower-end devices.
                     </p>
                 </div>

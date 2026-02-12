@@ -39,19 +39,19 @@ export default SuccessScreen;`;
 // --- THE PREVIEW COMPONENT ---
 const SuccessStatePreview = () => {
     return (
-        <div className="w-full max-w-sm mx-auto p-12 bg-white rounded-xl shadow-sm shadow-slate-900/10 border border-slate-100 text-center relative z-[100] animate-in zoom-in-95 duration-500">
+        <div className="w-full max-w-sm mx-auto p-12 bg-white dark:bg-zinc-900 rounded-xl shadow-sm shadow-slate-900/10 dark:shadow-black/50 border border-slate-100 dark:border-zinc-800 text-center relative z-[100] animate-in zoom-in-95 duration-500 transition-colors">
             <div className="relative mb-6 flex justify-center">
-                <div className="w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center text-white relative z-10 transition-transform hover:scale-110">
+                <div className="w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center text-white relative z-10 transition-transform hover:scale-110 shadow-lg shadow-emerald-500/30">
                     <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                 </div>
             </div>
 
-            <h3 className="text-2xl font-black text-slate-900 tracking-tight mb-3">All Set!</h3>
-            <p className="text-[13px] text-slate-400 font-bold leading-relaxed mb-10 max-w-[200px] mx-auto">Your configuration has been updated successfully. Everything is running smoothly.</p>
+            <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-3 transition-colors">All Set!</h3>
+            <p className="text-[13px] text-slate-400 dark:text-zinc-500 font-bold leading-relaxed mb-10 max-w-[200px] mx-auto transition-colors">Your configuration has been updated successfully. Everything is running smoothly.</p>
 
             <div className="space-y-3">
-                <button className="w-full h-12 bg-emerald-900 text-white rounded-2xl text-[11px] font-black uppercase tracking-widest shadow-xl active:scale-[0.98] transition-all">Go to Workspace</button>
-                <button className="w-full h-12 bg-white text-slate-400 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-slate-50 transition-all border border-slate-50">View Details</button>
+                <button className="w-full h-12 bg-emerald-900 dark:bg-emerald-500/20 text-white dark:text-emerald-400 rounded-2xl text-[11px] font-black uppercase tracking-widest shadow-xl active:scale-[0.98] transition-all border border-transparent dark:border-emerald-500/20">Go to Workspace</button>
+                <button className="w-full h-12 bg-white dark:bg-zinc-800 text-slate-400 dark:text-zinc-500 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-zinc-700 transition-all border border-slate-100 dark:border-zinc-800">View Details</button>
             </div>
 
             <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-500/5 rounded-full blur-[60px]" />
@@ -81,18 +81,21 @@ export const SuccessStateScreen = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[600px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[600px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[600px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <SuccessStatePreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Vfx Intensity</span>
                         </button>
@@ -100,7 +103,7 @@ export const SuccessStateScreen = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

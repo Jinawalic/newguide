@@ -65,33 +65,33 @@ export default Alert;`;
 const AlertPreview = () => {
     return (
         <div className="w-full max-w-md mx-auto space-y-4 relative z-[100]">
-            <div className="flex items-start gap-4 px-4 py-2 bg-emerald-50 border border-emerald-100 rounded-xl text-emerald-900 group shadow-lg shadow-emerald-900/5">
-                <div className="w-8 h-8 rounded-2xl bg-white flex items-center justify-center text-emerald-600 shadow-sm border border-emerald-100">
+            <div className="flex items-start gap-4 px-4 py-2 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 rounded-xl text-emerald-900 dark:text-emerald-400 group shadow-lg shadow-emerald-900/5 dark:shadow-black/20 transition-colors">
+                <div className="w-8 h-8 rounded-2xl bg-white dark:bg-zinc-900 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-sm border border-emerald-100 dark:border-zinc-800 transition-colors">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
                 <div className="flex-1 py-1">
-                    <h4 className="text-[11px] font-black tracking-tight mb-1 uppercase">Payment Successful</h4>
-                    <p className="text-[11px] font-bold text-emerald-700/80 leading-relaxed">Your subscription has been successfully renewed. A receipt has been sent to your email.</p>
+                    <h4 className="text-[11px] font-black tracking-tight mb-1 uppercase dark:text-zinc-100 transition-colors">Payment Successful</h4>
+                    <p className="text-[11px] font-bold text-emerald-700/80 dark:text-emerald-400/80 leading-relaxed transition-colors">Your subscription has been successfully renewed. A receipt has been sent to your email.</p>
                 </div>
             </div>
 
-            <div className="flex items-start gap-4 px-4 py-2 bg-rose-50 border border-rose-100 rounded-xl text-rose-900 group shadow-lg shadow-rose-900/5">
-                <div className="w-8 h-8 rounded-2xl bg-white flex items-center justify-center text-rose-600 shadow-sm border border-rose-100">
+            <div className="flex items-start gap-4 px-4 py-2 bg-rose-50 dark:bg-rose-500/10 border border-rose-100 dark:border-rose-500/20 rounded-xl text-rose-900 dark:text-rose-400 group shadow-lg shadow-rose-900/5 dark:shadow-black/20 transition-colors">
+                <div className="w-8 h-8 rounded-2xl bg-white dark:bg-zinc-900 flex items-center justify-center text-rose-600 dark:text-rose-400 shadow-sm border border-rose-100 dark:border-zinc-800 transition-colors">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
                 <div className="flex-1 py-1">
-                    <h4 className="text-[11px] font-black tracking-tight mb-1 uppercase">Connection Lost</h4>
-                    <p className="text-[11px] font-bold text-rose-700/80 leading-relaxed">Could not reach the server. Please check your internet connection and try again.</p>
+                    <h4 className="text-[11px] font-black tracking-tight mb-1 uppercase dark:text-zinc-100 transition-colors">Connection Lost</h4>
+                    <p className="text-[11px] font-bold text-rose-700/80 dark:text-rose-400/80 leading-relaxed transition-colors">Could not reach the server. Please check your internet connection and try again.</p>
                 </div>
             </div>
 
-            <div className="flex items-start gap-4 px-4 py-2 bg-amber-50 border border-amber-100 rounded-xl text-amber-900 group shadow-lg shadow-amber-900/5">
-                <div className="w-8 h-8 rounded-2xl bg-white flex items-center justify-center text-amber-600 shadow-sm border border-amber-100">
+            <div className="flex items-start gap-4 px-4 py-2 bg-amber-50 dark:bg-amber-500/10 border border-amber-100 dark:border-amber-500/20 rounded-xl text-amber-900 dark:text-amber-400 group shadow-lg shadow-amber-900/5 dark:shadow-black/20 transition-colors">
+                <div className="w-8 h-8 rounded-2xl bg-white dark:bg-zinc-900 flex items-center justify-center text-amber-600 dark:text-amber-400 shadow-sm border border-amber-100 dark:border-zinc-800 transition-colors">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                 </div>
                 <div className="flex-1 py-1">
-                    <h4 className="text-[11px] font-black tracking-tight mb-1 uppercase">Storage Almost Full</h4>
-                    <p className="text-[11px] font-bold text-amber-700/80 leading-relaxed">You have used 92% of your available storage space. Consider upgrading your plan.</p>
+                    <h4 className="text-[11px] font-black tracking-tight mb-1 uppercase dark:text-zinc-100 transition-colors">Storage Almost Full</h4>
+                    <p className="text-[11px] font-bold text-amber-700/80 dark:text-amber-400/80 leading-relaxed transition-colors">You have used 92% of your available storage space. Consider upgrading your plan.</p>
                 </div>
             </div>
         </div>
@@ -120,18 +120,21 @@ export const AlertBanners = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[450px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[450px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[450px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <AlertPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Banner Themes</span>
                         </button>
@@ -139,7 +142,7 @@ export const AlertBanners = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

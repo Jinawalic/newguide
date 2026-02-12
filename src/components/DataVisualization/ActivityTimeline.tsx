@@ -69,26 +69,26 @@ const TimelinePreview = () => {
     ];
 
     return (
-        <div className="w-full max-w-sm mx-auto bg-white p-8 rounded-xl shadow-2xl shadow-slate-900/10 border border-slate-100 relative z-[100]">
+        <div className="w-full max-w-sm mx-auto bg-white dark:bg-zinc-900 p-8 rounded-xl shadow-2xl shadow-slate-900/10 dark:shadow-black/50 border border-slate-100 dark:border-zinc-800 relative z-[100] transition-colors">
             <div className="flex items-center justify-between mb-8">
-                <h4 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Activity Feed</h4>
+                <h4 className="text-[11px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-[0.2em] transition-colors">Activity Feed</h4>
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             </div>
 
             <div className="space-y-0 relative">
-                <div className="absolute left-[15px] top-2 bottom-2 w-0.5 bg-slate-100 -z-0" />
+                <div className="absolute left-[15px] top-2 bottom-2 w-0.5 bg-slate-100 dark:bg-zinc-800 -z-0 transition-colors" />
                 {items.map((item, i) => (
                     <div key={i} className="flex gap-6 pb-8 group relative z-10 last:pb-0">
-                        <div className={`w-8 h-8 rounded-xl bg-${item.color}-50 flex items-center justify-center text-sm border-2 border-white shadow-sm group-hover:scale-110 transition-transform duration-300`}>
+                        <div className={`w-8 h-8 rounded-xl bg-${item.color}-50 dark:bg-${item.color}-500/10 flex items-center justify-center text-sm border-2 border-white dark:border-zinc-800 shadow-sm group-hover:scale-110 transition-all duration-300`}>
                             {item.icon}
                         </div>
                         <div className="flex-1 transition-all duration-300 group-hover:translate-x-1">
                             <div className="flex items-center justify-between mb-1">
-                                <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{item.time}</span>
-                                <span className={`text-[9px] font-black uppercase text-${item.color}-600 tracking-tighter`}>{item.color}</span>
+                                <span className="text-[10px] font-black text-slate-300 dark:text-zinc-600 uppercase tracking-widest transition-colors">{item.time}</span>
+                                <span className={`text-[9px] font-black uppercase text-${item.color}-600 dark:text-${item.color}-400 tracking-tighter transition-colors`}>{item.color}</span>
                             </div>
-                            <h5 className="text-[13px] font-bold text-slate-800 mb-1">{item.title}</h5>
-                            <p className="text-[11px] text-slate-400 font-medium leading-relaxed">{item.desc}</p>
+                            <h5 className="text-[13px] font-bold text-slate-800 dark:text-zinc-100 mb-1 transition-colors">{item.title}</h5>
+                            <p className="text-[11px] text-slate-400 dark:text-zinc-500 font-medium leading-relaxed transition-colors">{item.desc}</p>
                         </div>
                     </div>
                 ))}
@@ -119,18 +119,21 @@ export const ActivityTimeline = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[500px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden p-8">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[500px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden p-8 transition-colors duration-700">
                     <div className="absolute inset-0 opacity-10" style={{
-                        backgroundImage: 'linear-gradient(#475569 1px, transparent 1px), linear-gradient(90deg, #475569 1px, transparent 1px)',
+                        backgroundImage: 'linear-gradient(var(--grid-color, #475569) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color, #475569) 1px, transparent 1px)',
                         backgroundSize: '40px 40px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[500px\\] { --grid-color: #3f3f46; }
+                    `}</style>
                     <TimelinePreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Condensed View</span>
                         </button>
@@ -138,7 +141,7 @@ export const ActivityTimeline = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
@@ -168,13 +171,13 @@ export const ActivityTimeline = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Visual Hierarchy</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Visual Hierarchy</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         Use different icon background colors (Emerald for success, Blue for info, Amber for warning) to help users scan the timeline faster.
                     </p>
                 </div>

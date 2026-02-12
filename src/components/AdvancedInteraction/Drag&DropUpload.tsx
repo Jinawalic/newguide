@@ -137,20 +137,20 @@ const DragDropUploadPreview = () => {
                 className={`
                     relative border-[3px] border-dashed rounded-[32px] p-8 transition-all duration-300 flex flex-col items-center justify-center gap-4 text-center
                     ${isDragging
-                        ? 'border-emerald-500 bg-emerald-50/50 scale-[1.02]'
-                        : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 shadow-sm'
+                        ? 'border-emerald-500 bg-emerald-50/50 dark:bg-emerald-500/10 scale-[1.02]'
+                        : 'border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm'
                     }
                 `}
             >
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${isDragging ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-200' : 'bg-slate-50 text-slate-400 group-hover:bg-white shadow-inner'}`}>
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${isDragging ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-200' : 'bg-slate-50 dark:bg-zinc-800 text-slate-400 dark:text-zinc-600 group-hover:bg-white shadow-inner'}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
                     </svg>
                 </div>
 
                 <div className="space-y-1">
-                    <p className="text-sm font-bold text-slate-800 tracking-tight">Drop files here</p>
-                    <p className="text-[11px] text-slate-400 font-bold uppercase tracking-widest">Or click to select</p>
+                    <p className="text-sm font-bold text-slate-800 dark:text-zinc-100 tracking-tight transition-colors">Drop files here</p>
+                    <p className="text-[11px] text-slate-400 dark:text-zinc-500 font-bold uppercase tracking-widest transition-colors">Or click to select</p>
                 </div>
 
                 <input
@@ -167,19 +167,19 @@ const DragDropUploadPreview = () => {
             {files.length > 0 && (
                 <div className="mt-4 space-y-2 max-h-[120px] overflow-y-auto px-1 custom-scrollbar">
                     {files.map((file, i) => (
-                        <div key={i} className="flex items-center justify-between p-3 bg-white border border-slate-100 rounded-2xl shadow-sm animate-in slide-in-from-top-2 duration-300">
+                        <div key={i} className="flex items-center justify-between p-3 bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 rounded-2xl shadow-sm animate-in slide-in-from-top-2 duration-300 transition-colors">
                             <div className="flex items-center gap-2 overflow-hidden">
-                                <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600 flex-shrink-0 text-xs font-bold">
+                                <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 flex-shrink-0 text-xs font-bold border border-emerald-100/50 dark:border-emerald-500/20">
                                     DOC
                                 </div>
                                 <div className="overflow-hidden">
-                                    <p className="text-[12px] font-bold text-slate-700 truncate">{file.name}</p>
-                                    <p className="text-[9px] text-slate-400 font-bold">{(file.size / 1024).toFixed(0)} KB</p>
+                                    <p className="text-[12px] font-bold text-slate-700 dark:text-zinc-100 truncate transition-colors">{file.name}</p>
+                                    <p className="text-[9px] text-slate-400 dark:text-zinc-500 font-bold tracking-tight transition-colors">{(file.size / 1024).toFixed(0)} KB</p>
                                 </div>
                             </div>
                             <button
                                 onClick={() => removeFile(file.name)}
-                                className="p-1.5 hover:bg-slate-50 text-slate-400 hover:text-rose-500 rounded-lg transition-all flex-shrink-0"
+                                className="p-1.5 hover:bg-slate-50 dark:hover:bg-zinc-800 text-slate-400 dark:text-zinc-600 hover:text-rose-500 dark:hover:text-rose-400 rounded-lg transition-all flex-shrink-0"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -217,20 +217,23 @@ export const DragDropUpload = () => {
             </div>
 
             {/* Design Card */}
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[450px] bg-[#f8fafc] relative flex items-center justify-center overflow-visible border-b border-slate-100 p-8">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[450px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center overflow-visible border-b border-slate-100 dark:border-zinc-800 p-8 transition-colors duration-700">
                     <div className="absolute inset-0" style={{
-                        backgroundImage: `radial-gradient(#e2e8f0 1.5px, transparent 1.5px)`,
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[450px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <div className="relative z-10 w-full">
                         <DragDropUploadPreview />
                     </div>
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Configuration</span>
                         </button>
@@ -238,7 +241,7 @@ export const DragDropUpload = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

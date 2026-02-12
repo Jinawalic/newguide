@@ -44,20 +44,20 @@ const BookmarkPreview = () => {
 
     return (
         <div className="w-full flex flex-col items-center gap-8 relative z-[100]">
-            <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-2xl flex flex-col items-center">
-                <div className="w-8 h-8 p-4 rounded-3xl bg-slate-100 flex items-center justify-center text-slate-300 mb-8 border border-slate-100 italic font-black text-sm">
+            <div className="bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 p-4 rounded-xl shadow-2xl dark:shadow-black/50 flex flex-col items-center transition-colors">
+                <div className="w-8 h-8 p-4 rounded-3xl bg-slate-100 dark:bg-zinc-800 flex items-center justify-center text-slate-300 dark:text-zinc-600 mb-8 border border-slate-100 dark:border-zinc-800 italic font-black text-sm transition-colors">
                     Ag
                 </div>
 
-                <h3 className="text-sm font-bold text-slate-900 tracking-tight text-center mb-5">
+                <h3 className="text-sm font-bold text-slate-900 dark:text-zinc-100 tracking-tight text-center mb-5 transition-colors">
                     The Future of Agentic Workflows
                 </h3>
 
                 <button
                     onClick={() => setBookmarked(!bookmarked)}
                     className={`group relative flex items-center gap-4 px-8 py-2 rounded-[32px] transition-all duration-500 overflow-hidden ${bookmarked
-                        ? 'bg-slate-900 text-amber-400 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)]'
-                        : 'bg-white text-slate-400 border border-slate-300 hover:bg-slate-50'
+                        ? 'bg-slate-900 dark:bg-zinc-100 text-amber-400 dark:text-amber-600 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)]'
+                        : 'bg-white dark:bg-zinc-900 text-slate-400 dark:text-zinc-500 border border-slate-300 dark:border-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-800/50'
                         } active:scale-95`}
                 >
                     <div className={`transition-transform duration-500 ${bookmarked ? 'scale-125 rotate-[360deg]' : ''}`}>
@@ -98,18 +98,21 @@ export const BookmarkButton = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[450px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[450px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[450px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <BookmarkPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Animation Presets</span>
                         </button>
@@ -117,7 +120,7 @@ export const BookmarkButton = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

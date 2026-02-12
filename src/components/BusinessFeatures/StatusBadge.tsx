@@ -51,23 +51,23 @@ const StatusBadgePreview = () => {
 
     return (
         <div className="w-full flex flex-col items-center gap-4 relative z-[100]">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {statuses.map((s, i) => (
-                    <div key={i} className="bg-white p-3 rounded-xl border border-slate-100 shadow-xl shadow-slate-900/5 flex flex-col items-center text-center group hover:-translate-y-1 transition-all duration-300">
-                        <div className={`w-9 h-9 rounded-2xl bg-${s.color}-50 flex items-center justify-center text-${s.color}-600 mb-4 group-hover:scale-110 transition-transform`}>
+                    <div key={i} className="bg-white dark:bg-zinc-900 p-3 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-xl shadow-slate-900/5 dark:shadow-black/50 flex flex-col items-center text-center group hover:-translate-y-1 transition-all duration-300">
+                        <div className={`w-9 h-9 rounded-2xl bg-${s.color}-50 dark:bg-${s.color}-500/10 flex items-center justify-center text-${s.color}-600 dark:text-${s.color}-400 mb-4 group-hover:scale-110 transition-all`}>
                             <HugeiconsIcon icon={s.icon} size={24} />
                         </div>
-                        <div className={`inline-flex items-center gap-2 px-3 py-1 bg-${s.color}-50 text-${s.color}-700 border border-${s.color}-100 rounded-full text-[10px] font-black capitalize tracking-[0.2em] mb-2`}>
+                        <div className={`inline-flex items-center gap-2 px-3 py-1 bg-${s.color}-50 dark:bg-${s.color}-500/10 text-${s.color}-700 dark:text-${s.color}-400 border border-${s.color}-100 dark:border-${s.color}-500/20 rounded-full text-[10px] font-black capitalize tracking-[0.2em] mb-2 transition-colors`}>
                             {s.id}
                         </div>
-                        <p className="text-[11px] font-bold text-slate-400 capitalize tracking-widest leading-none">{s.label}</p>
+                        <p className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 capitalize tracking-widest leading-none transition-colors">{s.label}</p>
                     </div>
                 ))}
             </div>
 
-            <div className="flex items-center gap-2 opacity-30 mt-4">
-                <div className="w-1.5 h-1.5 rounded-full bg-slate-400" />
-                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-slate-400">Order Flow States</span>
+            <div className="flex items-center gap-2 opacity-30 mt-4 transition-opacity">
+                <div className="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-zinc-600" />
+                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-zinc-600">Order Flow States</span>
             </div>
         </div>
     );
@@ -95,18 +95,21 @@ export const StatusBadge = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[450px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[450px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[450px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <StatusBadgePreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Visual Density</span>
                         </button>
@@ -114,7 +117,7 @@ export const StatusBadge = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

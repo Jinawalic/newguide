@@ -74,10 +74,10 @@ const DonutChartPreview = () => {
     ];
 
     return (
-        <div className="w-full max-w-sm mx-auto p-10 bg-white rounded-[40px] shadow-2xl shadow-slate-900/10 border border-slate-100 flex flex-col items-center relative z-[100]">
+        <div className="w-full max-w-sm mx-auto p-10 bg-white dark:bg-zinc-900 rounded-[40px] shadow-2xl shadow-slate-900/10 dark:shadow-black/50 border border-slate-100 dark:border-zinc-800 flex flex-col items-center relative z-[100] transition-colors">
             <div className="relative group w-48 h-48 mb-8">
                 <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
-                    <circle cx="50" cy="50" r="40" stroke="#f1f5f9" strokeWidth="18" fill="none" />
+                    <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="18" fill="none" className="text-slate-100 dark:text-zinc-800 transition-colors" />
                     {data.map((item, i) => {
                         let offset = 0;
                         for (let j = 0; j < i; j++) offset += data[j].value;
@@ -98,20 +98,20 @@ const DonutChartPreview = () => {
                         );
                     })}
                 </svg>
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-3xl font-black text-slate-900">1.2k</span>
-                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Visitors</span>
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                    <span className="text-3xl font-black text-slate-900 dark:text-white transition-colors">1.2k</span>
+                    <span className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-widest transition-colors">Visitors</span>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 w-full gap-2">
                 {data.map((item, i) => (
-                    <div key={i} className="flex items-center justify-between p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                    <div key={i} className="flex items-center justify-between p-2.5 rounded-2xl hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors">
                         <div className="flex items-center gap-3">
                             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />
-                            <span className="text-[12px] font-bold text-slate-600">{item.label}</span>
+                            <span className="text-[12px] font-bold text-slate-600 dark:text-zinc-400 transition-colors">{item.label}</span>
                         </div>
-                        <span className="text-[12px] font-black text-slate-900">{item.value}%</span>
+                        <span className="text-[12px] font-black text-slate-900 dark:text-white transition-colors">{item.value}%</span>
                     </div>
                 ))}
             </div>
@@ -141,18 +141,21 @@ export const DonutChart = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[500px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[500px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[500px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <DonutChartPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Legend Spacing</span>
                         </button>
@@ -160,7 +163,7 @@ export const DonutChart = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

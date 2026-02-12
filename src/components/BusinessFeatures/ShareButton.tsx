@@ -67,18 +67,18 @@ const SharePreview = () => {
             <div className="relative">
                 <button
                     onClick={() => setOpen(!open)}
-                    className="flex items-center gap-4 px-4 py-2 bg-white border border-slate-300 rounded-full shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] hover:-translate-y-2 active:scale-95 transition-all duration-500 group"
+                    className="flex items-center gap-4 px-4 py-2 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-800 rounded-full shadow-sm dark:shadow-black/50 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] hover:-translate-y-2 active:scale-95 transition-all duration-500 group"
                 >
-                    <div className="w-7 h-7 rounded-[22px] bg-slate-900 flex items-center justify-center text-white group-hover:rotate-[360deg] transition-transform duration-1000">
+                    <div className="w-7 h-7 rounded-[22px] bg-slate-900 dark:bg-zinc-100 flex items-center justify-center text-white dark:text-zinc-900 group-hover:rotate-[360deg] transition-transform duration-1000">
                         <HugeiconsIcon icon={Share} size={18} />
                     </div>
-                    <span className="text-sm font-black text-slate-900 capitalize tracking-widest leading-none">Share</span>
+                    <span className="text-sm font-black text-slate-900 dark:text-zinc-100 capitalize tracking-widest leading-none transition-colors">Share</span>
                 </button>
 
                 {open && (
-                    <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-80 bg-white border border-slate-100 rounded-xl shadow-sm p-2 z-[110] animate-in fade-in slide-in-from-top-6 duration-500">
+                    <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-80 bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 rounded-xl shadow-xl dark:shadow-black/50 p-2 z-[110] animate-in fade-in slide-in-from-top-6 duration-500 transition-colors">
                         <div className="p-4 mb-2">
-                            <p className="text-[10px] font-bold text-slate-300 uppercase tracking-[0.4em] mb-6 text-center">Select Channel</p>
+                            <p className="text-[10px] font-bold text-slate-300 dark:text-zinc-600 uppercase tracking-[0.4em] mb-6 text-center transition-colors">Select Channel</p>
                             <div className="grid grid-cols-2 gap-3">
                                 {apps.map((app, i) => (
                                     <button
@@ -86,18 +86,18 @@ const SharePreview = () => {
                                         onClick={() => setOpen(false)}
                                         className="flex flex-col items-center gap-3 px-4 py-2 rounded-[32px] transition-all group/app"
                                     >
-                                        <div className={`w-9 h-9 rounded-2xl bg-${app.color}-50 flex items-center justify-center text-${app.color}-600 group-hover/app:scale-110 group-hover/app:bg-${app.color}-600 group-hover/app:text-white transition-all duration-300`}>
+                                        <div className={`w-9 h-9 rounded-2xl bg-${app.color}-50 dark:bg-${app.color}-500/10 flex items-center justify-center text-${app.color}-600 dark:text-${app.color}-400 group-hover/app:scale-110 group-hover/app:bg-${app.color}-600 dark:group-hover/app:bg-${app.color}-500 group-hover/app:text-white transition-all duration-300`}>
                                             <HugeiconsIcon icon={app.icon} size={18} />
                                         </div>
-                                        <span className="text-[10px] font-black text-slate-600 uppercase tracking-tight">{app.name}</span>
+                                        <span className="text-[10px] font-black text-slate-600 dark:text-zinc-400 uppercase tracking-tight transition-colors">{app.name}</span>
                                     </button>
                                 ))}
                             </div>
                         </div>
-                        <div className="bg-slate-50 rounded-xl p-2 flex items-center gap-3">
-                            <div className="p-2 bg-white rounded-2xl shadow-sm"><HugeiconsIcon icon={Copy} size={16} className="text-slate-400" /></div>
-                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex-1">ekonty.tech/blog...</span>
-                            <button className="text-[9px] font-bold text-blue-500 uppercase tracking-widest pr-2">Copy</button>
+                        <div className="bg-slate-50 dark:bg-zinc-800/50 rounded-xl p-2 flex items-center gap-3 transition-colors">
+                            <div className="p-2 bg-white dark:bg-zinc-800 rounded-2xl shadow-sm border border-transparent dark:border-zinc-700 transition-colors"><HugeiconsIcon icon={Copy} size={16} className="text-slate-400 dark:text-zinc-500" /></div>
+                            <span className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-widest flex-1 transition-colors">ekonty.tech/blog...</span>
+                            <button className="text-[9px] font-bold text-blue-500 dark:text-blue-400 uppercase tracking-widest pr-2 transition-colors">Copy</button>
                         </div>
                     </div>
                 )}
@@ -129,18 +129,21 @@ export const ShareButton = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[550px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[550px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[550px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <SharePreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Modal Themes</span>
                         </button>
@@ -148,7 +151,7 @@ export const ShareButton = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

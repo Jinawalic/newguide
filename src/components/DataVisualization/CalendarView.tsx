@@ -70,17 +70,17 @@ export default CalendarView;`;
 // --- THE PREVIEW COMPONENT ---
 const CalendarPreview = () => {
     return (
-        <div className="w-full max-w-sm mx-auto bg-white rounded-xl shadow-2xl shadow-slate-900/10 border border-slate-100 overflow-hidden relative z-[100]">
-            <div className="p-6 border-b border-slate-50 flex items-center justify-between">
+        <div className="w-full max-w-sm mx-auto bg-white dark:bg-zinc-900 rounded-xl shadow-2xl shadow-slate-900/10 dark:shadow-black/50 border border-slate-100 dark:border-zinc-800 overflow-hidden relative z-[100] transition-colors">
+            <div className="p-6 border-b border-slate-50 dark:border-zinc-800 flex items-center justify-between transition-colors">
                 <div>
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">February 2025</p>
-                    <h3 className="text-xl font-black text-slate-900 tracking-tight leading-none">Monthly Schedule</h3>
+                    <p className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-[0.2em] mb-1 transition-colors">February 2025</p>
+                    <h3 className="text-xl font-black text-slate-900 dark:text-white tracking-tight leading-none transition-colors">Monthly Schedule</h3>
                 </div>
                 <div className="flex gap-1.5">
-                    <button className="w-8 h-8 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:text-emerald-600 transition-all active:scale-95 shadow-sm">
+                    <button className="w-8 h-8 rounded-xl bg-slate-50 dark:bg-zinc-800 flex items-center justify-center text-slate-400 dark:text-zinc-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all active:scale-95 shadow-sm">
                         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path d="M15 19l-7-7 7-7" /></svg>
                     </button>
-                    <button className="w-8 h-8 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:text-emerald-600 transition-all active:scale-95 shadow-sm">
+                    <button className="w-8 h-8 rounded-xl bg-slate-50 dark:bg-zinc-800 flex items-center justify-center text-slate-400 dark:text-emerald-600 transition-all active:scale-95 shadow-sm">
                         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path d="M9 5l7 7-7 7" /></svg>
                     </button>
                 </div>
@@ -89,18 +89,18 @@ const CalendarPreview = () => {
             <div className="p-6">
                 <div className="grid grid-cols-7 gap-2 mb-6 text-center">
                     {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
-                        <div key={i} className="text-[9px] font-black text-slate-300 uppercase tracking-widest">{d}</div>
+                        <div key={i} className="text-[9px] font-black text-slate-300 dark:text-zinc-600 uppercase tracking-widest transition-colors">{d}</div>
                     ))}
                 </div>
                 <div className="grid grid-cols-7 gap-2">
                     {Array.from({ length: 28 }).map((_, i) => (
                         <div
                             key={i}
-                            className={`aspect-square flex flex-col items-center justify-center rounded-xl transition-all duration-300 group cursor-pointer 
-                                ${i === 13 ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-200 ring-4 ring-emerald-50' : 'bg-white border border-slate-50 hover:bg-slate-50'}
+                            className={`aspect-square flex flex-col items-center justify-center rounded-xl transition-all duration-300 group cursor-pointer relative
+                                ${i === 13 ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-200 dark:shadow-emerald-900/40 ring-4 ring-emerald-50 dark:ring-emerald-500/20' : 'bg-white dark:bg-zinc-900 border border-slate-50 dark:border-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-800/50'}
                             `}
                         >
-                            <span className={`text-[11px] font-bold ${i === 13 ? 'text-white' : 'text-slate-600'}`}>{i + 1}</span>
+                            <span className={`text-[11px] font-bold transition-colors ${i === 13 ? 'text-white' : 'text-slate-600 dark:text-zinc-400 group-hover:text-slate-900 dark:group-hover:text-zinc-200'}`}>{i + 1}</span>
                             {i === 4 && <div className="absolute top-1 right-1 w-1 h-1 bg-blue-500 rounded-full" />}
                             {i === 8 && <div className="absolute top-1 right-1 w-1 h-1 bg-amber-500 rounded-full" />}
                         </div>
@@ -133,18 +133,21 @@ export const CalendarView = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[550px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[550px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[550px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <CalendarPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Event Dot Style</span>
                         </button>
@@ -152,7 +155,7 @@ export const CalendarView = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
@@ -182,13 +185,13 @@ export const CalendarView = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">State Management</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">State Management</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         This implementation uses a simple grid. For production, consider using libraries like <strong>date-fns</strong> to handle edge cases like leap years and timezone conversions.
                     </p>
                 </div>

@@ -23,24 +23,24 @@ export default CardGrid;`;
 // --- THE PREVIEW COMPONENT ---
 const CardGridPreview = () => {
     return (
-        <div className="w-full h-full flex items-center justify-center p-4 bg-slate-50 rounded-xl border border-slate-200 relative z-[100] overflow-y-auto custom-scrollbar">
+        <div className="w-full h-full flex items-center justify-center p-4 bg-slate-50 dark:bg-zinc-950/20 rounded-xl border border-slate-200 dark:border-zinc-800 relative z-[100] overflow-y-auto custom-scrollbar transition-colors">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full max-w-4xl">
                 {[
                     { t: 'Strategic Planning', s: 'Q1 Roadmap', c: 'emerald' },
                     { t: 'User Feedback', s: 'Latest reports', c: 'blue' },
                     { t: 'Design Specs', s: 'Version 2.4', c: 'rose' },
                 ].map((card, i) => (
-                    <div key={i} className="group bg-white rounded-xl p-4 border border-slate-100 shadow-sm shadow-slate-900/5 hover:-translate-y-2 transition-all duration-500 cursor-pointer relative overflow-hidden">
+                    <div key={i} className="group bg-white dark:bg-zinc-900 rounded-xl p-4 border border-slate-100 dark:border-zinc-800 shadow-sm shadow-slate-900/5 hover:-translate-y-2 transition-all duration-500 cursor-pointer relative overflow-hidden">
                         <div className={`absolute top-0 right-0 w-24 h-24 bg-${card.c}-500/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700`} />
 
-                        <div className={`w-8 h-8 rounded-2xl bg-${card.c}-50 flex items-center justify-center text-${card.c}-600 mb-6 group-hover:bg-${card.c}-600 group-hover:text-white transition-colors`}>
+                        <div className={`w-8 h-8 rounded-2xl bg-${card.c}-50 dark:bg-${card.c}-500/10 flex items-center justify-center text-${card.c}-600 dark:text-${card.c}-400 mb-6 group-hover:bg-${card.c}-600 group-hover:text-white transition-all`}>
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
                         </div>
 
-                        <h4 className="text-sm font-bold text-slate-900 tracking-tight uppercase mb-2">{card.t}</h4>
-                        <p className="text-xs font-bold text-slate-400 mb-6">{card.s}</p>
+                        <h4 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight uppercase mb-2 transition-colors">{card.t}</h4>
+                        <p className="text-xs font-bold text-slate-400 dark:text-zinc-500 mb-6 transition-colors">{card.s}</p>
 
-                        <div className="flex items-center gap-2 text-xs font-bold text-slate-900 uppercase tracking-widest group-hover:gap-4 transition-all">
+                        <div className="flex items-center gap-2 text-xs font-bold text-slate-900 dark:text-zinc-300 uppercase tracking-widest group-hover:gap-4 transition-all">
                             <span>Open Details</span>
                             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
                         </div>
@@ -49,11 +49,11 @@ const CardGridPreview = () => {
             </div>
 
             <div className="absolute top-10 right-10 text-right opacity-30">
-                <p className="text-[9px] font-black text-slate-400 uppercase tracking-[0.4em]">Multi-Device Scale</p>
+                <p className="text-[9px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-[0.4em] transition-colors">Multi-Device Scale</p>
                 <div className="flex gap-1 mt-2 justify-end">
-                    <div className="w-4 h-4 rounded bg-slate-200" />
-                    <div className="w-4 h-4 rounded bg-slate-300" />
-                    <div className="w-4 h-4 rounded bg-slate-400" />
+                    <div className="w-4 h-4 rounded bg-slate-200 dark:bg-zinc-800 transition-colors" />
+                    <div className="w-4 h-4 rounded bg-slate-300 dark:bg-zinc-700 transition-colors" />
+                    <div className="w-4 h-4 rounded bg-slate-400 dark:bg-zinc-600 transition-colors" />
                 </div>
             </div>
         </div>
@@ -82,22 +82,29 @@ export const CardGridSystem = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[500px] bg-[#f8fafc] relative p-4 border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[500px] bg-[#f8fafc] dark:bg-zinc-950/50 relative p-4 border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
+                    <div className="absolute inset-0 opacity-40" style={{
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
+                        backgroundSize: '24px 24px'
+                    }}></div>
+                    <style>{`
+                        .dark .h-\\[500px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <CardGridPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
-                            <HugeiconsIcon icon={Styles} size={6} className="group-hover:rotate-12 transition-transform" />
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white font-bold text-xs transition-colors group">
+                            <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Grid Gap Config</span>
                         </button>
                     </div>
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-white text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
@@ -127,13 +134,13 @@ export const CardGridSystem = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Visual Rhythm</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Visual Rhythm</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         Always maintain consistent padding and gap values across your application. Using a base <strong>8px grid system</strong> (gap-2, p-4, p-8) ensures a balanced and professional look.
                     </p>
                 </div>

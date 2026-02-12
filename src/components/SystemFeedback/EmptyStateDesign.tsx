@@ -38,7 +38,7 @@ export default EmptyState;`;
 // --- THE PREVIEW COMPONENT ---
 const EmptyStatePreview = () => {
     return (
-        <div className="w-full max-w-sm mx-auto flex flex-col items-center p-12 bg-white dark:bg-zinc-900/50 backdrop-blur-md rounded-xl shadow-sm shadow-slate-900/10 dark:shadow-black/50 border border-slate-100 dark:border-zinc-800 text-center relative z-[100] animate-in zoom-in-95 duration-500 transition-colors">
+        <div className="w-full max-w-sm mx-auto flex flex-col items-center p-12 bg-white dark:bg-zinc-900 rounded-xl shadow-sm shadow-slate-900/10 dark:shadow-black/50 border border-slate-100 dark:border-zinc-800 text-center relative z-[100] animate-in zoom-in-95 duration-500 transition-colors">
             <div className="relative mb-8 group">
                 <div className="absolute inset-0 bg-emerald-500/10 blur-[40px] rounded-full scale-150 group-hover:bg-emerald-500/20 transition-all duration-700" />
                 <div className="w-24 h-24 bg-white dark:bg-zinc-800 rounded-[32px] flex items-center justify-center text-slate-300 dark:text-zinc-600 border border-slate-100 dark:border-zinc-700 shadow-xl shadow-slate-200/50 dark:shadow-black/20 relative z-10 transition-all duration-500 group-hover:-rotate-3 group-hover:scale-105">

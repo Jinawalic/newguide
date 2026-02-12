@@ -47,40 +47,40 @@ export default HoverCard;`;
 
 const HoverCardPreview = () => {
     return (
-        <div className="w-full flex items-center justify-center p-12 bg-white rounded-xl border border-slate-100 shadow-sm mx-5 relative z-[100]">
-            <p className="text-slate-500 font-bold leading-relaxed max-w-md text-center">
+        <div className="w-full flex items-center justify-center p-12 bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 shadow-sm dark:shadow-black/50 mx-5 relative z-[100] transition-colors">
+            <p className="text-slate-500 dark:text-zinc-400 font-bold leading-relaxed max-w-md text-center transition-colors">
                 Check out the latest contributions from our founding engineer, <br />
                 <span className="group relative inline-block">
-                    <span className="text-slate-900 underline decoration-slate-200 decoration-2 underline-offset-4 cursor-help hover:decoration-slate-900 transition-all">@davidkostas</span>
+                    <span className="text-slate-900 dark:text-zinc-100 underline decoration-slate-200 dark:decoration-zinc-800 decoration-2 underline-offset-4 cursor-help hover:decoration-slate-900 dark:hover:decoration-emerald-500 transition-all">@davidkostas</span>
 
-                    <div className="absolute top-full my-4 left-1/2 -translate-x-1/2 w-80 bg-white border border-slate-50 rounded-xl shadow-sm p-8 z-[110] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 transition-all duration-500 pointer-events-none group-hover:pointer-events-auto">
+                    <div className="absolute top-full my-4 left-1/2 -translate-x-1/2 w-80 bg-white dark:bg-zinc-900 border border-slate-50 dark:border-zinc-800 rounded-xl shadow-xl dark:shadow-black/50 p-8 z-[110] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 transition-all duration-500 pointer-events-none group-hover:pointer-events-auto">
                         <div className="flex flex-col items-center text-center">
-                            <div className="w-14 h-14 rounded-[32px] bg-slate-900 shadow-xl mb-6 flex items-center justify-center text-white overflow-hidden relative">
+                            <div className="w-14 h-14 rounded-[32px] bg-slate-900 dark:bg-zinc-100 shadow-xl mb-6 flex items-center justify-center text-white dark:text-zinc-900 overflow-hidden relative transition-colors">
                                 <HugeiconsIcon icon={User} size={40} />
                                 <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 to-transparent" />
                             </div>
 
-                            <h4 className="text-lg font-black text-slate-900 tracking-tight leading-none mb-1">David Kostas</h4>
-                            <p className="text-[11px] font-bold text-slate-400 lowercase tracking-widest mb-6 leading-none">@davidkostas</p>
+                            <h4 className="text-lg font-black text-slate-900 dark:text-zinc-100 tracking-tight leading-none mb-1 transition-colors">David Kostas</h4>
+                            <p className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 lowercase tracking-widest mb-6 leading-none transition-colors">@davidkostas</p>
 
-                            <p className="text-[11px] font-bold text-slate-500 capitalize tracking-tight leading-relaxed mb-3">
+                            <p className="text-[11px] font-bold text-slate-500 dark:text-zinc-400 capitalize tracking-tight leading-relaxed mb-3 transition-colors">
                                 Building the core engine behind <br />
-                                <span className="text-slate-900 underline-offset-2">Ekonty Design</span>
+                                <span className="text-slate-900 dark:text-zinc-100 underline-offset-2 transition-colors">Ekonty Design</span>
                             </p>
 
-                            <div className="grid grid-cols-2 gap-4 w-full pt-8 border-t border-slate-50">
+                            <div className="grid grid-cols-2 gap-4 w-full pt-8 border-t border-slate-50 dark:border-zinc-800 transition-colors">
                                 <div className="text-center">
-                                    <p className="text-sm font-bold text-slate-900 tracking-tighter">12.4k</p>
-                                    <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Followers</p>
+                                    <p className="text-sm font-bold text-slate-900 dark:text-zinc-100 tracking-tighter transition-colors">12.4k</p>
+                                    <p className="text-[9px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-widest transition-colors">Followers</p>
                                 </div>
                                 <div className="text-center">
-                                    <p className="text-sm font-bold text-slate-900 tracking-tighter">2.1k</p>
-                                    <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Posts</p>
+                                    <p className="text-sm font-bold text-slate-900 dark:text-zinc-100 tracking-tighter transition-colors">2.1k</p>
+                                    <p className="text-[9px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-widest transition-colors">Posts</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white border-t border-l border-slate-50 rotate-45" />
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white dark:bg-zinc-900 border-t border-l border-slate-50 dark:border-zinc-800 rotate-45 transition-colors" />
                     </div>
                 </span>
                 <br /> who lead our recent architecture migration.
@@ -111,18 +111,21 @@ export const HoverCards = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-sm]">
-                <div className="h-[750px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden text-center">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-sm transition-colors duration-700">
+                <div className="h-[750px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden text-center transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[750px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <HoverCardPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Preview Latency</span>
                         </button>
@@ -130,7 +133,7 @@ export const HoverCards = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
@@ -160,13 +163,13 @@ export const HoverCards = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Performance Insight</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Performance Insight</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         To prevent accidental triggers, implement a <strong>short delay (200-400ms)</strong> before showing the card. This ensures the user intent is to view the card, not just quickly moving the mouse across the page.
                     </p>
                 </div>

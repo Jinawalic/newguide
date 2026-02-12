@@ -42,24 +42,24 @@ const QRPreview = () => {
 
     return (
         <div className="w-full flex flex-col items-center gap-10 relative z-[100]">
-            <div className="w-full max-w-sm bg-white p-10 rounded-[48px] border border-slate-100 shadow-2xl relative group">
+            <div className="w-full max-w-sm bg-white dark:bg-zinc-900 p-10 rounded-[48px] border border-slate-100 dark:border-zinc-800 shadow-2xl dark:shadow-black/50 relative group transition-colors">
                 <div className="mb-8 text-center">
-                    <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em] mb-2">Digital Pass</p>
-                    <h3 className="text-xl font-black text-slate-900 tracking-tight">Generate QR Code</h3>
+                    <p className="text-[10px] font-black text-slate-300 dark:text-zinc-600 uppercase tracking-[0.4em] mb-2 transition-colors">Digital Pass</p>
+                    <h3 className="text-xl font-black text-slate-900 dark:text-zinc-100 tracking-tight transition-colors">Generate QR Code</h3>
                 </div>
 
-                <div className="aspect-square bg-slate-50 rounded-[40px] border border-slate-100 p-8 flex items-center justify-center relative overflow-hidden group/qr">
-                    <div className="w-full h-full text-slate-900 relative z-10">
+                <div className="aspect-square bg-slate-50 dark:bg-zinc-950 rounded-[40px] border border-slate-100 dark:border-zinc-800 p-8 flex items-center justify-center relative overflow-hidden group/qr transition-colors">
+                    <div className="w-full h-full text-slate-900 dark:text-zinc-100 relative z-10 transition-colors">
                         <HugeiconsIcon icon={QrIcon} size={160} />
                     </div>
 
                     {/* Logo Overlay */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center z-20 border border-slate-100">
-                        <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white text-[10px] font-black italic">Ek</div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl flex items-center justify-center z-20 border border-slate-100 dark:border-zinc-800 transition-colors">
+                        <div className="w-8 h-8 rounded-lg bg-slate-900 dark:bg-zinc-100 flex items-center justify-center text-white dark:text-zinc-900 text-[10px] font-black italic transition-colors">Ek</div>
                     </div>
 
-                    <div className="absolute inset-0 bg-white/40 backdrop-blur-sm opacity-0 group-hover/qr:opacity-100 transition-all duration-500 flex items-center justify-center z-30">
-                        <button className="bg-slate-900 text-white px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 shadow-xl active:scale-95 transition-all">
+                    <div className="absolute inset-0 bg-white/40 dark:bg-black/40 backdrop-blur-sm opacity-0 group-hover/qr:opacity-100 transition-all duration-500 flex items-center justify-center z-30">
+                        <button className="bg-slate-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 shadow-xl active:scale-95 transition-all">
                             <HugeiconsIcon icon={Download} size={16} />
                             Export PNG
                         </button>
@@ -70,15 +70,15 @@ const QRPreview = () => {
                     <input
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        className="w-full h-14 bg-slate-50 border border-slate-100 rounded-3xl px-8 outline-none text-[13px] font-bold text-slate-600 focus:ring-4 focus:ring-slate-900/5 focus:border-slate-300 transition-all placeholder:uppercase"
+                        className="w-full h-14 bg-slate-50 dark:bg-zinc-800 border border-slate-100 dark:border-zinc-700 rounded-3xl px-8 outline-none text-[13px] font-bold text-slate-600 dark:text-zinc-300 focus:ring-4 focus:ring-slate-900/5 dark:focus:ring-white/5 focus:border-slate-300 dark:focus:border-zinc-600 transition-all placeholder:uppercase transition-colors"
                         placeholder="Paste Link here..."
                     />
                 </div>
             </div>
 
             <div className="flex gap-4">
-                <div className="px-6 py-2 bg-slate-900 text-amber-400 rounded-full text-[10px] font-black uppercase tracking-widest">v3.4 Engine</div>
-                <div className="px-6 py-2 bg-white border border-slate-200 text-slate-400 rounded-full text-[10px] font-black uppercase tracking-widest">Vector Ready</div>
+                <div className="px-6 py-2 bg-slate-900 dark:bg-zinc-100 text-amber-400 dark:text-amber-600 rounded-full text-[10px] font-black uppercase tracking-widest transition-colors">v3.4 Engine</div>
+                <div className="px-6 py-2 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-400 dark:text-zinc-500 rounded-full text-[10px] font-black uppercase tracking-widest transition-colors">Vector Ready</div>
             </div>
         </div>
     );
@@ -106,18 +106,21 @@ export const QRCodeGenerator = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[650px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[650px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[650px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <QRPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>EC Level Config</span>
                         </button>
@@ -125,7 +128,7 @@ export const QRCodeGenerator = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

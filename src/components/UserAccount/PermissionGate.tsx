@@ -44,44 +44,44 @@ const GatePreview = () => {
     return (
         <div className="w-full flex flex-col items-center gap-10 relative z-[100]">
             {/* Toggle Control */}
-            <div className="bg-white p-2 rounded-full border border-slate-100 shadow-xl flex items-center gap-3">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-4">Simulate Admin</span>
+            <div className="bg-white dark:bg-zinc-900 p-2 rounded-full border border-slate-100 dark:border-zinc-800 shadow-xl flex items-center gap-3 transition-colors">
+                <span className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-widest pl-4 transition-colors">Simulate Admin</span>
                 <button
                     onClick={() => setIsAdmin(!isAdmin)}
-                    className={`w-14 h-8 rounded-full p-1 transition-all duration-500 ${isAdmin ? 'bg-emerald-500' : 'bg-slate-200'}`}
+                    className={`w-14 h-8 rounded-full p-1 transition-all duration-500 ${isAdmin ? 'bg-emerald-500' : 'bg-slate-200 dark:bg-zinc-800'}`}
                 >
-                    <div className={`w-6 h-6 bg-white rounded-full shadow-lg transition-transform duration-500 transform ${isAdmin ? 'translate-x-6' : 'translate-x-0'}`} />
+                    <div className={`w-6 h-6 bg-white dark:bg-zinc-100 rounded-full shadow-lg transition-transform duration-500 transform ${isAdmin ? 'translate-x-6' : 'translate-x-0'}`} />
                 </button>
             </div>
 
             <div className="w-full max-w-md relative group">
                 <div className={`transition-all duration-700 ${isAdmin ? 'blur-0 opacity-100' : 'blur-xl opacity-30 select-none pointer-events-none'}`}>
-                    <div className="bg-white p-5 rounded-xl border border-slate-100 shadow-xl space-y-1">
+                    <div className="bg-white dark:bg-zinc-900 p-5 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-xl space-y-1 transition-colors">
                         <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center shadow-sm">
+                            <div className="w-12 h-12 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center shadow-sm transition-colors">
                                 <HugeiconsIcon icon={Check} size={24} />
                             </div>
                             <div>
-                                <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest leading-none mb-1">Financial Report</h4>
-                                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Confidential Data</p>
+                                <h4 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest leading-none mb-1 transition-colors">Financial Report</h4>
+                                <p className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-widest transition-colors">Confidential Data</p>
                             </div>
                         </div>
                         <div className="space-y-2">
-                            <div className="h-6 w-full bg-slate-50 rounded-xl" />
-                            <div className="h-6 w-3/4 bg-slate-50 rounded-xl" />
-                            <div className="h-24 w-full bg-slate-50 rounded-[28px] border border-dashed border-slate-100" />
+                            <div className="h-6 w-full bg-slate-50 dark:bg-zinc-800/50 rounded-xl transition-colors" />
+                            <div className="h-6 w-3/4 bg-slate-50 dark:bg-zinc-800/50 rounded-xl transition-colors" />
+                            <div className="h-24 w-full bg-slate-50 dark:bg-zinc-800/50 rounded-[28px] border border-dashed border-slate-100 dark:border-zinc-800 transition-colors" />
                         </div>
                     </div>
                 </div>
 
                 {!isAdmin && (
                     <div className="absolute inset-0 flex items-center justify-center animate-in zoom-in-95 duration-500">
-                        <div className="bg-white p-7 rounded-xl border border-slate-100 shadow-sm text-center max-w-[280px]">
-                            <div className="w-10 h-10 bg-rose-50 text-rose-500 rounded-3xl flex items-center justify-center mb-6 mx-auto rotate-12 shadow-sm">
+                        <div className="bg-white dark:bg-zinc-900 p-7 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-sm text-center max-w-[280px] transition-colors">
+                            <div className="w-10 h-10 bg-rose-50 dark:bg-rose-500/10 text-rose-500 dark:text-rose-400 rounded-3xl flex items-center justify-center mb-6 mx-auto rotate-12 shadow-sm transition-colors">
                                 <HugeiconsIcon icon={Lock} size={25} />
                             </div>
-                            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-widest mb-3">Locked View</h3>
-                            <p className="text-[10px] font-bold text-slate-400 leading-relaxed uppercase tracking-widest mb-8">Role Upgrade Required</p>
+                            <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-3 transition-colors">Locked View</h3>
+                            <p className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 leading-relaxed uppercase tracking-widest mb-8 transition-colors">Role Upgrade Required</p>
                             <button className="w-full h-11 bg-rose-600 text-white rounded-2xl text-[10px] font-bold uppercase tracking-widest shadow-xl shadow-rose-900/10 active:scale-95 transition-all">
                                 Request Access
                             </button>
@@ -120,18 +120,21 @@ export const PermissionGate = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[600px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[600px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[600px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <GatePreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Blur Intensity</span>
                         </button>
@@ -139,7 +142,7 @@ export const PermissionGate = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
@@ -169,13 +172,13 @@ export const PermissionGate = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Logic Pattern</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Logic Pattern</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         Always prefer <strong>server-side validation</strong> in addition to client-side gates. Client-side gates are for UX purposes only and cannot prevent tech-savvy users from seeing protected data in the network tab.
                     </p>
                 </div>

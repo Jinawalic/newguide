@@ -49,22 +49,22 @@ export default ErrorState;`;
 // --- THE PREVIEW COMPONENT ---
 const ErrorStatePreview = () => {
     return (
-        <div className="w-full max-w-sm mx-auto p-12 bg-white rounded-xl shadow-sm shadow-slate-900/10 border border-slate-100 text-center relative z-[100] animate-in zoom-in-95 duration-500">
+        <div className="w-full max-w-sm mx-auto p-12 bg-white dark:bg-zinc-900 rounded-xl shadow-sm shadow-slate-900/10 dark:shadow-black/50 border border-slate-100 dark:border-zinc-800 text-center relative z-[100] animate-in zoom-in-95 duration-500 transition-colors">
             <div className="relative mb-10 flex justify-center">
-                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center opacity-[0.03]">
-                    <span className="text-[150px] font-black text-rose-900 leading-none">500</span>
+                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center opacity-[0.03] dark:opacity-[0.1]">
+                    <span className="text-[150px] font-black text-rose-900 dark:text-rose-500 leading-none">500</span>
                 </div>
-                <div className="w-12 h-12 bg-rose-50 rounded-[32px] flex items-center justify-center text-rose-500 shadow-xl shadow-rose-900/5 rotate-12 relative z-10 transition-transform duration-700 hover:rotate-0">
+                <div className="w-12 h-12 bg-rose-50 dark:bg-rose-500/10 rounded-[32px] flex items-center justify-center text-rose-500 shadow-xl shadow-rose-900/5 rotate-12 relative z-10 transition-transform duration-700 hover:rotate-0">
                     <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                 </div>
             </div>
 
-            <h3 className="text-2xl font-black text-slate-900 tracking-tight mb-3">Server Malfunction</h3>
-            <p className="text-[13px] text-slate-400 font-bold leading-relaxed mb-10 max-w-[240px] mx-auto">Something went wrong on our end. Our engineering team has been notified and is on it.</p>
+            <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-3 transition-colors">Server Malfunction</h3>
+            <p className="text-[13px] text-slate-400 dark:text-zinc-500 font-bold leading-relaxed mb-10 max-w-[240px] mx-auto transition-colors">Something went wrong on our end. Our engineering team has been notified and is on it.</p>
 
             <div className="flex flex-col gap-3">
                 <button className="h-12 bg-rose-600 text-white rounded-2xl text-[11px] font-black uppercase tracking-widest shadow-xl shadow-rose-900/20 active:scale-[0.98] transition-all">Reload Page</button>
-                <button className="h-12 bg-slate-50 text-slate-400 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-slate-100 transition-all active:scale-[0.98]">System Status</button>
+                <button className="h-12 bg-slate-50 dark:bg-zinc-800 text-slate-400 dark:text-zinc-500 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-zinc-700 border border-transparent dark:border-zinc-700 transition-all active:scale-[0.98]">System Status</button>
             </div>
 
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-rose-500/5 rounded-full blur-[60px]" />
@@ -94,18 +94,21 @@ export const ErrorStatePage = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[600px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[600px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[600px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <ErrorStatePreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Error Variants</span>
                         </button>
@@ -113,7 +116,7 @@ export const ErrorStatePage = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>

@@ -44,26 +44,25 @@ const MasonryPreview = () => {
     ];
 
     return (
-        <div className="w-full h-full flex items-center justify-center p-8 bg-slate-50 rounded-xl border border-slate-200 relative z-[100] overflow-y-auto custom-scrollbar">
+        <div className="w-full h-full flex items-center justify-center p-8 bg-slate-50 dark:bg-zinc-950/20 rounded-xl border border-slate-200 dark:border-zinc-800 relative z-[100] overflow-y-auto custom-scrollbar transition-colors">
             <div className={`grid grid-cols-${columns} gap-6 w-full max-w-2xl`}>
                 {Array.from({ length: columns }).map((_, colIdx) => (
                     <div key={colIdx} className="flex flex-col gap-3">
                         {items.slice(colIdx * 3, (colIdx + 1) * 3).map((item, i) => (
-                            <div key={i} className="bg-white rounded-xl border border-slate-100 shadow-xl shadow-slate-900/5 overflow-hidden group hover:-translate-y-2 transition-all duration-500 cursor-pointer">
-                                <div className={`${item.h} bg-${item.c}-50 flex items-center justify-center text-${item.c}-600/20 group-hover:scale-105 transition-transform duration-700`}>
+                            <div key={i} className="bg-white dark:bg-zinc-900 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-xl shadow-slate-900/5 overflow-hidden group hover:-translate-y-2 transition-all duration-500 cursor-pointer">
+                                <div className={`${item.h} bg-${item.c}-50 dark:bg-${item.c}-500/10 flex items-center justify-center text-${item.c}-600/20 dark:text-${item.c}-400/20 group-hover:scale-105 transition-transform duration-700`}>
                                     <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                                 </div>
-                                <div className="p-6">
-                                    <div className={`w-8 h-1 bg-${item.c}-500 rounded-full mb-4`} />
-                                    <h4 className="text-[13px] font-black text-slate-900 tracking-tight uppercase mb-2">{item.t}</h4>
-                                    <p className="text-[11px] font-bold text-slate-400 leading-relaxed">{item.d}</p>
+                                <div className="p-6 transition-colors">
+                                    <div className={`w-8 h-1 bg-${item.c}-500 dark:bg-${item.c}-400 rounded-full mb-4`} />
+                                    <h4 className="text-[13px] font-black text-slate-900 dark:text-white tracking-tight uppercase mb-2 transition-colors">{item.t}</h4>
+                                    <p className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 leading-relaxed transition-colors">{item.d}</p>
                                 </div>
                             </div>
                         ))}
                     </div>
                 ))}
             </div>
-
         </div>
     );
 };
@@ -90,14 +89,21 @@ export const MasonryGrid = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[600px] bg-[#f8fafc] relative p-4 border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[600px] bg-[#f8fafc] dark:bg-zinc-950/50 relative p-4 border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
+                    <div className="absolute inset-0 opacity-40" style={{
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
+                        backgroundSize: '24px 24px'
+                    }}></div>
+                    <style>{`
+                        .dark .h-\\[600px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <MasonryPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Gutter Spacing</span>
                         </button>
@@ -105,7 +111,7 @@ export const MasonryGrid = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-white text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
@@ -135,13 +141,13 @@ export const MasonryGrid = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Architecture Tip</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Architecture Tip</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         While CSS columns are easiest to implement, using a multi-column flex approach (as shown in the code) allows for <strong>ordering items correctly</strong> (Left to Right, then Top to Bottom) across columns.
                     </p>
                 </div>

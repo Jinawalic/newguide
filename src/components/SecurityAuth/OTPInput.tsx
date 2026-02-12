@@ -93,14 +93,14 @@ const OTPPreview = () => {
     };
 
     return (
-        <div className="w-full flex flex-col items-center gap-10 relative z-[100]">
-            <div className="w-full max-w-md bg-white p-10 rounded-xl border border-slate-100 shadow-sm relative group overflow-hidden">
+        <div className="w-full flex flex-col items-center justify-center gap-10 relative z-[100] transition-colors">
+            <div className="w-full max-w-md bg-white dark:bg-zinc-900 p-10 rounded-xl border border-slate-100 dark:border-zinc-800 shadow-sm relative group overflow-hidden transition-colors">
                 <div className="mb-10 text-center">
-                    <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center text-blue-600 mx-auto mb-6">
+                    <div className="w-12 h-12 bg-blue-50 dark:bg-blue-500/10 border border-blue-100 dark:border-blue-500/20 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mx-auto mb-6 transition-colors">
                         <HugeiconsIcon icon={Shield} size={20} />
                     </div>
-                    <h3 className="text-2xl font-black text-slate-900 tracking-tight leading-none mb-3">Check your email</h3>
-                    <p className="text-[11px] font-bold text-slate-400 capitalize tracking-widest">We sent a verification code to your inbox</p>
+                    <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-3 transition-colors">Check your email</h3>
+                    <p className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 capitalize tracking-widest transition-colors">We sent a verification code to your inbox</p>
                 </div>
 
                 <div className="flex justify-center gap-3 mb-10">
@@ -113,7 +113,7 @@ const OTPPreview = () => {
                             value={digit}
                             onChange={(e) => handleChange(e.target.value, i)}
                             onKeyDown={(e) => handleKeyDown(e, i)}
-                            className={`w-10 lg:w-12 h-12 text-center text-2xl font-black rounded-xl border-2 transition-all outline-none ${digit ? 'border-blue-500 bg-blue-50/20 text-blue-900 shadow-lg shadow-blue-500/10' : 'border-slate-100 text-slate-400 bg-slate-50 focus:border-blue-500'
+                            className={`w-10 lg:w-12 h-12 text-center text-2xl font-black rounded-xl border-2 transition-all outline-none ${digit ? 'border-blue-500 bg-blue-50/20 dark:bg-blue-500/10 text-blue-900 dark:text-white shadow-lg shadow-blue-500/10' : 'border-slate-100 dark:border-zinc-800 text-slate-400 dark:text-zinc-600 bg-slate-50 dark:bg-zinc-950 focus:border-blue-500 dark:focus:border-blue-500'
                                 }`}
                         />
                     ))}
@@ -122,9 +122,9 @@ const OTPPreview = () => {
                 <button
                     onClick={handleVerify}
                     disabled={otp.some(d => !d) || verifying}
-                    className={`w-full h-12 rounded-xl flex items-center justify-center text-[10px] font-black uppercase tracking-[0.3em] transition-all relative overflow-hidden ${success ? 'bg-emerald-800 text-white' :
-                        verifying ? 'bg-slate-100 text-slate-400' :
-                            otp.every(d => d) ? 'bg-emerald-900 text-white shadow-sm hover:bg-emerald-800' : 'bg-slate-100 text-slate-300 cursor-not-allowed'
+                    className={`w-full h-12 rounded-xl flex items-center justify-center text-[10px] font-black uppercase tracking-[0.3em] transition-all relative overflow-hidden ${success ? 'bg-emerald-800 dark:bg-emerald-600 text-white' :
+                        verifying ? 'bg-slate-100 dark:bg-zinc-800 text-slate-400 dark:text-zinc-500' :
+                            otp.every(d => d) ? 'bg-emerald-900 dark:bg-emerald-500 text-white shadow-sm hover:bg-emerald-800 dark:hover:bg-emerald-400' : 'bg-slate-100 dark:bg-zinc-800 text-slate-300 dark:text-zinc-700 cursor-not-allowed'
                         }`}
                 >
                     {success ? (
@@ -133,18 +133,18 @@ const OTPPreview = () => {
                             <span>Verified</span>
                         </div>
                     ) : verifying ? (
-                        <div className="w-6 h-6 border-4 border-slate-300 border-t-slate-900 rounded-full animate-spin" />
+                        <div className="w-6 h-6 border-4 border-slate-300 dark:border-zinc-700 border-t-slate-900 dark:border-t-zinc-100 rounded-full animate-spin" />
                     ) : (
                         <span>Verify Account</span>
                     )}
                 </button>
 
                 <div className="mt-10 flex flex-col items-center gap-4">
-                    <p className="text-[10px] font-black text-slate-400 capitalize tracking-widest flex items-center gap-2">
-                        <HugeiconsIcon icon={Clock} size={14} className="text-slate-300" />
-                        Code expires in <span className="text-slate-900">{timer}s</span>
+                    <p className="text-[10px] font-black text-slate-400 dark:text-zinc-500 capitalize tracking-widest flex items-center gap-2 transition-colors">
+                        <HugeiconsIcon icon={Clock} size={14} className="text-slate-300 dark:text-zinc-600" />
+                        Code expires in <span className="text-slate-900 dark:text-white transition-colors">{timer}s</span>
                     </p>
-                    <button className="text-[10px] font-black text-blue-600 capitalize tracking-widest hover:underline decoration-2 underline-offset-4">Resend Code</button>
+                    <button className="text-[10px] font-black text-blue-600 dark:text-blue-400 capitalize tracking-widest hover:underline decoration-2 underline-offset-4 transition-colors">Resend Code</button>
                 </div>
             </div>
         </div>
@@ -164,27 +164,30 @@ export const OTPInput = () => {
         <div className="max-w-[1000px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                    <h2 className="text-3xl font-black text-slate-900 tracking-tight font-heading">OTP Input</h2>
+                    <h2 className="text-3xl font-black text-slate-900 dark:text-zinc-100 tracking-tight font-heading">OTP Input</h2>
                     <span className="bg-blue-100 text-blue-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Security</span>
                 </div>
-                <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+                <p className="text-slate-500 dark:text-zinc-400 font-medium leading-relaxed max-w-2xl transition-colors">
                     A multi-field input system for verification codes. Features auto-focus
                     on subsequent fields, backspace navigation, and paste support.
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[600px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[600px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[600px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <OTPPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Input States</span>
                         </button>
@@ -192,7 +195,7 @@ export const OTPInput = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
@@ -222,13 +225,13 @@ export const OTPInput = () => {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="text-emerald-600 mt-0.5">
+            <div className="mt-8 flex items-start gap-3 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-100 dark:border-zinc-800 transition-colors">
+                <div className="text-emerald-600 dark:text-emerald-400 mt-0.5 transition-colors">
                     <HugeiconsIcon icon={Info} size={20} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Security Best Practice</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1 transition-colors">Security Best Practice</h4>
+                    <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium leading-relaxed transition-colors">
                         Prevent auto-fill suggestions for sensitive codes and ensure the timer matches your backend expiration policy. Use <code>inputMode="numeric"</code> for better mobile keyboard support.
                     </p>
                 </div>

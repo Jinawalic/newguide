@@ -47,10 +47,10 @@ const RatingPreview = () => {
 
     return (
         <div className="w-full flex flex-col items-center gap-8 relative z-[100]">
-            <div className="bg-white p-10 rounded-xl dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 shadow-2xl flex flex-col items-center">
+            <div className="bg-white p-10 rounded-xl dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 shadow-2xl dark:shadow-black/50 flex flex-col items-center transition-colors">
                 <div className="mb-8 text-center">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.4em] mb-2">Customer Feedback</p>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 tracking-tight ">Rate your experience</h3>
+                    <p className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-[0.4em] mb-2 transition-colors">Customer Feedback</p>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 tracking-tight transition-colors">Rate your experience</h3>
                 </div>
 
                 <div className="flex gap-2 mb-10">
@@ -60,28 +60,28 @@ const RatingPreview = () => {
                             onMouseEnter={() => setHover(s)}
                             onMouseLeave={() => setHover(0)}
                             onClick={() => setRating(s)}
-                            className={`p-2 rounded-2xl transition-all duration-300 ${s <= (hover || rating) ? 'bg-amber-50 text-amber-500 scale-110 rotate-12' : 'bg-slate-50 text-slate-200'} active:scale-90`}
+                            className={`p-2 rounded-2xl transition-all duration-300 ${s <= (hover || rating) ? 'bg-amber-50 dark:bg-amber-500/10 text-amber-500 scale-110 rotate-12' : 'bg-slate-50 dark:bg-zinc-800 text-slate-200 dark:text-zinc-700'} active:scale-90`}
                         >
                             <HugeiconsIcon icon={Star} size={28} />
                         </button>
                     ))}
                 </div>
 
-                <div className="w-full h-1 bg-slate-100 rounded-full relative overflow-hidden">
+                <div className="w-full h-1 bg-slate-100 dark:bg-zinc-800 rounded-full relative overflow-hidden transition-colors">
                     <div
                         className="absolute inset-y-0 left-0 bg-amber-400 transition-all duration-1000 ease-out"
                         style={{ width: `${(rating / 5) * 100}%` }}
                     />
                 </div>
-                <div className="mt-4 text-[11px] font-black text-amber-600 uppercase tracking-widest leading-none">
+                <div className="mt-4 text-[11px] font-black text-amber-600 dark:text-amber-500 uppercase tracking-widest leading-none transition-colors">
                     {rating === 5 ? 'Exceptional' : rating === 4 ? 'Very Good' : rating === 3 ? 'Neutral' : rating === 2 ? 'Poor' : 'Unsatisfactory'}
                 </div>
             </div>
 
             <div className="flex gap-2">
-                <div className="w-4 h-4 rounded-full bg-slate-900" />
-                <div className="w-4 h-4 rounded-full bg-slate-200" />
-                <div className="w-4 h-4 rounded-full bg-slate-200" />
+                <div className="w-4 h-4 rounded-full bg-slate-900 dark:bg-zinc-100 transition-colors" />
+                <div className="w-4 h-4 rounded-full bg-slate-200 dark:bg-zinc-800 transition-colors" />
+                <div className="w-4 h-4 rounded-full bg-slate-200 dark:bg-zinc-800 transition-colors" />
             </div>
         </div>
     );
@@ -109,18 +109,21 @@ export const RatingStars = () => {
                 </p>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-                <div className="h-[450px] bg-[#f8fafc] relative flex items-center justify-center border-b border-slate-100 overflow-hidden">
+            <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] transition-colors duration-700">
+                <div className="h-[450px] bg-[#f8fafc] dark:bg-zinc-950/50 relative flex items-center justify-center border-b border-slate-100 dark:border-zinc-800 overflow-hidden transition-colors duration-700">
                     <div className="absolute inset-0 opacity-40" style={{
-                        backgroundImage: 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                        backgroundImage: 'radial-gradient(var(--pattern-color, #e2e8f0) 1.5px, transparent 1.5px)',
                         backgroundSize: '24px 24px'
                     }}></div>
+                    <style>{`
+                        .dark .h-\\[450px\\] { --pattern-color: #3f3f46; }
+                    `}</style>
                     <RatingPreview />
                 </div>
 
-                <div className="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
+                <div className="px-6 py-4 flex items-center justify-between bg-white dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 transition-colors duration-700">
                     <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold text-xs transition-colors group">
+                        <button className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 font-bold text-xs transition-colors group">
                             <HugeiconsIcon icon={Styles} size={16} className="group-hover:rotate-12 transition-transform" />
                             <span>Star Count Config</span>
                         </button>
@@ -128,7 +131,7 @@ export const RatingStars = () => {
                     <div className="flex items-center gap-6 text-slate-400">
                         <button
                             onClick={handleCopy}
-                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 text-slate-500'}`}
+                            className={`flex items-center gap-2 font-bold text-xs transition-all ${copied ? 'text-emerald-600' : 'hover:text-slate-900 dark:hover:text-zinc-100 text-slate-500 dark:text-zinc-400'}`}
                         >
                             <HugeiconsIcon icon={copied ? Tick : Copy} size={16} />
                             <span>{copied ? 'Copied' : 'Copy code'}</span>
